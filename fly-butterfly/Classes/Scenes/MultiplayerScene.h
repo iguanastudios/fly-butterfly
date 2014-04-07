@@ -6,8 +6,7 @@
 //  Copyright (c) 2014 Iguana Studios. All rights reserved.
 //
 
-#import <SpriteKit/SpriteKit.h>
-#import "ISMultiplayerNetworking.h"
+#import <ISGameCenter/ISMultiplayerNetworking.h>
 #import "ButterflyMultiplayerNetworking.h"
 #import "BaseScene.h"
 

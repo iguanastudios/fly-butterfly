@@ -6,8 +6,6 @@
 //  Copyright (c) 2014 Iguana Studios. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
 @import GameKit;
 
 @interface AchievementsHelper : NSObject

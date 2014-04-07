@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 Iguana Studios. All rights reserved.
 //
 
+@import SpriteKit;
+
 #import <GVGoogleBannerView/GVGoogleBannerView.h>
 #import "GAITrackedViewController.h"
 

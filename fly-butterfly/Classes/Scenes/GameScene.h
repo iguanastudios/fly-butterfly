@@ -6,8 +6,6 @@
 //  Copyright (c) 2014 Iguana Studios. All rights reserved.
 //
 
-#import <SpriteKit/SpriteKit.h>
-#import "ButterflyMultiplayerNetworking.h"
 #import "BaseScene.h"
 
 @interface GameScene : BaseScene

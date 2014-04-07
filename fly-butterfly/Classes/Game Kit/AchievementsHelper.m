@@ -8,10 +8,10 @@
 
 #import "AchievementsHelper.h"
 
-static NSString* const kAchievementId50 = @"io.iguanastudios.butterfly.amateursurvival";
-static NSString* const kAchievementId100 = @"io.iguanastudios.butterfly.intermediatesurvival";
-static NSString* const kAchievementId150 = @"io.iguanastudios.butterfly.professionalsurvival";
-static NSString* const kAchievementId250 = @"io.iguanastudios.butterfly.grandmastersurvival";
+static NSString* const kAchievementId50 = @"io.iguanastudios.flybutterfly.amateursurvival";
+static NSString* const kAchievementId100 = @"io.iguanastudios.flybutterfly.intermediatesurvival";
+static NSString* const kAchievementId150 = @"io.iguanastudios.flybutterfly.professionalsurvival";
+static NSString* const kAchievementId250 = @"io.iguanastudios.flybutterfly.grandmastersurvival";
 
 @implementation AchievementsHelper
 

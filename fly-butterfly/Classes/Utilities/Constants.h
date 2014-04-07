@@ -6,8 +6,6 @@
 //  Copyright (c) 2014 Iguana Studios. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
 typedef NS_OPTIONS(uint32_t, BPhysicsCategory) {
     // Game
     BEdgeCategory = 1 << 0,

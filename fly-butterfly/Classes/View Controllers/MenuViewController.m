@@ -6,10 +6,10 @@
 //  Copyright (c) 2014 Iguana Studios. All rights reserved.
 //
 
+#import <ISSpriteKit/ISAudio.h>
+#import <ISGameCenter/ISGameCenter.h>
 #import <GVGoogleBannerView/GVGoogleBannerView.h>
 #import "MenuViewController.h"
-#import "ISGameCenter.h"
-#import "SKTAudio.h"
 #import "ButterflyMultiplayerNetworking.h"
 #import "GameViewController.h"
 #import "GameScene.h"
@@ -56,7 +56,7 @@
 }
 
 - (IBAction)highscorePressed {
-    [[SKTAudio sharedInstance] playSoundEffect:@"button_press.wav"];
+    [[ISAudio sharedInstance] playSoundEffect:@"button_press.wav"];
     [[ISGameCenter sharedISGameCenter] showGameCenterViewController:self];
 }
 

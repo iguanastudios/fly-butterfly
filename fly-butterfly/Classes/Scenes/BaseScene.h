@@ -6,8 +6,12 @@
 //  Copyright (c) 2014 Iguana Studios. All rights reserved.
 //
 
-#import <SpriteKit/SpriteKit.h>
+@import SpriteKit;
+
+#import <ISGameCenter/ISGameCenter.h>
 #import "Butterfly.h"
+#import "Crow.h"
+#import "Utilities.h"
 
 @protocol SceneDelegate <NSObject>
 - (void)gameStart;

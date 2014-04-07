@@ -6,11 +6,8 @@
 //  Copyright (c) 2014 Iguana Studios. All rights reserved.
 //
 
+#import <ISSpriteKit/ISParallaxLayer.h>
 #import "BaseScene.h"
-#import "Constants.h"
-#import "ISParallaxNode.h"
-#import "Crow.h"
-#import "Utilities.h"
 
 @interface BaseScene ()
 @property (strong, nonatomic) ISParallaxNode *parallaxNode;

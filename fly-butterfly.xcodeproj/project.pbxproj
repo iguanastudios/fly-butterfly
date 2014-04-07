@@ -16,7 +16,6 @@
 		A0A8801B18F3364100B01143 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A8801818F3364100B01143 /* main.m */; };
 		A0A8806818F3376E00B01143 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A8801F18F3376E00B01143 /* AppDelegate.m */; };
 		A0A8806918F3376E00B01143 /* GVUserDefaults+Properties.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A8802218F3376E00B01143 /* GVUserDefaults+Properties.m */; };
-		A0A8806A18F3376E00B01143 /* SKSpriteNode+DebugDraw.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A8802418F3376E00B01143 /* SKSpriteNode+DebugDraw.m */; };
 		A0A8806B18F3376E00B01143 /* AchievementsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A8802718F3376E00B01143 /* AchievementsHelper.m */; };
 		A0A8806C18F3376E00B01143 /* ButterflyMultiplayerNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A8802918F3376E00B01143 /* ButterflyMultiplayerNetworking.m */; };
 		A0A8806D18F3376E00B01143 /* BaseScene.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A8802C18F3376E00B01143 /* BaseScene.m */; };
@@ -25,11 +24,6 @@
 		A0A8807018F3376E00B01143 /* AnimatingSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A8803318F3376E00B01143 /* AnimatingSprite.m */; };
 		A0A8807118F3376E00B01143 /* Butterfly.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A8803518F3376E00B01143 /* Butterfly.m */; };
 		A0A8807218F3376E00B01143 /* Crow.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A8803718F3376E00B01143 /* Crow.m */; };
-		A0A8807318F3376E00B01143 /* SKAction+SKTExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A8803B18F3376E00B01143 /* SKAction+SKTExtras.m */; };
-		A0A8807418F3376E00B01143 /* SKEmitterNode+SKTExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A8803D18F3376E00B01143 /* SKEmitterNode+SKTExtras.m */; };
-		A0A8807518F3376E00B01143 /* SKNode+SKTExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A8803F18F3376E00B01143 /* SKNode+SKTExtras.m */; };
-		A0A8807618F3376E00B01143 /* SKTAudio.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A8804118F3376E00B01143 /* SKTAudio.m */; };
-		A0A8807718F3376E00B01143 /* SKTUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = A0A8804318F3376E00B01143 /* SKTUtils.mm */; };
 		A0A8807818F3376E00B01143 /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A8804618F3376E00B01143 /* Config.m */; };
 		A0A8807918F3376E00B01143 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A8804818F3376E00B01143 /* Constants.m */; };
 		A0A8807B18F3376E00B01143 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A8804C18F3376E00B01143 /* Utilities.m */; };
@@ -48,6 +42,7 @@
 		A0A8808B18F3376E00B01143 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A0A8806518F3376E00B01143 /* Images.xcassets */; };
 		A0A8808C18F3376E00B01143 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A0A8806718F3376E00B01143 /* Main.storyboard */; };
 		A0A8808F18F33A3300B01143 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0A8808E18F33A3300B01143 /* Crashlytics.framework */; };
+		A0BE8CBB18F358C900E71E47 /* SKAction+SKTExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = A0BE8CBA18F358C900E71E47 /* SKAction+SKTExtras.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,8 +61,6 @@
 		A0A8801F18F3376E00B01143 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		A0A8802118F3376E00B01143 /* GVUserDefaults+Properties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GVUserDefaults+Properties.h"; sourceTree = "<group>"; };
 		A0A8802218F3376E00B01143 /* GVUserDefaults+Properties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GVUserDefaults+Properties.m"; sourceTree = "<group>"; };
-		A0A8802318F3376E00B01143 /* SKSpriteNode+DebugDraw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKSpriteNode+DebugDraw.h"; sourceTree = "<group>"; };
-		A0A8802418F3376E00B01143 /* SKSpriteNode+DebugDraw.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SKSpriteNode+DebugDraw.m"; sourceTree = "<group>"; };
 		A0A8802618F3376E00B01143 /* AchievementsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AchievementsHelper.h; sourceTree = "<group>"; };
 		A0A8802718F3376E00B01143 /* AchievementsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AchievementsHelper.m; sourceTree = "<group>"; };
 		A0A8802818F3376E00B01143 /* ButterflyMultiplayerNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButterflyMultiplayerNetworking.h; sourceTree = "<group>"; };
@@ -84,16 +77,6 @@
 		A0A8803518F3376E00B01143 /* Butterfly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Butterfly.m; sourceTree = "<group>"; };
 		A0A8803618F3376E00B01143 /* Crow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Crow.h; sourceTree = "<group>"; };
 		A0A8803718F3376E00B01143 /* Crow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Crow.m; sourceTree = "<group>"; };
-		A0A8803A18F3376E00B01143 /* SKAction+SKTExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKAction+SKTExtras.h"; sourceTree = "<group>"; };
-		A0A8803B18F3376E00B01143 /* SKAction+SKTExtras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SKAction+SKTExtras.m"; sourceTree = "<group>"; };
-		A0A8803C18F3376E00B01143 /* SKEmitterNode+SKTExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKEmitterNode+SKTExtras.h"; sourceTree = "<group>"; };
-		A0A8803D18F3376E00B01143 /* SKEmitterNode+SKTExtras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SKEmitterNode+SKTExtras.m"; sourceTree = "<group>"; };
-		A0A8803E18F3376E00B01143 /* SKNode+SKTExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKNode+SKTExtras.h"; sourceTree = "<group>"; };
-		A0A8803F18F3376E00B01143 /* SKNode+SKTExtras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SKNode+SKTExtras.m"; sourceTree = "<group>"; };
-		A0A8804018F3376E00B01143 /* SKTAudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKTAudio.h; sourceTree = "<group>"; };
-		A0A8804118F3376E00B01143 /* SKTAudio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKTAudio.m; sourceTree = "<group>"; };
-		A0A8804218F3376E00B01143 /* SKTUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKTUtils.h; sourceTree = "<group>"; };
-		A0A8804318F3376E00B01143 /* SKTUtils.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SKTUtils.mm; sourceTree = "<group>"; };
 		A0A8804518F3376E00B01143 /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
 		A0A8804618F3376E00B01143 /* Config.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Config.m; sourceTree = "<group>"; };
 		A0A8804718F3376E00B01143 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
@@ -118,6 +101,8 @@
 		A0A8806518F3376E00B01143 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A0A8806718F3376E00B01143 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		A0A8808E18F33A3300B01143 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		A0BE8CB918F358C900E71E47 /* SKAction+SKTExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKAction+SKTExtras.h"; sourceTree = "<group>"; };
+		A0BE8CBA18F358C900E71E47 /* SKAction+SKTExtras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SKAction+SKTExtras.m"; sourceTree = "<group>"; };
 		A12870ECECE749159D501107 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -199,7 +184,7 @@
 				A0A8802518F3376E00B01143 /* Game Kit */,
 				A0A8802A18F3376E00B01143 /* Scenes */,
 				A0A8803118F3376E00B01143 /* Sprites Nodes */,
-				A0A8803818F3376E00B01143 /* Third Party */,
+				A0BE8CB718F358C900E71E47 /* Third Party */,
 				A0A8804418F3376E00B01143 /* Utilities */,
 				A0A8804D18F3376E00B01143 /* View Controllers */,
 			);
@@ -220,8 +205,6 @@
 			children = (
 				A0A8802118F3376E00B01143 /* GVUserDefaults+Properties.h */,
 				A0A8802218F3376E00B01143 /* GVUserDefaults+Properties.m */,
-				A0A8802318F3376E00B01143 /* SKSpriteNode+DebugDraw.h */,
-				A0A8802418F3376E00B01143 /* SKSpriteNode+DebugDraw.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -261,31 +244,6 @@
 				A0A8803718F3376E00B01143 /* Crow.m */,
 			);
 			path = "Sprites Nodes";
-			sourceTree = "<group>";
-		};
-		A0A8803818F3376E00B01143 /* Third Party */ = {
-			isa = PBXGroup;
-			children = (
-				A0A8803918F3376E00B01143 /* SKTUtils */,
-			);
-			path = "Third Party";
-			sourceTree = "<group>";
-		};
-		A0A8803918F3376E00B01143 /* SKTUtils */ = {
-			isa = PBXGroup;
-			children = (
-				A0A8803A18F3376E00B01143 /* SKAction+SKTExtras.h */,
-				A0A8803B18F3376E00B01143 /* SKAction+SKTExtras.m */,
-				A0A8803C18F3376E00B01143 /* SKEmitterNode+SKTExtras.h */,
-				A0A8803D18F3376E00B01143 /* SKEmitterNode+SKTExtras.m */,
-				A0A8803E18F3376E00B01143 /* SKNode+SKTExtras.h */,
-				A0A8803F18F3376E00B01143 /* SKNode+SKTExtras.m */,
-				A0A8804018F3376E00B01143 /* SKTAudio.h */,
-				A0A8804118F3376E00B01143 /* SKTAudio.m */,
-				A0A8804218F3376E00B01143 /* SKTUtils.h */,
-				A0A8804318F3376E00B01143 /* SKTUtils.mm */,
-			);
-			path = SKTUtils;
 			sourceTree = "<group>";
 		};
 		A0A8804418F3376E00B01143 /* Utilities */ = {
@@ -370,6 +328,23 @@
 				A0A8806718F3376E00B01143 /* Main.storyboard */,
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		A0BE8CB718F358C900E71E47 /* Third Party */ = {
+			isa = PBXGroup;
+			children = (
+				A0BE8CB818F358C900E71E47 /* SKUtils */,
+			);
+			path = "Third Party";
+			sourceTree = "<group>";
+		};
+		A0BE8CB818F358C900E71E47 /* SKUtils */ = {
+			isa = PBXGroup;
+			children = (
+				A0BE8CB918F358C900E71E47 /* SKAction+SKTExtras.h */,
+				A0BE8CBA18F358C900E71E47 /* SKAction+SKTExtras.m */,
+			);
+			path = SKUtils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -497,20 +472,15 @@
 			files = (
 				A0A8806D18F3376E00B01143 /* BaseScene.m in Sources */,
 				A0A8806F18F3376E00B01143 /* MultiplayerScene.m in Sources */,
-				A0A8807418F3376E00B01143 /* SKEmitterNode+SKTExtras.m in Sources */,
 				A0A8806818F3376E00B01143 /* AppDelegate.m in Sources */,
-				A0A8807518F3376E00B01143 /* SKNode+SKTExtras.m in Sources */,
+				A0BE8CBB18F358C900E71E47 /* SKAction+SKTExtras.m in Sources */,
 				A0A8801B18F3364100B01143 /* main.m in Sources */,
-				A0A8806A18F3376E00B01143 /* SKSpriteNode+DebugDraw.m in Sources */,
 				A0A8807818F3376E00B01143 /* Config.m in Sources */,
 				A0A8806B18F3376E00B01143 /* AchievementsHelper.m in Sources */,
 				A0A8807118F3376E00B01143 /* Butterfly.m in Sources */,
-				A0A8807618F3376E00B01143 /* SKTAudio.m in Sources */,
-				A0A8807718F3376E00B01143 /* SKTUtils.mm in Sources */,
 				A0A8807B18F3376E00B01143 /* Utilities.m in Sources */,
 				A0A8807C18F3376E00B01143 /* BaseViewController.m in Sources */,
 				A0A8806C18F3376E00B01143 /* ButterflyMultiplayerNetworking.m in Sources */,
-				A0A8807318F3376E00B01143 /* SKAction+SKTExtras.m in Sources */,
 				A0A8807218F3376E00B01143 /* Crow.m in Sources */,
 				A0A8806E18F3376E00B01143 /* GameScene.m in Sources */,
 				A0A8807E18F3376E00B01143 /* MenuViewController.m in Sources */,

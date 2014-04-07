@@ -6,18 +6,11 @@
 //  Copyright (c) 2014 Iguana Studios. All rights reserved.
 //
 
-#import "SKTUtils.h"
-#import "SKTAudio.h"
-#import "GameScene.h"
-#import "Butterfly.h"
-#import "Config.h"
-#import "Constants.h"
-#import "Crow.h"
-#import "Utilities.h"
-#import "SKSpriteNode+DebugDraw.h"
+#import <ISSpriteKit/ISAudio.h>
+#import <ISSpriteKit/ISUtils.h>
+#import <ISSpriteKit/SKEmitterNode+ISEmitterExtras.h>
 #import "AchievementsHelper.h"
-#import "ISGameCenter.h"
-#import "SKEmitterNode+SKTExtras.h"
+#import "GameScene.h"
 #import "SKAction+SKTExtras.h"
 
 @interface GameScene()
@@ -111,7 +104,7 @@
     
     if (body.categoryBitMask == BCrowCategory) {
         [self runAction:self.crowSound];
-        SKEmitterNode *emitter = [SKEmitterNode skt_emitterNamed:@"CrowSmash"];
+        SKEmitterNode *emitter = [SKEmitterNode emitterNamed:@"CrowSmash"];
         emitter.targetNode = self.parent;
         [emitter runAction:[SKAction skt_removeFromParentAfterDelay:1.0]];
         [body.node addChild:emitter];

@@ -6,10 +6,8 @@
 //  Copyright (c) 2014 Iguana Studios. All rights reserved.
 //
 
-
 #import <ISSpriteKit/SKEmitterNode+ISEmitterExtras.h>
 #import "Butterfly.h"
-#import "Constants.h"
 
 @interface Butterfly ()
 @property (strong, nonatomic) SKEmitterNode *butterflyTrail;

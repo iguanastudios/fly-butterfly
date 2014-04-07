@@ -6,8 +6,7 @@
 //  Copyright (c) 2014 Iguana Studios. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <SpriteKit/SpriteKit.h>
+@import SpriteKit;
 
 @interface Utilities : NSObject
 
