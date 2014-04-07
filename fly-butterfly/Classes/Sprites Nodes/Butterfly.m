@@ -37,7 +37,7 @@
     static SKTexture *texture = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        SKTextureAtlas *atlas = [SKTextureAtlas atlasNamed:@"butterfly"];
+        SKTextureAtlas *atlas = [SKTextureAtlas atlasNamed:@"sprites"];
         texture = [atlas textureNamed:@"butterfly1"];
     });
 
@@ -48,7 +48,7 @@
     static SKAction *animation;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        animation = [super createAnimationForeverWithPrefix:prefix frames:frames atlas:@"butterfly"];
+        animation = [super createAnimationForeverWithPrefix:prefix frames:frames atlas:@"sprites"];
     });
 
     return animation;

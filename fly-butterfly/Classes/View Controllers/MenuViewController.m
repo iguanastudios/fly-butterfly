@@ -39,6 +39,9 @@
     [self track:@"Menu"];
     [ISGameCenter sharedISGameCenter].delegate = self;
     [[ISGameCenter sharedISGameCenter] authenticateLocalPlayer];
+    [[SKTextureAtlas atlasNamed:@"sprites"] preloadWithCompletionHandler:^{
+        NSLog(@"Atlas preload");
+    }];
 }
 
 - (BOOL)prefersStatusBarHidden {
@@ -96,7 +99,7 @@
 #pragma mark - GVGoogleBannerViewDelegate
 
 - (NSString *)googleBannerViewAdUnitID {
-    return @"ca-app-pub-1284506901826230/3379136509";
+    return @"ca-app-pub-3392553844996186/7755027755";
 }
 
 @end

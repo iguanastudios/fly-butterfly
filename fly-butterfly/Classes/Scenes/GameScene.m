@@ -97,6 +97,8 @@
         return;
     }
 
+    [Utilities flashScene:self];
+
     SKPhysicsBody *body = (contact.bodyA.categoryBitMask == BButterflyCategory ? contact.bodyB : contact.bodyA);
 
     if (body.categoryBitMask == BCrowEdgeCategory) {
@@ -147,10 +149,6 @@
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-
-    [Utilities flashScene:self];
-
-    return;
     if (!self.gameOver) {
         if (!self.matchReady) {
             self.matchReady = YES;

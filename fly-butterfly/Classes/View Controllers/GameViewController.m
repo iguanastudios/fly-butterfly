@@ -15,7 +15,6 @@
 @interface GameViewController () <SceneDelegate>
 @property (weak, nonatomic) IBOutlet SKView *gameView;
 @property (weak, nonatomic) IBOutlet UIView *gameOverView;
-@property (weak, nonatomic) IBOutlet UIView *flashView;
 @property (weak, nonatomic) IBOutlet UILabel *highscoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *tapLabel;
 @property (strong, nonatomic) NSTimer *timer;
@@ -50,11 +49,9 @@
 
 - (void)gameStart {
     self.gameOverView.hidden = YES;
-    self.flashView.hidden = YES;
 }
 
 - (void)gamePrepare {
-    self.flashView.hidden = YES;
     self.gameOverView.hidden = YES;
     [self.timer invalidate];
     self.scene = [[GameScene alloc] init];
@@ -64,19 +61,8 @@
 - (void)gameOver {
     NSString *highscore = [NSString stringWithFormat:@"TOP: %ld", (long)UserDefaults.highscore];
     self.highscoreLabel.text = highscore;
-
-    self.flashView.hidden = NO;
-    self.flashView.backgroundColor = [UIColor whiteColor];
-    self.flashView.alpha = 0.6f;
-    
-    [self.gameView insertSubview:self.flashView belowSubview:self.gameOverView];
     [self shakeFrame];
-
-    [UIView animateWithDuration:0.6f delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
-        self.flashView.alpha = 0.2f;
-    } completion:^(BOOL finished) {
-        self.gameOverView.hidden = NO;
-    }];
+    self.gameOverView.hidden = NO;
 
     self.timer = [NSTimer scheduledTimerWithTimeInterval:0.5
                                                   target:self
@@ -95,7 +81,6 @@
     [self track:@"Game"];
 
     self.gameOverView.hidden = YES;
-    self.flashView.hidden = YES;
 
     self.scene.size = self.gameView.bounds.size;
     self.scene.scaleMode = SKSceneScaleModeAspectFill;
@@ -122,7 +107,7 @@
 #pragma mark - GVGoogleBannerViewDelegate
 
 - (NSString *)googleBannerViewAdUnitID {
-    return @"ca-app-pub-1284506901826230/3379136509";
+    return @"";
 }
 
 @end

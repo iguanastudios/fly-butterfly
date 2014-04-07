@@ -32,6 +32,12 @@
     return nil;
 }
 
+- (NSArray *)googleBannerTestDevices {
+    return @[@"9d7eada80bc22149b0c33df66f0957d0",
+             @"7faca3e295de4c53c4a47406ecbdaaaa7354c1d0",
+             @"0ba27881eb837af6dabbe109a9e112ceb7cbfb97"];
+}
+
 - (BOOL)googleBannerViewHasCloseAdButton {
     return NO;
 }
