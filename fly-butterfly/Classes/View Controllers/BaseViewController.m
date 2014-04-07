@@ -11,10 +11,6 @@
 #import <GoogleAnalytics-iOS-SDK/GAIFields.h>
 #import <GoogleAnalytics-iOS-SDK/GAIDictionaryBuilder.h>
 
-@interface BaseViewController ()
-
-@end
-
 @implementation BaseViewController
 
 #pragma mark - Google Analytics

@@ -38,7 +38,7 @@
 		A0A8807E18F3376E00B01143 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A8805318F3376E00B01143 /* MenuViewController.m */; };
 		A0A8808218F3376E00B01143 /* CrowSmash.sks in Resources */ = {isa = PBXBuildFile; fileRef = A0A8805A18F3376E00B01143 /* CrowSmash.sks */; };
 		A0A8808318F3376E00B01143 /* Feather.png in Resources */ = {isa = PBXBuildFile; fileRef = A0A8805B18F3376E00B01143 /* Feather.png */; };
-		A0A8808418F3376E00B01143 /* PlayerTrail.sks in Resources */ = {isa = PBXBuildFile; fileRef = A0A8805C18F3376E00B01143 /* PlayerTrail.sks */; };
+		A0A8808418F3376E00B01143 /* ButterflyTrail.sks in Resources */ = {isa = PBXBuildFile; fileRef = A0A8805C18F3376E00B01143 /* ButterflyTrail.sks */; };
 		A0A8808518F3376E00B01143 /* Star.png in Resources */ = {isa = PBXBuildFile; fileRef = A0A8805D18F3376E00B01143 /* Star.png */; };
 		A0A8808618F3376E00B01143 /* button_press.wav in Resources */ = {isa = PBXBuildFile; fileRef = A0A8805F18F3376E00B01143 /* button_press.wav */; };
 		A0A8808718F3376E00B01143 /* crow.m4a in Resources */ = {isa = PBXBuildFile; fileRef = A0A8806018F3376E00B01143 /* crow.m4a */; };
@@ -108,7 +108,7 @@
 		A0A8805318F3376E00B01143 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		A0A8805A18F3376E00B01143 /* CrowSmash.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = CrowSmash.sks; sourceTree = "<group>"; };
 		A0A8805B18F3376E00B01143 /* Feather.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Feather.png; sourceTree = "<group>"; };
-		A0A8805C18F3376E00B01143 /* PlayerTrail.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = PlayerTrail.sks; sourceTree = "<group>"; };
+		A0A8805C18F3376E00B01143 /* ButterflyTrail.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ButterflyTrail.sks; sourceTree = "<group>"; };
 		A0A8805D18F3376E00B01143 /* Star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Star.png; sourceTree = "<group>"; };
 		A0A8805F18F3376E00B01143 /* button_press.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = button_press.wav; sourceTree = "<group>"; };
 		A0A8806018F3376E00B01143 /* crow.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = crow.m4a; sourceTree = "<group>"; };
@@ -340,7 +340,7 @@
 			children = (
 				A0A8805A18F3376E00B01143 /* CrowSmash.sks */,
 				A0A8805B18F3376E00B01143 /* Feather.png */,
-				A0A8805C18F3376E00B01143 /* PlayerTrail.sks */,
+				A0A8805C18F3376E00B01143 /* ButterflyTrail.sks */,
 				A0A8805D18F3376E00B01143 /* Star.png */,
 			);
 			path = particles;
@@ -436,7 +436,7 @@
 				A0A8808618F3376E00B01143 /* button_press.wav in Resources */,
 				A0A8808B18F3376E00B01143 /* Images.xcassets in Resources */,
 				A0A8808818F3376E00B01143 /* flap.aif in Resources */,
-				A0A8808418F3376E00B01143 /* PlayerTrail.sks in Resources */,
+				A0A8808418F3376E00B01143 /* ButterflyTrail.sks in Resources */,
 				A0A8808918F3376E00B01143 /* sprites.atlas in Resources */,
 				A0A8808318F3376E00B01143 /* Feather.png in Resources */,
 			);

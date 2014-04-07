@@ -6,8 +6,15 @@
 //  Copyright (c) 2014 Iguana Studios. All rights reserved.
 //
 
+
+#import <ISSpriteKit/SKEmitterNode+ISEmitterExtras.h>
 #import "Butterfly.h"
 #import "Constants.h"
+
+@interface Butterfly ()
+@property (strong, nonatomic) SKEmitterNode *butterflyTrail;
+
+@end
 
 @implementation Butterfly
 
@@ -26,6 +33,10 @@
         self.physicsBody.dynamic = NO;
 
         [self runAction:self.facingSideAnimation];
+
+        self.butterflyTrail = [SKEmitterNode emitterNamed:@"ButterflyTrail"];
+        [self addChild:self.butterflyTrail];
+        self.zPosition = 100;
     }
 
     return self;
@@ -55,6 +66,12 @@
 }
 
 #pragma mark - Public Methods
+
+- (void)setup {
+    self.butterflyTrail.targetNode = self.parent;
+    self.butterflyTrail.position = CGPointMake(-15,0);
+    self.butterflyTrail.zPosition = self.zPosition - 1;
+}
 
 - (void)dead {
     [self removeAllActions];

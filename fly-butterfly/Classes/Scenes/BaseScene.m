@@ -54,6 +54,7 @@
                                             self.size.height/2);
     self.butterfly = [[Butterfly alloc] initWithPosition:butterflyPosition];
     [self addChild:self.butterfly];
+    [self.butterfly setup];
 }
 
 #pragma mark - Update

@@ -10,6 +10,7 @@
 
 @interface Butterfly : AnimatingSprite
 
+- (void)setup;
 - (void)dead;
 - (void)fly;
 - (void)rotate;
