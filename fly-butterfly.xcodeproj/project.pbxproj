@@ -7,45 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D524A2A0D7F446F915CAEAB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A12870ECECE749159D501107 /* libPods.a */; };
 		A0A87FD918F334BC00B01143 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0A87FD818F334BC00B01143 /* Foundation.framework */; };
 		A0A87FDB18F334BC00B01143 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0A87FDA18F334BC00B01143 /* CoreGraphics.framework */; };
 		A0A87FDD18F334BC00B01143 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0A87FDC18F334BC00B01143 /* UIKit.framework */; };
 		A0A87FDF18F334BC00B01143 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0A87FDE18F334BC00B01143 /* SpriteKit.framework */; };
-		A0A87FE518F334BC00B01143 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A0A87FE318F334BC00B01143 /* InfoPlist.strings */; };
-		A0A87FE718F334BC00B01143 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A87FE618F334BC00B01143 /* main.m */; };
 		A0A87FEB18F334BC00B01143 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A87FEA18F334BC00B01143 /* AppDelegate.m */; };
 		A0A87FEE18F334BC00B01143 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A0A87FEC18F334BC00B01143 /* Main.storyboard */; };
 		A0A87FF118F334BC00B01143 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A87FF018F334BC00B01143 /* ViewController.m */; };
 		A0A87FF418F334BC00B01143 /* MyScene.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A87FF318F334BC00B01143 /* MyScene.m */; };
 		A0A87FF618F334BC00B01143 /* Spaceship.png in Resources */ = {isa = PBXBuildFile; fileRef = A0A87FF518F334BC00B01143 /* Spaceship.png */; };
 		A0A87FF818F334BC00B01143 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A0A87FF718F334BC00B01143 /* Images.xcassets */; };
-		A0A87FFF18F334BC00B01143 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0A87FFE18F334BC00B01143 /* XCTest.framework */; };
-		A0A8800018F334BC00B01143 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0A87FD818F334BC00B01143 /* Foundation.framework */; };
-		A0A8800118F334BC00B01143 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0A87FDC18F334BC00B01143 /* UIKit.framework */; };
-		A0A8800918F334BC00B01143 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A0A8800718F334BC00B01143 /* InfoPlist.strings */; };
-		A0A8800B18F334BC00B01143 /* fly_butterflyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A8800A18F334BC00B01143 /* fly_butterflyTests.m */; };
+		A0A8801A18F3364100B01143 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A0A8801718F3364100B01143 /* InfoPlist.strings */; };
+		A0A8801B18F3364100B01143 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A8801818F3364100B01143 /* main.m */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		A0A8800218F334BC00B01143 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A0A87FCD18F334BC00B01143 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A0A87FD418F334BC00B01143;
-			remoteInfo = "fly-butterfly";
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
+		81848A9899E843F29916FF4A /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		A0A87FD518F334BC00B01143 /* fly-butterfly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "fly-butterfly.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0A87FD818F334BC00B01143 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A0A87FDA18F334BC00B01143 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		A0A87FDC18F334BC00B01143 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A0A87FDE18F334BC00B01143 /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
-		A0A87FE218F334BC00B01143 /* fly-butterfly-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "fly-butterfly-Info.plist"; sourceTree = "<group>"; };
-		A0A87FE418F334BC00B01143 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		A0A87FE618F334BC00B01143 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		A0A87FE818F334BC00B01143 /* fly-butterfly-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "fly-butterfly-Prefix.pch"; sourceTree = "<group>"; };
 		A0A87FE918F334BC00B01143 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A0A87FEA18F334BC00B01143 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		A0A87FED18F334BC00B01143 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -55,11 +38,12 @@
 		A0A87FF318F334BC00B01143 /* MyScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyScene.m; sourceTree = "<group>"; };
 		A0A87FF518F334BC00B01143 /* Spaceship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Spaceship.png; sourceTree = "<group>"; };
 		A0A87FF718F334BC00B01143 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		A0A87FFD18F334BC00B01143 /* fly-butterflyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "fly-butterflyTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0A87FFE18F334BC00B01143 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		A0A8800618F334BC00B01143 /* fly-butterflyTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "fly-butterflyTests-Info.plist"; sourceTree = "<group>"; };
-		A0A8800818F334BC00B01143 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		A0A8800A18F334BC00B01143 /* fly_butterflyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = fly_butterflyTests.m; sourceTree = "<group>"; };
+		A0A8801518F3364100B01143 /* fly-butterfly-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "fly-butterfly-Info.plist"; sourceTree = "<group>"; };
+		A0A8801618F3364100B01143 /* fly-butterfly-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "fly-butterfly-Prefix.pch"; sourceTree = "<group>"; };
+		A0A8801718F3364100B01143 /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
+		A0A8801818F3364100B01143 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A12870ECECE749159D501107 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,16 +55,7 @@
 				A0A87FDD18F334BC00B01143 /* UIKit.framework in Frameworks */,
 				A0A87FDF18F334BC00B01143 /* SpriteKit.framework in Frameworks */,
 				A0A87FD918F334BC00B01143 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A0A87FFA18F334BC00B01143 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A0A87FFF18F334BC00B01143 /* XCTest.framework in Frameworks */,
-				A0A8800118F334BC00B01143 /* UIKit.framework in Frameworks */,
-				A0A8800018F334BC00B01143 /* Foundation.framework in Frameworks */,
+				2D524A2A0D7F446F915CAEAB /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,9 +66,9 @@
 			isa = PBXGroup;
 			children = (
 				A0A87FE018F334BC00B01143 /* fly-butterfly */,
-				A0A8800418F334BC00B01143 /* fly-butterflyTests */,
 				A0A87FD718F334BC00B01143 /* Frameworks */,
 				A0A87FD618F334BC00B01143 /* Products */,
+				81848A9899E843F29916FF4A /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,7 +76,6 @@
 			isa = PBXGroup;
 			children = (
 				A0A87FD518F334BC00B01143 /* fly-butterfly.app */,
-				A0A87FFD18F334BC00B01143 /* fly-butterflyTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -114,6 +88,7 @@
 				A0A87FDC18F334BC00B01143 /* UIKit.framework */,
 				A0A87FDE18F334BC00B01143 /* SpriteKit.framework */,
 				A0A87FFE18F334BC00B01143 /* XCTest.framework */,
+				A12870ECECE749159D501107 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -121,6 +96,7 @@
 		A0A87FE018F334BC00B01143 /* fly-butterfly */ = {
 			isa = PBXGroup;
 			children = (
+				A0A8801418F3364100B01143 /* Supporting Files */,
 				A0A87FE918F334BC00B01143 /* AppDelegate.h */,
 				A0A87FEA18F334BC00B01143 /* AppDelegate.m */,
 				A0A87FEC18F334BC00B01143 /* Main.storyboard */,
@@ -130,38 +106,19 @@
 				A0A87FF318F334BC00B01143 /* MyScene.m */,
 				A0A87FF518F334BC00B01143 /* Spaceship.png */,
 				A0A87FF718F334BC00B01143 /* Images.xcassets */,
-				A0A87FE118F334BC00B01143 /* Supporting Files */,
 			);
 			path = "fly-butterfly";
 			sourceTree = "<group>";
 		};
-		A0A87FE118F334BC00B01143 /* Supporting Files */ = {
+		A0A8801418F3364100B01143 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				A0A87FE218F334BC00B01143 /* fly-butterfly-Info.plist */,
-				A0A87FE318F334BC00B01143 /* InfoPlist.strings */,
-				A0A87FE618F334BC00B01143 /* main.m */,
-				A0A87FE818F334BC00B01143 /* fly-butterfly-Prefix.pch */,
+				A0A8801518F3364100B01143 /* fly-butterfly-Info.plist */,
+				A0A8801618F3364100B01143 /* fly-butterfly-Prefix.pch */,
+				A0A8801718F3364100B01143 /* InfoPlist.strings */,
+				A0A8801818F3364100B01143 /* main.m */,
 			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		A0A8800418F334BC00B01143 /* fly-butterflyTests */ = {
-			isa = PBXGroup;
-			children = (
-				A0A8800A18F334BC00B01143 /* fly_butterflyTests.m */,
-				A0A8800518F334BC00B01143 /* Supporting Files */,
-			);
-			path = "fly-butterflyTests";
-			sourceTree = "<group>";
-		};
-		A0A8800518F334BC00B01143 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				A0A8800618F334BC00B01143 /* fly-butterflyTests-Info.plist */,
-				A0A8800718F334BC00B01143 /* InfoPlist.strings */,
-			);
-			name = "Supporting Files";
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -171,9 +128,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A0A8800E18F334BC00B01143 /* Build configuration list for PBXNativeTarget "fly-butterfly" */;
 			buildPhases = (
+				8EE7F13BCE284C0FB1800A1F /* Check Pods Manifest.lock */,
 				A0A87FD118F334BC00B01143 /* Sources */,
 				A0A87FD218F334BC00B01143 /* Frameworks */,
 				A0A87FD318F334BC00B01143 /* Resources */,
+				2108599B84D348CD92FE36FC /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -184,24 +143,6 @@
 			productReference = A0A87FD518F334BC00B01143 /* fly-butterfly.app */;
 			productType = "com.apple.product-type.application";
 		};
-		A0A87FFC18F334BC00B01143 /* fly-butterflyTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A0A8801118F334BC00B01143 /* Build configuration list for PBXNativeTarget "fly-butterflyTests" */;
-			buildPhases = (
-				A0A87FF918F334BC00B01143 /* Sources */,
-				A0A87FFA18F334BC00B01143 /* Frameworks */,
-				A0A87FFB18F334BC00B01143 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				A0A8800318F334BC00B01143 /* PBXTargetDependency */,
-			);
-			name = "fly-butterflyTests";
-			productName = "fly-butterflyTests";
-			productReference = A0A87FFD18F334BC00B01143 /* fly-butterflyTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -210,11 +151,6 @@
 			attributes = {
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Iguana Studios";
-				TargetAttributes = {
-					A0A87FFC18F334BC00B01143 = {
-						TestTargetID = A0A87FD418F334BC00B01143;
-					};
-				};
 			};
 			buildConfigurationList = A0A87FD018F334BC00B01143 /* Build configuration list for PBXProject "fly-butterfly" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -230,7 +166,6 @@
 			projectRoot = "";
 			targets = (
 				A0A87FD418F334BC00B01143 /* fly-butterfly */,
-				A0A87FFC18F334BC00B01143 /* fly-butterflyTests */,
 			);
 		};
 /* End PBXProject section */
@@ -240,76 +175,69 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A0A87FE518F334BC00B01143 /* InfoPlist.strings in Resources */,
+				A0A8801A18F3364100B01143 /* InfoPlist.strings in Resources */,
 				A0A87FF818F334BC00B01143 /* Images.xcassets in Resources */,
 				A0A87FF618F334BC00B01143 /* Spaceship.png in Resources */,
 				A0A87FEE18F334BC00B01143 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A0A87FFB18F334BC00B01143 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2108599B84D348CD92FE36FC /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A0A8800918F334BC00B01143 /* InfoPlist.strings in Resources */,
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
-/* End PBXResourcesBuildPhase section */
+		8EE7F13BCE284C0FB1800A1F /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A0A87FD118F334BC00B01143 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A0A8801B18F3364100B01143 /* main.m in Sources */,
 				A0A87FF418F334BC00B01143 /* MyScene.m in Sources */,
 				A0A87FF118F334BC00B01143 /* ViewController.m in Sources */,
 				A0A87FEB18F334BC00B01143 /* AppDelegate.m in Sources */,
-				A0A87FE718F334BC00B01143 /* main.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A0A87FF918F334BC00B01143 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A0A8800B18F334BC00B01143 /* fly_butterflyTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		A0A8800318F334BC00B01143 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A0A87FD418F334BC00B01143 /* fly-butterfly */;
-			targetProxy = A0A8800218F334BC00B01143 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin PBXVariantGroup section */
-		A0A87FE318F334BC00B01143 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A0A87FE418F334BC00B01143 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
 		A0A87FEC18F334BC00B01143 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				A0A87FED18F334BC00B01143 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		A0A8800718F334BC00B01143 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A0A8800818F334BC00B01143 /* en */,
-			);
-			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -387,12 +315,13 @@
 		};
 		A0A8800F18F334BC00B01143 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 81848A9899E843F29916FF4A /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "fly-butterfly/fly-butterfly-Prefix.pch";
-				INFOPLIST_FILE = "fly-butterfly/fly-butterfly-Info.plist";
+				GCC_PREFIX_HEADER = "fly-butterfly/Supporting Files/fly-butterfly-Prefix.pch";
+				INFOPLIST_FILE = "$(SRCROOT)/fly-butterfly/Supporting Files/fly-butterfly-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				WRAPPER_EXTENSION = app;
@@ -401,55 +330,16 @@
 		};
 		A0A8801018F334BC00B01143 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 81848A9899E843F29916FF4A /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "fly-butterfly/fly-butterfly-Prefix.pch";
-				INFOPLIST_FILE = "fly-butterfly/fly-butterfly-Info.plist";
+				GCC_PREFIX_HEADER = "fly-butterfly/Supporting Files/fly-butterfly-Prefix.pch";
+				INFOPLIST_FILE = "$(SRCROOT)/fly-butterfly/Supporting Files/fly-butterfly-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
-		};
-		A0A8801218F334BC00B01143 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/fly-butterfly.app/fly-butterfly";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "fly-butterfly/fly-butterfly-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "fly-butterflyTests/fly-butterflyTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		A0A8801318F334BC00B01143 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/fly-butterfly.app/fly-butterfly";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "fly-butterfly/fly-butterfly-Prefix.pch";
-				INFOPLIST_FILE = "fly-butterflyTests/fly-butterflyTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
 		};
@@ -472,14 +362,7 @@
 				A0A8801018F334BC00B01143 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-		};
-		A0A8801118F334BC00B01143 /* Build configuration list for PBXNativeTarget "fly-butterflyTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A0A8801218F334BC00B01143 /* Debug */,
-				A0A8801318F334BC00B01143 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
