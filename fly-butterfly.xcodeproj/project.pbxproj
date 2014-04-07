@@ -36,9 +36,6 @@
 		A0A8807C18F3376E00B01143 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A8804F18F3376E00B01143 /* BaseViewController.m */; };
 		A0A8807D18F3376E00B01143 /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A8805118F3376E00B01143 /* GameViewController.m */; };
 		A0A8807E18F3376E00B01143 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A8805318F3376E00B01143 /* MenuViewController.m */; };
-		A0A8807F18F3376E00B01143 /* butterfly.atlas in Resources */ = {isa = PBXBuildFile; fileRef = A0A8805618F3376E00B01143 /* butterfly.atlas */; };
-		A0A8808018F3376E00B01143 /* crow.atlas in Resources */ = {isa = PBXBuildFile; fileRef = A0A8805718F3376E00B01143 /* crow.atlas */; };
-		A0A8808118F3376E00B01143 /* menu.atlas in Resources */ = {isa = PBXBuildFile; fileRef = A0A8805818F3376E00B01143 /* menu.atlas */; };
 		A0A8808218F3376E00B01143 /* CrowSmash.sks in Resources */ = {isa = PBXBuildFile; fileRef = A0A8805A18F3376E00B01143 /* CrowSmash.sks */; };
 		A0A8808318F3376E00B01143 /* Feather.png in Resources */ = {isa = PBXBuildFile; fileRef = A0A8805B18F3376E00B01143 /* Feather.png */; };
 		A0A8808418F3376E00B01143 /* PlayerTrail.sks in Resources */ = {isa = PBXBuildFile; fileRef = A0A8805C18F3376E00B01143 /* PlayerTrail.sks */; };
@@ -109,9 +106,6 @@
 		A0A8805118F3376E00B01143 /* GameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
 		A0A8805218F3376E00B01143 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
 		A0A8805318F3376E00B01143 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
-		A0A8805618F3376E00B01143 /* butterfly.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = butterfly.atlas; sourceTree = "<group>"; };
-		A0A8805718F3376E00B01143 /* crow.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = crow.atlas; sourceTree = "<group>"; };
-		A0A8805818F3376E00B01143 /* menu.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = menu.atlas; sourceTree = "<group>"; };
 		A0A8805A18F3376E00B01143 /* CrowSmash.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = CrowSmash.sks; sourceTree = "<group>"; };
 		A0A8805B18F3376E00B01143 /* Feather.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Feather.png; sourceTree = "<group>"; };
 		A0A8805C18F3376E00B01143 /* PlayerTrail.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = PlayerTrail.sks; sourceTree = "<group>"; };
@@ -325,8 +319,8 @@
 			children = (
 				A0A8805518F3376E00B01143 /* Art */,
 				A0A8806318F3376E00B01143 /* Fonts */,
-				A0A8806518F3376E00B01143 /* Images.xcassets */,
 				A0A8806618F3376E00B01143 /* Storyboards */,
+				A0A8806518F3376E00B01143 /* Images.xcassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -334,9 +328,6 @@
 		A0A8805518F3376E00B01143 /* Art */ = {
 			isa = PBXGroup;
 			children = (
-				A0A8805618F3376E00B01143 /* butterfly.atlas */,
-				A0A8805718F3376E00B01143 /* crow.atlas */,
-				A0A8805818F3376E00B01143 /* menu.atlas */,
 				A0A8805918F3376E00B01143 /* particles */,
 				A0A8805E18F3376E00B01143 /* sounds */,
 				A0A8806218F3376E00B01143 /* sprites.atlas */,
@@ -436,12 +427,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A0A8808018F3376E00B01143 /* crow.atlas in Resources */,
 				A0A8801A18F3364100B01143 /* InfoPlist.strings in Resources */,
-				A0A8808118F3376E00B01143 /* menu.atlas in Resources */,
 				A0A8808718F3376E00B01143 /* crow.m4a in Resources */,
 				A0A8808A18F3376E00B01143 /* bitoperator.ttf in Resources */,
-				A0A8807F18F3376E00B01143 /* butterfly.atlas in Resources */,
 				A0A8808C18F3376E00B01143 /* Main.storyboard in Resources */,
 				A0A8808218F3376E00B01143 /* CrowSmash.sks in Resources */,
 				A0A8808518F3376E00B01143 /* Star.png in Resources */,
