@@ -8,10 +8,10 @@
 
 #import <ISSpriteKit/ISAudio.h>
 #import <ISSpriteKit/ISUtils.h>
-#import <ISSpriteKit/SKEmitterNode+ISEmitterExtras.h>
+#import <ISSpriteKit/SKEmitterNode+ISExtras.h>
 #import "AchievementsHelper.h"
 #import "GameScene.h"
-#import "SKAction+SKTExtras.h"
+#import "SKAction+ISExtras.h"
 
 @interface GameScene()
 @property (strong, nonatomic) NSTimer *timer;
@@ -106,7 +106,7 @@
         [self runAction:self.crowSound];
         SKEmitterNode *emitter = [SKEmitterNode emitterNamed:@"CrowSmash"];
         emitter.targetNode = self.parent;
-        [emitter runAction:[SKAction skt_removeFromParentAfterDelay:1.0]];
+        [emitter runAction:[SKAction removeFromParentAfterDelay:1.0]];
         [body.node addChild:emitter];
     }
 

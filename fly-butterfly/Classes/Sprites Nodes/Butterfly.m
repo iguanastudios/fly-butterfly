@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Iguana Studios. All rights reserved.
 //
 
-#import <ISSpriteKit/SKEmitterNode+ISEmitterExtras.h>
+#import <ISSpriteKit/SKEmitterNode+ISExtras.h>
 #import "Butterfly.h"
 
 @interface Butterfly ()

@@ -7,7 +7,7 @@ PODS:
     - Google-Mobile-Ads-SDK
   - GVUserDefaults (0.9.4)
   - ISGameCenter (0.3.0)
-  - ISSpriteKit (0.2.0)
+  - ISSpriteKit (0.3.0)
   - RemoteConfig (1.5.0):
     - XMLReader
   - XMLReader (0.0.2)
@@ -24,14 +24,14 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Appirater: 32fb9089615b5e542c7ad7b5749741a8aed55290
-  Google-AdMob-Ads-SDK: 21f95435d06b4f70c1806aaabb5e4281b22a8282
-  Google-Mobile-Ads-SDK: 0046ccf75440cf7cac163430e7c2ae9613b79a0c
-  GoogleAnalytics-iOS-SDK: 4f77f2cce5216e590343ce0b75ac491aa249ca89
+  Google-AdMob-Ads-SDK: d02f852d0fca77bb5c7abcda9ab2503588b12270
+  Google-Mobile-Ads-SDK: a2f44db8addf12d04a864faac9b4ee05bc1cbeef
+  GoogleAnalytics-iOS-SDK: 16dfcc0c4491148bf372edc85a8470cc405ffb72
   GVGoogleBannerView: 6b2ea604ff67887025cf607ed36463ee6ca3e803
   GVUserDefaults: 50dbc9e24ab41b0c24bda7af8b5944ad0413dd2a
   ISGameCenter: 976e91a71545ba4a703e4936df47db1d36e4a6e4
-  ISSpriteKit: 7c26024e514f1d56b4e070a9de309c83d6adf28a
+  ISSpriteKit: 46b4df99ed97d10875b142a592d48b2b927077be
   RemoteConfig: 41692948095483e95213b49d7e53f5d927158793
-  XMLReader: d8a522b0362140b328bcaec7f289ff4ffffebf29
+  XMLReader: 8ad7c573001e3d826d26a8c01144d37c707d20fa
 
 COCOAPODS: 0.31.1

@@ -42,7 +42,6 @@
 		A0A8808B18F3376E00B01143 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A0A8806518F3376E00B01143 /* Images.xcassets */; };
 		A0A8808C18F3376E00B01143 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A0A8806718F3376E00B01143 /* Main.storyboard */; };
 		A0A8808F18F33A3300B01143 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0A8808E18F33A3300B01143 /* Crashlytics.framework */; };
-		A0BE8CBB18F358C900E71E47 /* SKAction+SKTExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = A0BE8CBA18F358C900E71E47 /* SKAction+SKTExtras.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -101,8 +100,6 @@
 		A0A8806518F3376E00B01143 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A0A8806718F3376E00B01143 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		A0A8808E18F33A3300B01143 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
-		A0BE8CB918F358C900E71E47 /* SKAction+SKTExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKAction+SKTExtras.h"; sourceTree = "<group>"; };
-		A0BE8CBA18F358C900E71E47 /* SKAction+SKTExtras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SKAction+SKTExtras.m"; sourceTree = "<group>"; };
 		A12870ECECE749159D501107 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -184,7 +181,6 @@
 				A0A8802518F3376E00B01143 /* Game Kit */,
 				A0A8802A18F3376E00B01143 /* Scenes */,
 				A0A8803118F3376E00B01143 /* Sprites Nodes */,
-				A0BE8CB718F358C900E71E47 /* Third Party */,
 				A0A8804418F3376E00B01143 /* Utilities */,
 				A0A8804D18F3376E00B01143 /* View Controllers */,
 			);
@@ -330,23 +326,6 @@
 			path = Storyboards;
 			sourceTree = "<group>";
 		};
-		A0BE8CB718F358C900E71E47 /* Third Party */ = {
-			isa = PBXGroup;
-			children = (
-				A0BE8CB818F358C900E71E47 /* SKUtils */,
-			);
-			path = "Third Party";
-			sourceTree = "<group>";
-		};
-		A0BE8CB818F358C900E71E47 /* SKUtils */ = {
-			isa = PBXGroup;
-			children = (
-				A0BE8CB918F358C900E71E47 /* SKAction+SKTExtras.h */,
-				A0BE8CBA18F358C900E71E47 /* SKAction+SKTExtras.m */,
-			);
-			path = SKUtils;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -473,7 +452,6 @@
 				A0A8806D18F3376E00B01143 /* BaseScene.m in Sources */,
 				A0A8806F18F3376E00B01143 /* MultiplayerScene.m in Sources */,
 				A0A8806818F3376E00B01143 /* AppDelegate.m in Sources */,
-				A0BE8CBB18F358C900E71E47 /* SKAction+SKTExtras.m in Sources */,
 				A0A8801B18F3364100B01143 /* main.m in Sources */,
 				A0A8807818F3376E00B01143 /* Config.m in Sources */,
 				A0A8806B18F3376E00B01143 /* AchievementsHelper.m in Sources */,
