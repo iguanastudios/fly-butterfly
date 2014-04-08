@@ -25,11 +25,9 @@
 @property (strong, nonatomic) SKAction *crowSound;
 @property (strong, nonatomic) SKAction *flapSound;
 @property (strong, nonatomic) SKAction *moveCrow;
-@property (assign, nonatomic) BOOL matchReady;
 @property (strong, nonatomic) Butterfly *butterfly;
 @property (assign, nonatomic) CGFloat crowTopPosition;
 @property (assign, nonatomic) CGFloat crowBottomPosition;
-@property (assign, nonatomic) BOOL gameOver;
 
 - (void)setup;
 - (void)setupButterfly;

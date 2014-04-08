@@ -83,8 +83,6 @@
 
     self.parallaxNode = [[ISParallaxNode alloc] initWithImageNamed:@"Overlap" direction:ISScrollDirectionLeft];
     [self addChild:self.parallaxNode];
-
-    self.matchReady = NO;
 }
 
 @end

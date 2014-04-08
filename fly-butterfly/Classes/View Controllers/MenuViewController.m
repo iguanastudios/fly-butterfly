@@ -60,6 +60,7 @@
 }
 
 - (IBAction)multiplayerPressed {
+    [[ISAudio sharedInstance] playSoundEffect:@"button_press.wav"];
     self.networkEngine = [[ButterflyMultiplayerNetworking alloc] init];
     self.networkEngine.delegate = self;
     [[ISGameCenter sharedISGameCenter] findMatchWithMinPlayers:2

@@ -20,6 +20,8 @@ typedef NS_ENUM(NSInteger, GameState) {
 };
 
 @interface GameScene()
+@property (assign, nonatomic) GameState gameState;
+@property (strong, nonatomic) SKSpriteNode *handNode;
 @property (strong, nonatomic) NSTimer *timer;
 @property (assign, nonatomic) NSUInteger crows;
 @end
@@ -34,6 +36,11 @@ typedef NS_ENUM(NSInteger, GameState) {
 -(void)setup {
     [super setup];
     [self setupScore];
+    self.gameState = GameStateReady;
+
+    self.handNode = [SKSpriteNode spriteNodeWithImageNamed:@"Hand"];
+    self.handNode.position = CGPointMake(self.frame.size.width / 2, self.frame.size.height / 2);
+    [self addChild:self.handNode];
 }
 
 - (void)setupScore {
@@ -89,7 +96,7 @@ typedef NS_ENUM(NSInteger, GameState) {
 #pragma mark - SKPhysicsContactDelegate
 
 - (void)didBeginContact:(SKPhysicsContact *)contact {
-    if(self.gameOver) {
+    if (self.gameState == GameStateOver) {
         return;
     }
 
@@ -124,7 +131,7 @@ typedef NS_ENUM(NSInteger, GameState) {
                                                 userInfo:nil
                                                  repeats:NO];
 
-    self.gameOver = YES;
+    self.gameState = GameStateOver;
     [self.butterfly dead];
 
     [self enumerateChildNodesWithName:@"crow"
@@ -143,23 +150,41 @@ typedef NS_ENUM(NSInteger, GameState) {
     }
 }
 
+#pragma mark - TouchesBegan
+
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    if (!self.gameOver) {
-        if (!self.matchReady) {
-            self.matchReady = YES;
-            [self setupCrows];
+    switch (self.gameState) {
+        case GameStateReady:
+            [self touchesBeganGameStateReady];
+        case GameStateRunning:
+            [self touchesBeganGameStateRunning];
+            break;
+        case GameStateOver:
+        default:
+            [self touchesBeganGameStateOver];
+            break;
+    }
+}
 
-            if ([self.delegate respondsToSelector:@selector(gameStart)]) {
-                [self.delegate gameStart];
-            }
-        }
+- (void)touchesBeganGameStateReady {
+    [self setupCrows];
 
-        [self runAction:self.flapSound];
-        [self.butterfly fly];
-    } else {
-        if ([self.delegate respondsToSelector:@selector(gamePrepare)]) {
-            [self.delegate gamePrepare];
-        }
+    if ([self.delegate respondsToSelector:@selector(gameStart)]) {
+        [self.delegate gameStart];
+    }
+
+    [self.handNode removeFromParent];
+    self.gameState = GameStateRunning;
+}
+
+- (void)touchesBeganGameStateRunning {
+    [self runAction:self.flapSound];
+    [self.butterfly fly];
+}
+
+- (void)touchesBeganGameStateOver {
+    if ([self.delegate respondsToSelector:@selector(gamePrepare)]) {
+        [self.delegate gamePrepare];
     }
 }
 
@@ -172,7 +197,7 @@ typedef NS_ENUM(NSInteger, GameState) {
 
 -(void)reportHighscore {
     [[ISGameCenter sharedISGameCenter] reportScore:UserDefaults.highscore
-                             leaderboardIdentifier:@"io.iguanastudios.butterfly.highscores"];
+                             leaderboardIdentifier:@"io.iguanastudios.flybutterfly.highscores"];
 }
 
 - (void)enableInteraction {
