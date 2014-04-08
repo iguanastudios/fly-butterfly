@@ -103,6 +103,9 @@
                            CGPointMake([self.view  center].x + 4.0f, [self.view center].y)]];
     [[self.view layer] addAnimation:animation forKey:@"position"];
 }
+- (IBAction)backButtonPressed {
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
 
 #pragma mark - GVGoogleBannerViewDelegate
 

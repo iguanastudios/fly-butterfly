@@ -13,8 +13,8 @@
 // Global
 CGFloat const BackgroundPointsPerSec = 180.0;
 NSInteger const MinSpaceBetweenBombs = 120;
-NSString *const ScoreLabelFont = @"8bitoperatorRegular";
-CGFloat const ScoreLabelSize = 42.0;
+NSString *const ScoreLabelFont = @"PWPerspective";
+CGFloat const ScoreLabelSize = 48.0;
 CGFloat const Speed = 0.9;
 CGFloat const CrowDefaultInterval = 0.65;
 

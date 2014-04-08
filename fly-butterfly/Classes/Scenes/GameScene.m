@@ -13,6 +13,12 @@
 #import "GameScene.h"
 #import "SKAction+ISExtras.h"
 
+typedef NS_ENUM(NSInteger, GameState) {
+    GameStateReady,
+    GameStateRunning,
+    GameStateOver
+};
+
 @interface GameScene()
 @property (strong, nonatomic) NSTimer *timer;
 @property (assign, nonatomic) NSUInteger crows;
@@ -28,17 +34,14 @@
 -(void)setup {
     [super setup];
     [self setupScore];
-
-    NSLog(@"%@", NSStringFromCGRect(self.scene.frame));
 }
 
 - (void)setupScore {
     _scoreLabel = [SKLabelNode labelNodeWithFontNamed:ScoreLabelFont];
     _scoreLabel.fontSize = ScoreLabelSize;
     _scoreLabel.text = @"0";
-    _scoreLabel.verticalAlignmentMode = SKLabelVerticalAlignmentModeCenter;
-    _scoreLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeRight;
-    _scoreLabel.position = CGPointMake(self.size.width - 20, self.size.height - 30);
+    _scoreLabel.position = CGPointMake(self.size.width / 2, self.size.height - 50);
+    _scoreLabel.zPosition = 1;
     _currentScore = 0;
 
     [self addChild:_scoreLabel];
@@ -90,8 +93,6 @@
         return;
     }
 
-    [Utilities flashScene:self];
-
     SKPhysicsBody *body = (contact.bodyA.categoryBitMask == BButterflyCategory ? contact.bodyB : contact.bodyA);
 
     if (body.categoryBitMask == BCrowEdgeCategory) {
@@ -100,6 +101,7 @@
         return;
     }
 
+    [Utilities flashScene:self];
     [self removeAllActions];
     
     if (body.categoryBitMask == BCrowCategory) {
