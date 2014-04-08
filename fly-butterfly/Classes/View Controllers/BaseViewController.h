@@ -9,6 +9,8 @@
 @import SpriteKit;
 
 #import <GVGoogleBannerView/GVGoogleBannerView.h>
+#import <ISSpriteKit/ISAudio.h>
+#import "ButterflyMultiplayerNetworking.h"
 #import "GAITrackedViewController.h"
 
 @interface BaseViewController : GAITrackedViewController <GVGoogleBannerViewDelegate>

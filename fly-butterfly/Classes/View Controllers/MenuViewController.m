@@ -6,11 +6,9 @@
 //  Copyright (c) 2014 Iguana Studios. All rights reserved.
 //
 
-#import <ISSpriteKit/ISAudio.h>
 #import <ISGameCenter/ISGameCenter.h>
 #import <GVGoogleBannerView/GVGoogleBannerView.h>
 #import "MenuViewController.h"
-#import "ButterflyMultiplayerNetworking.h"
 #import "GameViewController.h"
 #import "GameScene.h"
 #import "MultiplayerScene.h"
@@ -51,6 +49,7 @@
 #pragma mark - IBAction
 
 - (IBAction)playPressed {
+    [[ISAudio sharedInstance] playSoundEffect:@"button_press.wav"];
     self.gameViewController.scene = [[GameScene alloc] init];
     [self.navigationController pushViewController:self.gameViewController animated:YES];
 }

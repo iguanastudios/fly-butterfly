@@ -6,11 +6,9 @@
 //  Copyright (c) 2014 Iguana Studios. All rights reserved.
 //
 
+#import <ISGameCenter/ISMultiplayerNetworking.h>
 #import "GameViewController.h"
 #import "GameScene.h"
-#import "Constants.h"
-#import "ISMultiplayerNetworking.h"
-#import "ButterflyMultiplayerNetworking.h"
 
 @interface GameViewController () <SceneDelegate>
 @property (weak, nonatomic) IBOutlet SKView *gameView;
@@ -103,7 +101,9 @@
                            CGPointMake([self.view  center].x + 4.0f, [self.view center].y)]];
     [[self.view layer] addAnimation:animation forKey:@"position"];
 }
+
 - (IBAction)backButtonPressed {
+    [[ISAudio sharedInstance] playSoundEffect:@"button_press.wav"];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
