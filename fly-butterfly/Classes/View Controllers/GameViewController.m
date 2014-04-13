@@ -35,14 +35,6 @@
     [self presentGameScene];
 }
 
-- (BOOL)shouldAutorotate {
-    return YES;
-}
-
-- (BOOL)prefersStatusBarHidden {
-    return YES;
-}
-
 #pragma mark - SceneDelegate
 
 - (void)gameStart {
@@ -106,17 +98,8 @@
 
 - (IBAction)backButtonPressed {
     [[ISAudio sharedInstance] playSoundEffect:@"button_press.wav"];
-    //[self.navigationController popToRootViewControllerAnimated:YES];
     [self gamePrepare];
-
-
-    [UIView animateWithDuration:0.75
-                     animations:^{
-                         [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-                         [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft
-                                                forView:self.navigationController.view cache:NO];
-                     }];
-    [self.navigationController popViewControllerAnimated:NO];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - GVGoogleBannerViewDelegate

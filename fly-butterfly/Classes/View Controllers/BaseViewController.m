@@ -13,6 +13,12 @@
 
 @implementation BaseViewController
 
+#pragma mark - View lifecycle
+
+- (BOOL)prefersStatusBarHidden {
+    return YES;
+}
+
 #pragma mark - Google Analytics
 
 - (void)track:(NSString *)screen {

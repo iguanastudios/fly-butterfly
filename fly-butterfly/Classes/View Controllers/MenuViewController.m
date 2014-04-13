@@ -34,16 +34,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self track:@"Menu"];
-    [ISGameCenter sharedISGameCenter].delegate = self;
+    [self track:@"Game Launched"];
     [[ISGameCenter sharedISGameCenter] authenticateLocalPlayer];
+    [ISGameCenter sharedISGameCenter].delegate = self;
     [[SKTextureAtlas atlasNamed:@"sprites"] preloadWithCompletionHandler:^{
         NSLog(@"Atlas preload");
     }];
-}
-
-- (BOOL)prefersStatusBarHidden {
-    return YES;
 }
 
 #pragma mark - IBAction
