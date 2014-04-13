@@ -9,6 +9,7 @@
 #import "ISMultiplayerNetworking.h"
 
 @protocol ISButterflyMultiplayerDelegate <NSObject>
+@required
 - (void)butterflyCoordinate:(CGFloat)y rotation:(CGFloat)rotation;
 - (void)butterflyBlink;
 - (void)butterflyCrash;

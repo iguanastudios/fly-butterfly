@@ -28,8 +28,10 @@
 @property (strong, nonatomic) Butterfly *butterfly;
 @property (assign, nonatomic) CGFloat crowTopPosition;
 @property (assign, nonatomic) CGFloat crowBottomPosition;
+@property (assign, nonatomic) NSInteger crowCounter;
 
 - (void)setup;
 - (void)setupButterfly;
+- (void)gameOver;
 
 @end

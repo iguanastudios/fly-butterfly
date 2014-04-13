@@ -26,8 +26,8 @@
         CGFloat minDiam = MIN(self.size.width, self.size.height);
         self.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:minDiam/2.0 - 1];
         self.physicsBody.categoryBitMask = BButterflyCategory;
-        self.physicsBody.collisionBitMask = BEdgeCategory | BCrowCategory | BGroundCategory;
-        self.physicsBody.contactTestBitMask = BGroundCategory | BCrowCategory | BCrowEdgeCategory;
+        self.physicsBody.collisionBitMask = BEdgeCategory | BGroundCategory;
+        self.physicsBody.contactTestBitMask = BGroundCategory | BCrowCategory | BPointCategory;
         self.physicsBody.dynamic = NO;
 
         [self runAction:self.facingSideAnimation];

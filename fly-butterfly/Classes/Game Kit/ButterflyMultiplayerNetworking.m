@@ -89,15 +89,11 @@ typedef struct {
 }
 
 - (void)butterflyBlink {
-    if ([self.butterflyDelegate respondsToSelector:@selector(butterflyBlink)]) {
-        [self.butterflyDelegate butterflyBlink];
-    }
+    [self.butterflyDelegate butterflyBlink];
 }
 
 - (void)butterflyCrash {
-    if ([self.butterflyDelegate respondsToSelector:@selector(butterflyCrash)]) {
-        [self.butterflyDelegate butterflyCrash];
-    }
+    [self.butterflyDelegate butterflyCrash];
 }
 
 - (void)crowPositions:(NSData *)data {
@@ -109,15 +105,11 @@ typedef struct {
         [positions addObject:@(message->positions[i])];
     }
 
-    if ([self.butterflyDelegate respondsToSelector:@selector(crowPositions:)]) {
-        [self.butterflyDelegate crowPositions:positions];
-    }
+    [self.butterflyDelegate crowPositions:positions];
 }
 
 - (void)crowsReceived {
-    if ([self.butterflyDelegate respondsToSelector:@selector(crowsReceived)]) {
-        [self.butterflyDelegate crowsReceived];
-    }
+    [self.butterflyDelegate crowsReceived];
 }
 
 #pragma mark - ISMultiplayerNetworking

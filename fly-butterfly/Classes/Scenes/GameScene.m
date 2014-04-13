@@ -22,13 +22,24 @@ typedef NS_ENUM(NSInteger, GameState) {
 @interface GameScene()
 @property (assign, nonatomic) GameState gameState;
 @property (strong, nonatomic) SKSpriteNode *handNode;
+@property (strong, nonatomic) SKLabelNode *scoreLabel;
 @property (strong, nonatomic) NSTimer *timer;
-@property (assign, nonatomic) NSUInteger crows;
+@property (assign, nonatomic) NSUInteger currentScore;
 @end
 
-@implementation GameScene {
-    SKLabelNode *_scoreLabel;
-    NSInteger _currentScore;
+@implementation GameScene
+
+#pragma mark - Getters and setters
+
+- (SKLabelNode *)scoreLabel {
+    if (!_scoreLabel) {
+        _scoreLabel = [SKLabelNode labelNodeWithFontNamed:LabelFont];
+        _scoreLabel.fontSize = 48;
+        _scoreLabel.position = CGPointMake(self.size.width / 2, self.size.height - 50);
+        _scoreLabel.zPosition = 1;
+    }
+
+    return _scoreLabel;
 }
 
 #pragma mark - Initialization
@@ -44,12 +55,8 @@ typedef NS_ENUM(NSInteger, GameState) {
 }
 
 - (void)setupScore {
-    _scoreLabel = [SKLabelNode labelNodeWithFontNamed:ScoreLabelFont];
-    _scoreLabel.fontSize = ScoreLabelSize;
-    _scoreLabel.text = @"0";
-    _scoreLabel.position = CGPointMake(self.size.width / 2, self.size.height - 50);
-    _scoreLabel.zPosition = 1;
-    _currentScore = 0;
+    self.scoreLabel.text = @"0";
+    self.currentScore = 0;
 
     [self addChild:_scoreLabel];
 }
@@ -64,7 +71,7 @@ typedef NS_ENUM(NSInteger, GameState) {
 
 - (void)spawnCrows {
     CGFloat x = self.size.width + CrowWidth / 2;
-    self.crowTopPosition = [Utilities randomPositionAtTopWithScene:self numberOfCrows:self.crows];
+    self.crowTopPosition = [Utilities randomPositionAtTopWithScene:self numberOfCrows:self.crowCounter];
     self.crowBottomPosition = self.crowTopPosition - MinSpaceBetweenBombs;
 
     Crow *crowTop = [[Crow alloc] initWithPosition:CGPointMake(x, self.crowTopPosition)];
@@ -81,16 +88,18 @@ typedef NS_ENUM(NSInteger, GameState) {
 
     [self addChild:crowBottom];
 
-    self.crows++;
+    self.crowCounter++;
 
-    SKSpriteNode *crowEdge = [SKSpriteNode node];
-    crowEdge.size = CGSizeMake(1, self.size.height);
-    crowEdge.position = CGPointMake(x + 10, self.size.height / 2);
-    crowEdge.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:crowEdge.size];
-    crowEdge.physicsBody.dynamic = NO;
-    crowEdge.physicsBody.categoryBitMask = BCrowEdgeCategory;
-    [crowEdge runAction:self.moveCrow];
-    [self addChild:crowEdge];
+    SKSpriteNode *pointEdge = [SKSpriteNode node];
+    pointEdge.size = CGSizeMake(1, self.size.height);
+    pointEdge.position = CGPointMake(x + 10, self.size.height / 2);
+    pointEdge.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:pointEdge.size];
+    pointEdge.physicsBody.dynamic = NO;
+    pointEdge.physicsBody.categoryBitMask = BPointCategory;
+    [pointEdge runAction:self.moveCrow completion:^{
+        [pointEdge removeFromParent];
+    }];
+    [self addChild:pointEdge];
 }
 
 #pragma mark - SKPhysicsContactDelegate
@@ -100,28 +109,35 @@ typedef NS_ENUM(NSInteger, GameState) {
         return;
     }
 
-    SKPhysicsBody *body = (contact.bodyA.categoryBitMask == BButterflyCategory ? contact.bodyB : contact.bodyA);
+    SKPhysicsBody *body =
+        (contact.bodyA.categoryBitMask == BButterflyCategory ? contact.bodyB : contact.bodyA);
 
-    if (body.categoryBitMask == BCrowEdgeCategory) {
-        _currentScore += 1;
-        _scoreLabel.text = [NSString stringWithFormat:@"%ld", (long)_currentScore];
-        return;
+    switch (body.categoryBitMask) {
+        case BPointCategory:
+            [self didBeginContactWithPoint];
+            break;
+
+        case BCrowCategory:
+        default:
+            [self didBeginContactWithCrow:body];
+            break;
     }
+}
 
-    [Utilities flashScene:self];
-    [self removeAllActions];
-    
-    if (body.categoryBitMask == BCrowCategory) {
-        [self runAction:self.crowSound];
-        SKEmitterNode *emitter = [SKEmitterNode emitterNamed:@"CrowSmash"];
-        emitter.targetNode = self.parent;
-        [emitter runAction:[SKAction removeFromParentAfterDelay:1.0]];
-        [body.node addChild:emitter];
-    }
+- (void)didBeginContactWithPoint{
+    self.currentScore += 1;
+    self.scoreLabel.text = [NSString stringWithFormat:@"%ld", (long)_currentScore];
+}
 
-//    if (self.multiplayerMatch) {
-//        [self.networkingEngine sendGameOverMessage];
-//    }
+- (void)didBeginContactWithCrow:(SKPhysicsBody *)body {
+    [self gameOver];
+    self.gameState = GameStateOver;
+
+    [self runAction:self.crowSound];
+    SKEmitterNode *emitter = [SKEmitterNode emitterNamed:@"CrowSmash"];
+    emitter.targetNode = self.parent;
+    [emitter runAction:[SKAction removeFromParentAfterDelay:1.0]];
+    [body.node addChild:emitter];
 
     // Hack to solve the overlap bug
     self.userInteractionEnabled = NO;
@@ -131,23 +147,11 @@ typedef NS_ENUM(NSInteger, GameState) {
                                                 userInfo:nil
                                                  repeats:NO];
 
-    self.gameState = GameStateOver;
     [self.butterfly dead];
 
-    [self enumerateChildNodesWithName:@"crow"
-                                usingBlock:^(SKNode *node, BOOL *stop){
-                                    Crow* crow = (Crow*) node;
-                                    [crow removeAllActions];
-                                }
-     ];
-    
-    UserDefaults.highscore = MAX(UserDefaults.highscore, _currentScore);
+    UserDefaults.highscore = MAX(UserDefaults.highscore, self.currentScore);
     [self reportAchievements];
     [self reportHighscore];
-    
-    if ([self.delegate respondsToSelector:@selector(gameOver)]) {
-        [self.delegate gameOver];
-    }
 }
 
 #pragma mark - TouchesBegan

@@ -44,6 +44,7 @@
 - (void)setup {
     [self setupScene];
     [self setupButterfly];
+    self.crowCounter = 0;
 }
 
 - (void)setupButterfly {
@@ -52,6 +53,22 @@
     self.butterfly = [[Butterfly alloc] initWithPosition:butterflyPosition];
     [self addChild:self.butterfly];
     [self.butterfly setup];
+}
+
+- (void)gameOver {
+    [self removeAllActions];
+    [Utilities flashScene:self];
+
+    [self enumerateChildNodesWithName:@"crow"
+                           usingBlock:^(SKNode *node, BOOL *stop){
+                               Crow* crow = (Crow*) node;
+                               [crow removeAllActions];
+                           }
+     ];
+
+    if ([self.delegate respondsToSelector:@selector(gameOver)]) {
+        [self.delegate gameOver];
+    }
 }
 
 #pragma mark - Update

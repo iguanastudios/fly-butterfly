@@ -22,16 +22,14 @@
 
 #pragma mark - View lifecycle
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.highscoreLabel.font = [UIFont fontWithName:LabelFont size:18];
+    self.tapLabel.font = [UIFont fontWithName:LabelFont size:24];
+}
+
 - (void)viewWillLayoutSubviews {
     [super viewWillLayoutSubviews];
-    [self track:@"Start"];
-
-    self.highscoreLabel.font = [UIFont fontWithName:ScoreLabelFont size:18];
-    self.tapLabel.font = [UIFont fontWithName:ScoreLabelFont size:24];
-
-    NSString *highscore = [NSString stringWithFormat:@"TOP: %ld", (long)UserDefaults.highscore];
-    self.highscoreLabel.text = highscore;
-
     [self presentGameScene];
 }
 
@@ -68,17 +66,14 @@
 }
 
 - (void)presentGameScene {
-    [self track:@"Game"];
+    [self track:@"Single Game"];
 
     self.gameOverView.hidden = YES;
-
     self.scene.size = self.gameView.bounds.size;
     self.scene.scaleMode = SKSceneScaleModeAspectFill;
     self.scene.delegate = self;
     [self.scene setup];
 
-    self.gameView.showsFPS = YES;
-    self.gameView.showsNodeCount = YES;
     [self.gameView presentScene:self.scene];
 }
 

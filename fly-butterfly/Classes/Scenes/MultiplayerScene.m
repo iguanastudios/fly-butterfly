@@ -22,20 +22,39 @@ typedef NS_ENUM(NSInteger, GameState) {
 @property (strong, nonatomic) Butterfly *butterflyMultiplayerNode;
 @property (strong, nonatomic) NSArray *crowPositions;
 @property (strong, nonatomic) SKLabelNode *timerLabel;
+@property (strong, nonatomic) SKLabelNode *statusLabel;
 @property (strong, nonatomic) NSTimer *countdownTimer;
 @property (assign, nonatomic) NSInteger countdownTime;
-@property (assign, nonatomic) NSInteger crowCounter;
 @property (assign, nonatomic) GameState gameState;
-@property (assign, nonatomic) BOOL differenceSent;
 @end
 
 @implementation MultiplayerScene
 
+#pragma mark - Getters and setters
+
+- (SKLabelNode *)timerLabel {
+    if (!_timerLabel) {
+        _timerLabel = [SKLabelNode labelNodeWithFontNamed:LabelFont];
+        _timerLabel.fontSize = 48;
+        _timerLabel.text = [NSString stringWithFormat:@"%ld", (long)self.countdownTime];
+    }
+
+    return _timerLabel;
+}
+
+- (SKLabelNode *)statusLabel {
+    if (!_statusLabel) {
+        _statusLabel = [SKLabelNode labelNodeWithFontNamed:LabelFont];
+        _statusLabel.fontSize = 48;
+        _statusLabel.position = CGPointMake(self.size.width / 2, self.size.height / 2 + 50);
+    }
+
+    return _statusLabel;
+}
 #pragma mark - Public methods
 
 -(void)setup {
     [super setup];
-    self.crowCounter = 0;
     self.gameState = GameStateReady;
     if (self.hoster) {
         [self prepareCrows];
@@ -53,7 +72,7 @@ typedef NS_ENUM(NSInteger, GameState) {
 }
 
 - (void)prepareCrows {
-    NSMutableArray *positions = [[NSMutableArray alloc] initWithCapacity:50];
+    NSMutableArray *positions = [[NSMutableArray alloc] initWithCapacity:100];
     int crows = 0;
     CGFloat position;
 
@@ -76,17 +95,12 @@ typedef NS_ENUM(NSInteger, GameState) {
 
 - (void)setupTimer {
     self.countdownTime = 3;
-    self.timerLabel = [SKLabelNode labelNodeWithFontNamed:ScoreLabelFont];
-    self.timerLabel.fontSize = ScoreLabelSize;
-    self.timerLabel.text = [NSString stringWithFormat:@"%ld", (long)self.countdownTime];
-    self.timerLabel.verticalAlignmentMode = SKLabelVerticalAlignmentModeCenter;
-    self.timerLabel.position = CGPointMake(self.size.width / 2, self.size.height / 2 + 50);
-
     self.countdownTimer = [NSTimer scheduledTimerWithTimeInterval:1.0
                                                            target:self
                                                          selector:@selector(updateLabel)
                                                          userInfo:nil
                                                           repeats:YES];
+    self.timerLabel.position = CGPointMake(self.size.width / 2, self.size.height / 2 + 50);
     [self addChild:self.timerLabel];
 }
 
@@ -108,15 +122,15 @@ typedef NS_ENUM(NSInteger, GameState) {
             [self setupCrows];
             self.gameState = GameStateRunning;
         } else {
-            NSLog(@"End");
+            [self gameOver];
         }
-
     }
 }
 
 - (void)removeLabel {
     self.countdownTime = 60;
-    self.timerLabel.position = CGPointMake(20, self.scene.frame.size.height - 20);
+    self.timerLabel.position = CGPointMake(50, self.scene.frame.size.height - 50);
+    self.timerLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeLeft;
     self.countdownTimer = [NSTimer scheduledTimerWithTimeInterval:1.0
                                                            target:self
                                                          selector:@selector(updateLabel)
@@ -162,6 +176,8 @@ typedef NS_ENUM(NSInteger, GameState) {
     [self addChild:crowBottom];
     self.crowCounter++;
 }
+
+#pragma mark - TouchesBegan
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     if (self.gameState == GameStateReady || self.gameState == GameStateButterflyHitCrow) {
@@ -250,6 +266,10 @@ typedef NS_ENUM(NSInteger, GameState) {
     Crow *crowBottom = [[Crow alloc] initWithPosition:crowBottomPosition];
     [crowBottom runAction:self.moveCrow];
     [self addChild:crowBottom];
+}
+
+- (void)gameGame {
+    [super gameOver];
 }
 
 @end

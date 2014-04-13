@@ -12,7 +12,7 @@ typedef NS_OPTIONS(uint32_t, BPhysicsCategory) {
     BButterflyCategory = 1 << 1,
     BCrowCategory = 1 << 2,
     BGroundCategory = 1 << 3,
-    BCrowEdgeCategory = 1 << 4,
+    BPointCategory = 1 << 4,
 };
 
 @interface Constants : NSObject
@@ -20,8 +20,7 @@ typedef NS_OPTIONS(uint32_t, BPhysicsCategory) {
 // Global
 extern CGFloat const BackgroundPointsPerSec;
 extern NSInteger const MinSpaceBetweenBombs;
-extern NSString *const ScoreLabelFont;
-extern CGFloat const ScoreLabelSize;
+extern NSString *const LabelFont;
 extern CGFloat const Speed;
 extern CGFloat const CrowDefaultInterval;
 

@@ -76,20 +76,17 @@
 
 #pragma mark - ISMultiplayerDelegate
 
-- (void)multiplayerMatchStarted {
+- (void)multiplayerMatchStarted:(BOOL)hoster {
     self.multiplayerScene = [[MultiplayerScene alloc] init];
+    self.multiplayerScene.hoster = hoster;
     self.multiplayerScene.networkingEngine = self.networkEngine;
     self.networkEngine.butterflyDelegate = self.multiplayerScene;
     self.gameViewController.scene = self.multiplayerScene;
+    [self.navigationController pushViewController:self.gameViewController animated:YES];
 }
 
 - (void)multiplayerMatchEnded {
     NSLog(@"multiplayerMatchEnded ERROR");
-}
-
-- (void)playerIsHoster:(BOOL)hoster {
-    self.multiplayerScene.hoster = hoster;
-    [self.navigationController pushViewController:self.gameViewController animated:YES];
 }
 
 #pragma mark - GVGoogleBannerViewDelegate
