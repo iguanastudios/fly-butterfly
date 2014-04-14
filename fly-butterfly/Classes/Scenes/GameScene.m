@@ -23,7 +23,6 @@ typedef NS_ENUM(NSInteger, GameState) {
 @property (assign, nonatomic) GameState gameState;
 @property (strong, nonatomic) SKSpriteNode *handNode;
 @property (strong, nonatomic) SKLabelNode *scoreLabel;
-@property (strong, nonatomic) NSTimer *timer;
 @property (assign, nonatomic) NSUInteger currentScore;
 @end
 
@@ -57,7 +56,6 @@ typedef NS_ENUM(NSInteger, GameState) {
 - (void)setupScore {
     self.scoreLabel.text = @"0";
     self.currentScore = 0;
-
     [self addChild:_scoreLabel];
 }
 
@@ -181,17 +179,6 @@ typedef NS_ENUM(NSInteger, GameState) {
     self.gameState = GameStateRunning;
 }
 
-- (void)touchesBeganGameStateRunning {
-    [self runAction:self.flapSound];
-    [self.butterfly fly];
-}
-
-- (void)touchesBeganGameStateOver {
-    if ([self.delegate respondsToSelector:@selector(gamePrepare)]) {
-        [self.delegate gamePrepare];
-    }
-}
-
 #pragma mark - Private methods
 
 -(void)reportAchievements {
@@ -202,10 +189,6 @@ typedef NS_ENUM(NSInteger, GameState) {
 -(void)reportHighscore {
     [[ISGameCenter sharedISGameCenter] reportScore:UserDefaults.highscore
                              leaderboardIdentifier:@"io.iguanastudios.flybutterfly.highscores"];
-}
-
-- (void)enableInteraction {
-    self.userInteractionEnabled = YES;
 }
 
 @end

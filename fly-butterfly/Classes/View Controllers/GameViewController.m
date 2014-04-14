@@ -6,17 +6,7 @@
 //  Copyright (c) 2014 Iguana Studios. All rights reserved.
 //
 
-#import <ISGameCenter/ISMultiplayerNetworking.h>
 #import "GameViewController.h"
-#import "GameScene.h"
-
-@interface GameViewController () <SceneDelegate>
-@property (weak, nonatomic) IBOutlet SKView *gameView;
-@property (weak, nonatomic) IBOutlet UIView *gameOverView;
-@property (weak, nonatomic) IBOutlet UILabel *highscoreLabel;
-@property (weak, nonatomic) IBOutlet UILabel *tapLabel;
-@property (strong, nonatomic) NSTimer *timer;
-@end
 
 @implementation GameViewController
 
@@ -24,13 +14,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.highscoreLabel.font = [UIFont fontWithName:LabelFont size:18];
     self.tapLabel.font = [UIFont fontWithName:LabelFont size:24];
 }
 
 - (void)viewWillLayoutSubviews {
     [super viewWillLayoutSubviews];
-    [self presentGameScene];
+    [self presentScene];
 }
 
 #pragma mark - SceneDelegate
@@ -39,16 +28,7 @@
     self.gameOverView.hidden = YES;
 }
 
-- (void)gamePrepare {
-    self.gameOverView.hidden = YES;
-    [self.timer invalidate];
-    self.scene = [[GameScene alloc] init];
-    [self presentGameScene];
-}
-
 - (void)gameOver {
-    NSString *highscore = [NSString stringWithFormat:@"TOP: %ld", (long)UserDefaults.highscore];
-    self.highscoreLabel.text = highscore;
     [self shakeFrame];
     self.gameOverView.hidden = NO;
 
@@ -65,7 +45,7 @@
     [self.tapLabel setHidden:(!self.tapLabel.hidden)];
 }
 
-- (void)presentGameScene {
+- (void)presentScene {
     [self track:@"Single Game"];
 
     self.gameOverView.hidden = YES;
@@ -95,12 +75,6 @@
     [[ISAudio sharedInstance] playSoundEffect:@"button_press.wav"];
     [self gamePrepare];
     [self.navigationController popViewControllerAnimated:YES];
-}
-
-#pragma mark - GVGoogleBannerViewDelegate
-
-- (NSString *)googleBannerViewAdUnitID {
-    return @"";
 }
 
 @end

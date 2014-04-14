@@ -14,9 +14,14 @@
 #import "Utilities.h"
 
 @protocol SceneDelegate <NSObject>
+
+@required
 - (void)gameStart;
-- (void)gamePrepare;
 - (void)gameOver;
+
+@optional
+- (void)gamePrepare;
+
 @end
 
 @interface BaseScene : SKScene <SKPhysicsContactDelegate>
@@ -29,9 +34,13 @@
 @property (assign, nonatomic) CGFloat crowTopPosition;
 @property (assign, nonatomic) CGFloat crowBottomPosition;
 @property (assign, nonatomic) NSInteger crowCounter;
+@property (strong, nonatomic) NSTimer *timer;
 
 - (void)setup;
 - (void)setupButterfly;
+- (void)touchesBeganGameStateRunning;
+- (void)touchesBeganGameStateOver;
 - (void)gameOver;
+- (void)enableInteraction;
 
 @end

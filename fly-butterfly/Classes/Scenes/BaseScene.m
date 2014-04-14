@@ -52,7 +52,7 @@
                                             self.size.height/2);
     self.butterfly = [[Butterfly alloc] initWithPosition:butterflyPosition];
     [self addChild:self.butterfly];
-    [self.butterfly setup];
+    [self.butterfly setupButterflyTray];
 }
 
 - (void)gameOver {
@@ -71,11 +71,28 @@
     }
 }
 
+- (void)enableInteraction {
+    self.userInteractionEnabled = YES;
+}
+
 #pragma mark - Update
 
 - (void)update:(CFTimeInterval)currentTime {
     [self.parallaxNode update:currentTime];
     [self.butterfly rotate];
+}
+
+#pragma mark - TouchesBegan
+
+- (void)touchesBeganGameStateRunning {
+    [self runAction:self.flapSound];
+    [self.butterfly fly];
+}
+
+- (void)touchesBeganGameStateOver {
+    if ([self.delegate respondsToSelector:@selector(gamePrepare)]) {
+        [self.delegate gamePrepare];
+    }
 }
 
 #pragma mark - Private methods

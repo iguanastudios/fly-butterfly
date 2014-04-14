@@ -10,25 +10,16 @@
 #import <GVGoogleBannerView/GVGoogleBannerView.h>
 #import "MenuViewController.h"
 #import "GameViewController.h"
+#import "SingleGameViewController.h"
+#import "MultiplayerGameViewController.h"
 #import "GameScene.h"
 #import "MultiplayerScene.h"
 
 @interface MenuViewController () <ISGameCenterDelegate, ISMultiplayerDelegate>
-@property (strong, nonatomic) GameViewController *gameViewController;
 @property (strong, nonatomic) ButterflyMultiplayerNetworking *networkEngine;
-@property (strong, nonatomic) MultiplayerScene *multiplayerScene;
 @end
 
 @implementation MenuViewController
-
-#pragma mark - Getters and setters
-
-- (GameViewController *)gameViewController {
-    if (!_gameViewController) {
-        _gameViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"GameViewController"];
-    }
-    return _gameViewController;
-}
 
 #pragma mark - View lifecycle
 
@@ -45,9 +36,18 @@
 #pragma mark - IBAction
 
 - (IBAction)playPressed {
+    MultiplayerGameViewController *multiplayerGameViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"MultiplayerGameViewController"];
+    MultiplayerScene *multiplayerScene = [[MultiplayerScene alloc] init];
+    multiplayerScene.hoster = NO;
+    multiplayerScene.networkingEngine = self.networkEngine;
+    self.networkEngine.butterflyDelegate = multiplayerScene;
+    multiplayerGameViewController.scene = multiplayerScene;
+    [self.navigationController pushViewController:multiplayerGameViewController animated:YES];
+    return;
+
     [[ISAudio sharedInstance] playSoundEffect:@"button_press.wav"];
-    self.gameViewController.scene = [[GameScene alloc] init];
-    [self.navigationController pushViewController:self.gameViewController animated:YES];
+    SingleGameViewController *singleGameViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SingleGameViewController"];
+    [self.navigationController pushViewController:singleGameViewController animated:YES];
 }
 
 - (IBAction)highscorePressed {
@@ -77,12 +77,13 @@
 #pragma mark - ISMultiplayerDelegate
 
 - (void)multiplayerMatchStarted:(BOOL)hoster {
-    self.multiplayerScene = [[MultiplayerScene alloc] init];
-    self.multiplayerScene.hoster = hoster;
-    self.multiplayerScene.networkingEngine = self.networkEngine;
-    self.networkEngine.butterflyDelegate = self.multiplayerScene;
-    self.gameViewController.scene = self.multiplayerScene;
-    [self.navigationController pushViewController:self.gameViewController animated:YES];
+    MultiplayerGameViewController *multiplayerGameViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"MultiplayerGameViewController"];
+    MultiplayerScene *multiplayerScene = [[MultiplayerScene alloc] init];
+    multiplayerScene.hoster = hoster;
+    multiplayerScene.networkingEngine = self.networkEngine;
+    self.networkEngine.butterflyDelegate = multiplayerScene;
+    multiplayerGameViewController.scene = multiplayerScene;
+    [self.navigationController pushViewController:multiplayerGameViewController animated:YES];
 }
 
 - (void)multiplayerMatchEnded {

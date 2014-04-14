@@ -10,7 +10,8 @@
 
 @interface Butterfly : AnimatingSprite
 
-- (void)setup;
+- (void)setupButterflyTray;
+- (void)setupMultiplayerButterflyTray;
 - (void)dead;
 - (void)fly;
 - (void)rotate;

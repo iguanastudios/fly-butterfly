@@ -28,6 +28,17 @@
     return self;
 }
 
+#pragma mark - Public methods
+
+- (void)fly {
+    NSTimeInterval duration = (self.position.x + CrowWidth) * 0.004;
+    SKAction *fly = [SKAction moveByX: - self.position.x - CrowWidth y:0 duration:duration];
+
+    [self runAction:fly completion:^ {
+        [self removeFromParent];
+    }];
+}
+
 #pragma mark - Override AnimatingSprite
 
 + (SKTexture *)generateTexture {

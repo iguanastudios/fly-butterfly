@@ -9,11 +9,6 @@
 #import <ISSpriteKit/SKEmitterNode+ISExtras.h>
 #import "Butterfly.h"
 
-@interface Butterfly ()
-@property (strong, nonatomic) SKEmitterNode *butterflyTrail;
-
-@end
-
 @implementation Butterfly
 
 #pragma mark - Initialization
@@ -31,10 +26,6 @@
         self.physicsBody.dynamic = NO;
 
         [self runAction:self.facingSideAnimation];
-
-        self.butterflyTrail = [SKEmitterNode emitterNamed:@"ButterflyTrail"];
-        [self addChild:self.butterflyTrail];
-        self.zPosition = 100;
     }
 
     return self;
@@ -65,10 +56,14 @@
 
 #pragma mark - Public Methods
 
-- (void)setup {
-    self.butterflyTrail.targetNode = self.parent;
-    self.butterflyTrail.position = CGPointMake(-15,0);
-    self.butterflyTrail.zPosition = self.zPosition - 1;
+- (void)setupButterflyTray {
+    self.zPosition = 100;
+    [self addButterflyTrail:[SKEmitterNode emitterNamed:@"ButterflyTrail"]];
+}
+
+- (void)setupMultiplayerButterflyTray {
+    self.zPosition = 50;
+    [self addButterflyTrail:[SKEmitterNode emitterNamed:@"MultiplayerButterflyTrail"]];
 }
 
 - (void)dead {
@@ -90,6 +85,15 @@
     // Rotate butterfly on fly / fall down
     CGFloat rotation = ((self.physicsBody.velocity.dy + 400) / (2 * 400)) * M_2_PI;
     [self setZRotation:rotation - M_1_PI / 2];
+}
+
+#pragma mark - Private methods
+
+- (void) addButterflyTrail:(SKEmitterNode *)trailEmmiter {
+    [self addChild:trailEmmiter];
+    trailEmmiter.targetNode = self.parent;
+    trailEmmiter.position = CGPointMake(-12,0);
+    trailEmmiter.zPosition = self.zPosition - 1;
 }
 
 @end
