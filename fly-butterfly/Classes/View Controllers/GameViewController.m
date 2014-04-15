@@ -32,6 +32,7 @@
     [self shakeFrame];
     self.gameOverView.hidden = NO;
 
+    [self.timer invalidate];
     self.timer = [NSTimer scheduledTimerWithTimeInterval:0.5
                                                   target:self
                                                 selector:@selector(toggleLabelAlpha)
@@ -54,6 +55,12 @@
     self.scene.delegate = self;
     [self.scene setup];
 
+#ifdef DEBUG
+    self.gameView.showsFPS = YES;
+    self.gameView.showsNodeCount = YES;
+    //self.gameView.showsPhysics = YES;
+#endif
+    
     [self.gameView presentScene:self.scene];
 }
 
@@ -74,7 +81,7 @@
 - (IBAction)backButtonPressed {
     [[ISAudio sharedInstance] playSoundEffect:@"button_press.wav"];
     [self gamePrepare];
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 @end

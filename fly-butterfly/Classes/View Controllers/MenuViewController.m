@@ -7,6 +7,7 @@
 //
 
 #import <ISGameCenter/ISGameCenter.h>
+#import <Google-Mobile-Ads-SDK/GADInterstitial.h>
 #import <GVGoogleBannerView/GVGoogleBannerView.h>
 #import "MenuViewController.h"
 #import "GameViewController.h"
@@ -15,42 +16,71 @@
 #import "GameScene.h"
 #import "MultiplayerScene.h"
 
-@interface MenuViewController () <ISGameCenterDelegate, ISMultiplayerDelegate>
+@interface MenuViewController () <ISGameCenterDelegate, ISMultiplayerDelegate, GADInterstitialDelegate>
+@property (strong, nonatomic) SingleGameViewController *singleGameViewController;
+@property (strong, nonatomic) MultiplayerGameViewController *multiplayerGameViewController;
 @property (strong, nonatomic) ButterflyMultiplayerNetworking *networkEngine;
+@property (strong, nonatomic) GADInterstitial *interstitial;
 @end
 
 @implementation MenuViewController
+
+#pragma mark - Getters and setters
+
+- (SingleGameViewController *)singleGameViewController {
+    if (!_singleGameViewController) {
+        _singleGameViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SingleGameViewController"];
+    }
+
+    return _singleGameViewController;
+}
+
+- (MultiplayerGameViewController *)multiplayerGameViewController {
+    if (!_multiplayerGameViewController) {
+        _multiplayerGameViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"MultiplayerGameViewController"];
+    }
+
+    return _multiplayerGameViewController;
+}
 
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self track:@"Game Launched"];
+
+    self.interstitial = [[GADInterstitial alloc] init];
+    self.interstitial.delegate = self;
+    self.interstitial.adUnitID = @"ca-app-pub-3392553844996186/2623164155";
+
+    GADRequest *request = [GADRequest request];
+    request.testDevices = @[GAD_SIMULATOR_ID,
+                            @"9d7eada80bc22149b0c33df66f0957d0",
+                            @"4f671bf723d90741f66b2fa9a13a497c"];
+
+    [self.interstitial loadRequest:request];
+
     [[ISGameCenter sharedISGameCenter] authenticateLocalPlayer];
     [ISGameCenter sharedISGameCenter].delegate = self;
-    [[SKTextureAtlas atlasNamed:@"sprites"] preloadWithCompletionHandler:^{
-        NSLog(@"Atlas preload");
-    }];
+    [[SKTextureAtlas atlasNamed:@"sprites"] preloadWithCompletionHandler:^{}];
 }
 
 #pragma mark - IBAction
 
 - (IBAction)playPressed {
-    MultiplayerGameViewController *multiplayerGameViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"MultiplayerGameViewController"];
-    MultiplayerScene *multiplayerScene = [[MultiplayerScene alloc] init];
-    multiplayerScene.hoster = NO;
-    multiplayerScene.networkingEngine = self.networkEngine;
-    self.networkEngine.butterflyDelegate = multiplayerScene;
-    multiplayerGameViewController.scene = multiplayerScene;
-    [self.navigationController pushViewController:multiplayerGameViewController animated:YES];
-    return;
-
     [[ISAudio sharedInstance] playSoundEffect:@"button_press.wav"];
-    SingleGameViewController *singleGameViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SingleGameViewController"];
-    [self.navigationController pushViewController:singleGameViewController animated:YES];
+    [self.navigationController pushViewController:self.singleGameViewController animated:YES];
 }
 
 - (IBAction)highscorePressed {
+    MultiplayerScene *multiplayerScene = [[MultiplayerScene alloc] init];
+    multiplayerScene.hoster = YES;
+    multiplayerScene.networkingEngine = self.networkEngine;
+    self.networkEngine.butterflyDelegate = multiplayerScene;
+    self.multiplayerGameViewController.scene = multiplayerScene;
+    [self.navigationController pushViewController:self.multiplayerGameViewController animated:YES];
+    return;
+
     [[ISAudio sharedInstance] playSoundEffect:@"button_press.wav"];
     [[ISGameCenter sharedISGameCenter] showGameCenterViewController:self];
 }
@@ -77,17 +107,26 @@
 #pragma mark - ISMultiplayerDelegate
 
 - (void)multiplayerMatchStarted:(BOOL)hoster {
-    MultiplayerGameViewController *multiplayerGameViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"MultiplayerGameViewController"];
     MultiplayerScene *multiplayerScene = [[MultiplayerScene alloc] init];
     multiplayerScene.hoster = hoster;
     multiplayerScene.networkingEngine = self.networkEngine;
     self.networkEngine.butterflyDelegate = multiplayerScene;
-    multiplayerGameViewController.scene = multiplayerScene;
-    [self.navigationController pushViewController:multiplayerGameViewController animated:YES];
+    self.multiplayerGameViewController.scene = multiplayerScene;
+    [self.navigationController pushViewController:self.multiplayerGameViewController animated:YES];
 }
 
 - (void)multiplayerMatchEnded {
     NSLog(@"multiplayerMatchEnded ERROR");
+}
+
+#pragma mark - GADInterstitialDelegate
+
+- (void)interstitialDidReceiveAd:(GADInterstitial *)interstitial {
+    [self.interstitial presentFromRootViewController:self];
+}
+
+- (void)interstitial:(GADInterstitial *)ad didFailToReceiveAdWithError:(GADRequestError *)error {
+    NSLog(@"%@", error);
 }
 
 #pragma mark - GVGoogleBannerViewDelegate

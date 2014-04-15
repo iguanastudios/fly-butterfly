@@ -15,14 +15,10 @@
 - (instancetype)initWithPosition:(CGPoint)position {
     if (self = [super initWithPosition:position]) {
         self.name = @"crow";
-        self.facingSideAnimation = [Crow createAnimationForeverWithPrefix:@"crow" frames:8];
-
         CGRect bodySize = CGRectInset(self.frame, 10, 10);
         self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:bodySize.size];
         self.physicsBody.dynamic = NO;
         self.physicsBody.categoryBitMask = BCrowCategory;
-
-        [self runAction:self.facingSideAnimation];
     }
 
     return self;
@@ -30,9 +26,15 @@
 
 #pragma mark - Public methods
 
+- (void)animate {
+    self.facingSideAnimation = [Crow createAnimationForeverWithPrefix:@"crow" frames:8];
+    [self runAction:self.facingSideAnimation];
+}
+
 - (void)fly {
-    NSTimeInterval duration = (self.position.x + CrowWidth) * 0.004;
-    SKAction *fly = [SKAction moveByX: - self.position.x - CrowWidth y:0 duration:duration];
+    [self animate];
+    NSTimeInterval duration = self.position.x  * 0.004;
+    SKAction *fly = [SKAction moveToX:-CrowWidth duration:duration];
 
     [self runAction:fly completion:^ {
         [self removeFromParent];

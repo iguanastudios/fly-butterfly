@@ -24,6 +24,7 @@ typedef NS_ENUM(NSInteger, GameState) {
 @property (strong, nonatomic) SKSpriteNode *handNode;
 @property (strong, nonatomic) SKLabelNode *scoreLabel;
 @property (assign, nonatomic) NSUInteger currentScore;
+@property (assign, nonatomic) CFTimeInterval time;
 @end
 
 @implementation GameScene
@@ -73,6 +74,7 @@ typedef NS_ENUM(NSInteger, GameState) {
     self.crowBottomPosition = self.crowTopPosition - MinSpaceBetweenBombs;
 
     Crow *crowTop = [[Crow alloc] initWithPosition:CGPointMake(x, self.crowTopPosition)];
+    [crowTop animate];
     [crowTop runAction:self.moveCrow completion:^{
         [crowTop removeFromParent];
     }];
@@ -80,6 +82,7 @@ typedef NS_ENUM(NSInteger, GameState) {
     [self addChild:crowTop];
 
     Crow *crowBottom = [[Crow alloc] initWithPosition:CGPointMake(x, self.crowBottomPosition)];
+    [crowBottom animate];
     [crowBottom runAction:self.moveCrow completion:^{
         [crowBottom removeFromParent];
     }];
@@ -87,7 +90,6 @@ typedef NS_ENUM(NSInteger, GameState) {
     [self addChild:crowBottom];
 
     self.crowCounter++;
-
     SKSpriteNode *pointEdge = [SKSpriteNode node];
     pointEdge.size = CGSizeMake(1, self.size.height);
     pointEdge.position = CGPointMake(x + 10, self.size.height / 2);
@@ -98,6 +100,33 @@ typedef NS_ENUM(NSInteger, GameState) {
         [pointEdge removeFromParent];
     }];
     [self addChild:pointEdge];
+}
+
+#pragma mark - TouchesBegan
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    switch (self.gameState) {
+        case GameStateReady:
+        [self touchesBeganGameStateReady];
+        case GameStateRunning:
+        [self touchesBeganGameStateRunning];
+        break;
+        case GameStateOver:
+        default:
+        [self touchesBeganGameStateOver];
+        break;
+    }
+}
+
+- (void)touchesBeganGameStateReady {
+    [self setupCrows];
+
+    if ([self.delegate respondsToSelector:@selector(gameStart)]) {
+        [self.delegate gameStart];
+    }
+
+    [self.handNode removeFromParent];
+    self.gameState = GameStateRunning;
 }
 
 #pragma mark - SKPhysicsContactDelegate
@@ -150,33 +179,6 @@ typedef NS_ENUM(NSInteger, GameState) {
     UserDefaults.highscore = MAX(UserDefaults.highscore, self.currentScore);
     [self reportAchievements];
     [self reportHighscore];
-}
-
-#pragma mark - TouchesBegan
-
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    switch (self.gameState) {
-        case GameStateReady:
-            [self touchesBeganGameStateReady];
-        case GameStateRunning:
-            [self touchesBeganGameStateRunning];
-            break;
-        case GameStateOver:
-        default:
-            [self touchesBeganGameStateOver];
-            break;
-    }
-}
-
-- (void)touchesBeganGameStateReady {
-    [self setupCrows];
-
-    if ([self.delegate respondsToSelector:@selector(gameStart)]) {
-        [self.delegate gameStart];
-    }
-
-    [self.handNode removeFromParent];
-    self.gameState = GameStateRunning;
 }
 
 #pragma mark - Private methods

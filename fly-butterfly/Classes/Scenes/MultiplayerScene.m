@@ -26,6 +26,7 @@ typedef NS_ENUM(NSInteger, GameState) {
 @property (strong, nonatomic) NSTimer *countdownTimer;
 @property (assign, nonatomic) NSInteger countdownTime;
 @property (assign, nonatomic) GameState gameState;
+@property (assign, nonatomic) BOOL locked;
 @end
 
 @implementation MultiplayerScene
@@ -56,12 +57,11 @@ typedef NS_ENUM(NSInteger, GameState) {
 -(void)setup {
     [super setup];
     self.gameState = GameStateReady;
+    self.locked = YES;
+
     if (self.hoster) {
         [self prepareCrows];
     }
-
-    [self prepareCrows];
-    [self setupCrows];
 }
 
 - (void)setupButterfly {
@@ -89,11 +89,24 @@ typedef NS_ENUM(NSInteger, GameState) {
 }
 
 - (void)setupCrows {
-    SKAction *wait = [SKAction waitForDuration:CrowDefaultInterval];
-    SKAction *spawnCrowActions = [SKAction performSelector:@selector(spawnCrows)
-                                                  onTarget:self];
-    SKAction *sequenceCrows = [SKAction sequence: @[spawnCrowActions, wait]];
-    [self runAction: [SKAction repeatActionForever: sequenceCrows]];
+    CGFloat crowWidthDistance = CrowWidth / 2;
+    for (int iterator = 0; iterator < [self.crowPositions count]; iterator++) {
+        CGFloat x = self.size.width + crowWidthDistance + (iterator * 180);
+        NSNumber *y = [self.crowPositions objectAtIndex:iterator];
+
+        self.crowTopPosition = [y floatValue];
+        self.crowBottomPosition = self.crowTopPosition - MinSpaceBetweenBombs;
+
+        Crow *crowTop = [[Crow alloc] initWithPosition:CGPointMake(x, self.crowTopPosition)];
+        [crowTop fly];
+
+        [self addChild:crowTop];
+
+        Crow *crowBottom = [[Crow alloc] initWithPosition:CGPointMake(x, self.crowBottomPosition)];
+        [crowBottom fly];
+        
+        [self addChild:crowBottom];
+    }
 }
 
 - (void)setupTimer {
@@ -124,6 +137,7 @@ typedef NS_ENUM(NSInteger, GameState) {
                                             repeats:NO];
             [self setupCrows];
             self.gameState = GameStateRunning;
+            self.locked = NO;
         } else {
             [self gameOver];
         }
@@ -140,6 +154,24 @@ typedef NS_ENUM(NSInteger, GameState) {
                                                          selector:@selector(updateLabel)
                                                          userInfo:nil
                                                           repeats:YES];
+}
+
+- (void)gameOver {
+    [super gameOver];
+    self.gameState = GameStateOver;
+    [self.timerLabel removeFromParent];
+    if (self.butterfly.position.x < self.butterflyMultiplayerNode.position.x) {
+        self.statusLabel.text = @"YOU WON!";
+    } else {
+        self.statusLabel.text = @"YOU LOST!";
+    }
+    [self addChild:self.statusLabel];
+
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:3.0
+                                                  target:self
+                                                selector:@selector(enableInteraction)
+                                                userInfo:nil
+                                                 repeats:NO];
 }
 
 #pragma mark - Update
@@ -180,7 +212,6 @@ typedef NS_ENUM(NSInteger, GameState) {
 #pragma mark - TouchesBegan
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    [self touchesBeganGameStateRunning];
     switch (self.gameState) {
         case GameStateRunning:
             [self touchesBeganGameStateRunning];
@@ -222,19 +253,13 @@ typedef NS_ENUM(NSInteger, GameState) {
     self.gameState = GameStateButterflyHitCrow;
     self.butterfly.physicsBody.collisionBitMask = BGroundCategory;
     self.butterfly.physicsBody.contactTestBitMask = BGroundCategory;
-    [Utilities flashScene:self];
-    [self.networkingEngine sendButterflyCrash];
-    [self.butterflyMultiplayerNode runAction:[SKAction moveByX:100 y:0 duration:2]];
-
-    
+    [self butterflyHit];
 }
 
 - (void)didBeginContactWithGround {
     // Butterfly hits directly with the ground
     if (self.gameState == GameStateRunning) {
-        [Utilities flashScene:self];
-        [self.networkingEngine sendButterflyCrash];
-        [self.butterflyMultiplayerNode runAction:[SKAction moveByX:100 y:0 duration:2]];
+        [self butterflyHit];
     }
 
     self.gameState = GameStateButterflyBlinking;
@@ -300,21 +325,36 @@ typedef NS_ENUM(NSInteger, GameState) {
     [crowTop fly];
 }
 
-- (void)gameOver {
-    [super gameOver];
-    self.gameState = GameStateOver;
-    [self.timerLabel removeFromParent];
-    if (self.butterfly.position.x < self.butterflyMultiplayerNode.position.x) {
-        self.statusLabel.text = @"YOU WON!";
-    } else {
-        self.statusLabel.text = @"YOU LOST!";
-    }
+- (void)butterflyHit {
+    [Utilities flashScene:self];
+    [self.networkingEngine sendButterflyCrash];
+    self.locked = YES;
+    [self.butterflyMultiplayerNode runAction:[SKAction moveByX:100 y:0 duration:2] completion:^{
+        self.locked = NO;
+    }];
 
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:3.0
-                                                  target:self
-                                                selector:@selector(enableInteraction)
-                                                userInfo:nil
-                                                 repeats:NO];
+    [self enumerateChildNodesWithName:@"crow"
+                           usingBlock:^(SKNode *node, BOOL *stop) {
+                               if (node.position.x < 0) {
+                                   [node removeFromParent];
+                               } else {
+                                   [node removeAllActions];
+                               }
+                           }];
+
+    SKAction *wait = [SKAction waitForDuration:2.0];
+
+    [self runAction:wait completion:^{
+        [self enumerateChildNodesWithName:@"crow"
+                               usingBlock:^(SKNode *node, BOOL *stop) {
+                                   if (node.position.x < 0) {
+                                       [node removeFromParent];
+                                   } else {
+                                       Crow *crow = (Crow *)node;
+                                       [crow fly];
+                                   }
+                               }];
+    }];
 }
 
 @end

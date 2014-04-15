@@ -92,7 +92,7 @@
 - (void) addButterflyTrail:(SKEmitterNode *)trailEmmiter {
     [self addChild:trailEmmiter];
     trailEmmiter.targetNode = self.parent;
-    trailEmmiter.position = CGPointMake(-12,0);
+    trailEmmiter.position = CGPointMake(-10, 0);
     trailEmmiter.zPosition = self.zPosition - 1;
 }
 

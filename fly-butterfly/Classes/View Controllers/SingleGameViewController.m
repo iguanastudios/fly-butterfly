@@ -15,10 +15,12 @@
 
 @implementation SingleGameViewController
 
+#pragma mark - View lifecycle
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.scene = [[GameScene alloc] init];
     self.highscoreLabel.font = [UIFont fontWithName:LabelFont size:18];
+    self.scene = [[GameScene alloc] init];
 }
 
 - (void)gamePrepare {

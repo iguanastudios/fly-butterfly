@@ -15,6 +15,7 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+
 #ifndef DEBUG
     [Crashlytics startWithAPIKey:[Config sharedInstance].crashlyticsId];
 
