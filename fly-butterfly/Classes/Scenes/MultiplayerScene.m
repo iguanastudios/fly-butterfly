@@ -26,6 +26,7 @@ typedef NS_ENUM(NSInteger, GameState) {
 @property (strong, nonatomic) NSTimer *countdownTimer;
 @property (assign, nonatomic) NSInteger countdownTime;
 @property (assign, nonatomic) GameState gameState;
+@property (assign, nonatomic) CFTimeInterval time;
 @property (assign, nonatomic) BOOL locked;
 @end
 
@@ -179,6 +180,12 @@ typedef NS_ENUM(NSInteger, GameState) {
 - (void)update:(CFTimeInterval)currentTime {
     [super update:currentTime];
 
+
+    if (!self.locked) {
+        self.time += currentTime;
+        NSLog(@"%f", self.time * 0.0004);
+    }
+
     if (self.gameState != GameStateReady) {
         [self.networkingEngine sendButterflyCoordinate:self.butterfly.position.y
                                               rotation:self.butterfly.zRotation];
@@ -328,10 +335,6 @@ typedef NS_ENUM(NSInteger, GameState) {
 - (void)butterflyHit {
     [Utilities flashScene:self];
     [self.networkingEngine sendButterflyCrash];
-    self.locked = YES;
-    [self.butterflyMultiplayerNode runAction:[SKAction moveByX:100 y:0 duration:2] completion:^{
-        self.locked = NO;
-    }];
 
     [self enumerateChildNodesWithName:@"crow"
                            usingBlock:^(SKNode *node, BOOL *stop) {
@@ -342,9 +345,10 @@ typedef NS_ENUM(NSInteger, GameState) {
                                }
                            }];
 
+    self.locked = YES;
     SKAction *wait = [SKAction waitForDuration:2.0];
-
     [self runAction:wait completion:^{
+        self.locked = NO;
         [self enumerateChildNodesWithName:@"crow"
                                usingBlock:^(SKNode *node, BOOL *stop) {
                                    if (node.position.x < 0) {

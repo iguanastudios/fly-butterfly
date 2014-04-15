@@ -24,7 +24,6 @@ typedef NS_ENUM(NSInteger, GameState) {
 @property (strong, nonatomic) SKSpriteNode *handNode;
 @property (strong, nonatomic) SKLabelNode *scoreLabel;
 @property (assign, nonatomic) NSUInteger currentScore;
-@property (assign, nonatomic) CFTimeInterval time;
 @end
 
 @implementation GameScene
