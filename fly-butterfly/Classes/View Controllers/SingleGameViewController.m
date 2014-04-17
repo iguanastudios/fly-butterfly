@@ -20,7 +20,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.highscoreLabel.font = [UIFont fontWithName:LabelFont size:18];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     self.scene = [[GameScene alloc] init];
+    [self presentScene];
 }
 
 - (void)gamePrepare {

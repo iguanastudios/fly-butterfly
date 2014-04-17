@@ -156,6 +156,7 @@ typedef NS_ENUM(NSInteger, GameState) {
 }
 
 - (void)didBeginContactWithCrow:(SKPhysicsBody *)body {
+    UserDefaults.highscore = MAX(UserDefaults.highscore, self.currentScore);
     [self gameOver];
     self.gameState = GameStateOver;
 
@@ -174,8 +175,6 @@ typedef NS_ENUM(NSInteger, GameState) {
                                                  repeats:NO];
 
     [self.butterfly dead];
-
-    UserDefaults.highscore = MAX(UserDefaults.highscore, self.currentScore);
     [self reportAchievements];
     [self reportHighscore];
 }

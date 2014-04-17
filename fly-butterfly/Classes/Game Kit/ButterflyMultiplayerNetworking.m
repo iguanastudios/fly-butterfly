@@ -22,6 +22,7 @@ typedef struct {
 
 typedef struct {
     ButterflyMessage message;
+    float x;
     float y;
     float z;
 } ButterflyMessageCoordinate;
@@ -35,9 +36,10 @@ typedef struct {
 
 #pragma mark - Public methods
 
-- (void)sendButterflyCoordinate:(CGFloat)y rotation:(CGFloat)rotation {
+- (void)sendButterflyCoordinate:(CGFloat)x y:(CGFloat)y rotation:(CGFloat)rotation {
     ButterflyMessageCoordinate message;
     message.message.messageType = ButterflyMessageTypeButterflyCoordinate;
+    message.x = x;
     message.y = y;
     message.z = rotation;
     NSData *data = [NSData dataWithBytes:&message length:sizeof(ButterflyMessageCoordinate)];
@@ -46,10 +48,6 @@ typedef struct {
 
 - (void)sendButterflyBlink {
     [self sendDataWithMessageType:ButterflyMessageTypeButterflyBlink];
-}
-
-- (void)sendButterflyCrash {
-    [self sendDataWithMessageType:ButterflyMessageTypeButterflyCrash];
 }
 
 - (void)sendCrowPositions:(NSArray *)positions {
@@ -80,20 +78,17 @@ typedef struct {
 
 - (void)butterflyCoordinate:(NSData *)data {
     ButterflyMessageCoordinate *message = (ButterflyMessageCoordinate*)[data bytes];
+    CGFloat x = message->x;
     CGFloat y = message->y;
     CGFloat z = message->z;
 
-    if ([self.butterflyDelegate respondsToSelector:@selector(butterflyCoordinate:rotation:)]) {
-        [self.butterflyDelegate butterflyCoordinate:y rotation:z];
+    if ([self.butterflyDelegate respondsToSelector:@selector(butterflyCoordinate:y:rotation:)]) {
+        [self.butterflyDelegate butterflyCoordinate:x y:y rotation:z];
     }
 }
 
 - (void)butterflyBlink {
     [self.butterflyDelegate butterflyBlink];
-}
-
-- (void)butterflyCrash {
-    [self.butterflyDelegate butterflyCrash];
 }
 
 - (void)crowPositions:(NSData *)data {
@@ -124,10 +119,6 @@ typedef struct {
 
         case ButterflyMessageTypeButterflyBlink:
             [self butterflyBlink];
-            break;
-
-        case ButterflyMessageTypeButterflyCrash:
-            [self butterflyCrash];
             break;
 
         case ButterflyMessageTypeCrowPositions:

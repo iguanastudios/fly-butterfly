@@ -10,9 +10,8 @@
 
 @protocol ISButterflyMultiplayerDelegate <NSObject>
 @required
-- (void)butterflyCoordinate:(CGFloat)y rotation:(CGFloat)rotation;
+- (void)butterflyCoordinate:(CGFloat)x y:(CGFloat)y rotation:(CGFloat)rotation;
 - (void)butterflyBlink;
-- (void)butterflyCrash;
 - (void)crowPositions:(NSArray *)positions;
 - (void)crowsReceived;
 @end
@@ -21,9 +20,8 @@
 
 @property (nonatomic, assign) id<ISButterflyMultiplayerDelegate> butterflyDelegate;
 
-- (void)sendButterflyCoordinate:(CGFloat)y rotation:(CGFloat)rotation;
+- (void)sendButterflyCoordinate:(CGFloat)x y:(CGFloat)y rotation:(CGFloat)rotation;
 - (void)sendButterflyBlink;
-- (void)sendButterflyCrash;
 - (void)sendCrowPositions:(NSArray *)positions;
 - (void)sendCrowsReceived;
 

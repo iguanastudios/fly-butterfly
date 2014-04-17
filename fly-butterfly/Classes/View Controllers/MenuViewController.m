@@ -69,6 +69,7 @@
 
 - (IBAction)playPressed {
     [[ISAudio sharedInstance] playSoundEffect:@"button_press.wav"];
+    self.singleGameViewController.scene = [[GameScene alloc] init];
     [self.navigationController pushViewController:self.singleGameViewController animated:YES];
 }
 

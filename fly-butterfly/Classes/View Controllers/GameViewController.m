@@ -17,11 +17,6 @@
     self.tapLabel.font = [UIFont fontWithName:LabelFont size:24];
 }
 
-- (void)viewWillLayoutSubviews {
-    [super viewWillLayoutSubviews];
-    [self presentScene];
-}
-
 #pragma mark - SceneDelegate
 
 - (void)gameStart {
@@ -79,8 +74,8 @@
 #pragma mark - IBActions
 
 - (IBAction)backButtonPressed {
+    [self.gameView presentScene:nil];
     [[ISAudio sharedInstance] playSoundEffect:@"button_press.wav"];
-    [self gamePrepare];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 

@@ -15,6 +15,13 @@
 
 @implementation MultiplayerGameViewController
 
+#pragma mark - View lifecycle
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self presentScene];
+}
+
 - (void)gamePrepare {
     [self.navigationController popViewControllerAnimated:YES];
 }
