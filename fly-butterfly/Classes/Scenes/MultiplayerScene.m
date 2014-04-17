@@ -18,41 +18,24 @@ typedef NS_ENUM(NSInteger, GameState) {
 };
 
 @interface MultiplayerScene ()
-@property (assign, nonatomic) CFTimeInterval time;
-@property (assign, nonatomic) CFTimeInterval deltaTime;
-@property (assign, nonatomic) NSTimeInterval previousTimeInterval;
 @property (strong, nonatomic) Butterfly *butterflyMultiplayer;
 @property (strong, nonatomic) NSArray *crowPositions;
-@property (strong, nonatomic) NSArray *crows;
-@property (strong, nonatomic) SKLabelNode *timerLabel;
-@property (strong, nonatomic) SKLabelNode *statusLabel;
 @property (strong, nonatomic) NSTimer *countdownTimer;
-@property (assign, nonatomic) NSInteger countdownTime;
-@property (assign, nonatomic) GameState gameState;
-@property (assign, nonatomic) BOOL locked;
+@property (strong, nonatomic) SKLabelNode *statusLabel;
+@property (strong, nonatomic) SKLabelNode *timerLabel;
+@property (nonatomic) BOOL locked;
+@property (nonatomic) CFTimeInterval deltaTime;
+@property (nonatomic) CFTimeInterval time;
+@property (nonatomic) NSInteger initialPoint;
+@property (nonatomic) GameState gameState;
+@property (nonatomic) NSInteger countdownTime;
+@property (nonatomic) NSInteger countCrows;
+@property (nonatomic) NSTimeInterval previousTimeInterval;
 @end
 
 @implementation MultiplayerScene
 
 #pragma mark - Getters and setters
-
-- (NSArray *)crows {
-    if (!_crows) {
-        // Anchor point in the middle
-        CGFloat crowWidthDistance = CrowWidth / 2;
-        CGFloat x = self.size.width + crowWidthDistance;
-
-        NSMutableArray *crowArray = [[NSMutableArray alloc] initWithCapacity:10];
-        for (int iterator = 0; iterator < 10; iterator++) {
-             Crow *crow = [[Crow alloc] initWithPosition:CGPointMake(x, 0)];
-            [crowArray addObject:crow];
-        }
-
-        _crows = [[NSArray alloc] initWithArray:crowArray];
-    }
-
-    return _crows;
-}
 
 - (SKLabelNode *)timerLabel {
     if (!_timerLabel) {
@@ -82,8 +65,12 @@ typedef NS_ENUM(NSInteger, GameState) {
     self.time = 0.0;
 
     if (self.hoster) {
-        [self prepareCrows];
+        [self setupCrowPositions];
     }
+
+    [self setupCrowPositions];
+    [self setupCrows];
+    self.gameState = GameStateRunning;
 }
 
 - (void)setupButterfly {
@@ -94,13 +81,12 @@ typedef NS_ENUM(NSInteger, GameState) {
     [self.butterflyMultiplayer setupMultiplayerButterflyTray];
 }
 
-- (void)prepareCrows {
+- (void)setupCrowPositions {
     NSMutableArray *positions = [[NSMutableArray alloc] initWithCapacity:100];
-    int crows = 0;
     CGFloat position;
 
     for (int i = 0; i < 100; i++) {
-        position = [Utilities randomPositionAtTopWithScene:self numberOfCrows:crows++];
+        position = [Utilities randomPositionAtTopWithScene:self numberOfCrows:i];
         [positions addObject:@(position)];
     }
 
@@ -109,22 +95,13 @@ typedef NS_ENUM(NSInteger, GameState) {
 }
 
 - (void)setupCrows {
+    // Anchor point in the middle
+    CGFloat crowWidthDistance = CrowWidth / 2;
+    self.initialPoint = self.size.width + crowWidthDistance;
 
-    for (int iterator = 0; iterator < [self.crowPositions count]; iterator++) {
-        NSNumber *y = [self.crowPositions objectAtIndex:iterator];
-
-        self.crowTopPosition = [y floatValue];
-        self.crowBottomPosition = self.crowTopPosition - MinSpaceBetweenBombs;
-
-        Crow *crowTop = [[Crow alloc] initWithPosition:CGPointMake(x, self.crowTopPosition)];
-        [crowTop fly];
-
-        [self addChild:crowTop];
-
-        Crow *crowBottom = [[Crow alloc] initWithPosition:CGPointMake(x, self.crowBottomPosition)];
-        [crowBottom fly];
-        
-        [self addChild:crowBottom];
+    for (int iterator = 0; iterator < 10; iterator++) {
+        Crow *crow = [[Crow alloc] initWithPosition:CGPointMake(-CrowWidth, 0)];
+        [self addChild:crow];
     }
 }
 
@@ -210,6 +187,7 @@ typedef NS_ENUM(NSInteger, GameState) {
         if (!self.locked) {
             self.time += self.deltaTime;
         }
+        [self updateCrows];
     }
 
     if (self.gameState != GameStateReady && currentTime - self.deltaTime >= 0.1) {
@@ -220,22 +198,43 @@ typedef NS_ENUM(NSInteger, GameState) {
     }
 }
 
-- (void)spawnCrows {
-    CGFloat x = self.size.width + CrowWidth / 2;
-    NSNumber *y = [self.crowPositions objectAtIndex:self.crowCounter];
-    self.crowTopPosition = [y floatValue];
-    self.crowBottomPosition = self.crowTopPosition - MinSpaceBetweenBombs;
+- (void)updateCrows {
+    __block BOOL needForCrows = YES;
 
-    Crow *crowTop = [[Crow alloc] initWithPosition:CGPointMake(x, self.crowTopPosition)];
-    [crowTop fly];
+    [self enumerateChildNodesWithName:@"crow" usingBlock:^(SKNode *node, BOOL *stop) {
+        if (node.position.x < -(CrowWidth / 2)) {
+            [node removeActionForKey:@"fly"];
+        } else if (node.position.x > self.size.width - 150) {
+            needForCrows = NO;
+        }
+    }];
 
-    [self addChild:crowTop];
+    if (needForCrows) {
+        __block int crowCounter = 0;
 
-    Crow *crowBottom = [[Crow alloc] initWithPosition:CGPointMake(x, self.crowBottomPosition)];
-    [crowBottom fly];
+        [self enumerateChildNodesWithName:@"crow" usingBlock:^(SKNode *node, BOOL *stop) {
+            if (node.position.x <= 0) {
+                Crow *crow = (Crow *)node;
+                NSNumber *y = self.crowPositions[self.countCrows % 100];
 
-    [self addChild:crowBottom];
-    self.crowCounter++;
+                // Top crow
+                if (crowCounter == 0) {
+                    crow.position = CGPointMake(self.initialPoint, [y intValue]);
+                } else {
+                    crow.position = CGPointMake(self.initialPoint, [y intValue] - MinSpaceBetweenCrows);
+                }
+
+                [crow fly];
+                crowCounter++;
+            }
+
+            if (crowCounter >= 2) {
+                *stop = YES;
+            }
+        }];
+
+        self.countCrows++;
+    }
 }
 
 #pragma mark - TouchesBegan
@@ -295,9 +294,6 @@ typedef NS_ENUM(NSInteger, GameState) {
 #pragma mark - ISButterflyMultiplayerDelegate
 
 - (void)butterflyCoordinate:(CGFloat)x y:(CGFloat)y rotation:(CGFloat)rotation {
-
-    NSLog(@"%f - %f", self.time, x);
-
     CGFloat difference = (self.time - x);
     CGPoint multiplayerPosition = CGPointMake(self.butterfly.position.x - (difference * 40), y);
     self.butterflyMultiplayer.position = multiplayerPosition;
@@ -320,18 +316,6 @@ typedef NS_ENUM(NSInteger, GameState) {
 }
 
 #pragma mark - Private methods
-
-- (void)moveCrows:(float)top bottom:(float)bottom {
-    CGPoint crowTopPosition = CGPointMake(self.size.width + CrowWidth / 2, top);
-    Crow *crowTop = [[Crow alloc] initWithPosition:crowTopPosition];
-    [self addChild:crowTop];
-    [crowTop fly];
-
-    CGPoint crowBottomPosition = CGPointMake(self.size.width + CrowWidth / 2, bottom);
-    Crow *crowBottom = [[Crow alloc] initWithPosition:crowBottomPosition];
-    [self addChild:crowBottom];
-    [crowTop fly];
-}
 
 - (void)butterflyHit {
     if (self.gameState == GameStateButterflyBlinking) {

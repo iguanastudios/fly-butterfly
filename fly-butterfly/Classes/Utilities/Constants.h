@@ -19,7 +19,7 @@ typedef NS_OPTIONS(uint32_t, BPhysicsCategory) {
 
 // Global
 extern CGFloat const BackgroundPointsPerSec;
-extern NSInteger const MinSpaceBetweenBombs;
+extern NSInteger const MinSpaceBetweenCrows;
 extern NSString *const LabelFont;
 extern CGFloat const Speed;
 extern CGFloat const CrowDefaultInterval;

@@ -19,6 +19,9 @@
         self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:bodySize.size];
         self.physicsBody.dynamic = NO;
         self.physicsBody.categoryBitMask = BCrowCategory;
+
+        self.facingSideAnimation = [Crow createAnimationForeverWithPrefix:@"crow" frames:8];
+        [self runAction:self.facingSideAnimation];
     }
 
     return self;
@@ -26,19 +29,9 @@
 
 #pragma mark - Public methods
 
-- (void)animate {
-    self.facingSideAnimation = [Crow createAnimationForeverWithPrefix:@"crow" frames:8];
-    [self runAction:self.facingSideAnimation];
-}
-
 - (void)fly {
-    [self animate];
-    NSTimeInterval duration = self.position.x  * 0.004;
-    SKAction *fly = [SKAction moveToX:-CrowWidth duration:duration];
-
-    [self runAction:fly completion:^ {
-        [self removeFromParent];
-    }];
+    NSTimeInterval duration = self.position.x  * 0.005;
+    [self runAction:[SKAction moveToX:-CrowWidth duration:duration] withKey:@"fly"];
 }
 
 #pragma mark - Override AnimatingSprite

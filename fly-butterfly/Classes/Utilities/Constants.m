@@ -12,13 +12,13 @@
 
 // Global
 CGFloat const BackgroundPointsPerSec = 180.0;
-NSInteger const MinSpaceBetweenBombs = 120;
+NSInteger const MinSpaceBetweenCrows = 120;
 NSString *const LabelFont = @"PWPerspective";
-CGFloat const Speed = 0.9;
+CGFloat const Speed = 1.0;
 CGFloat const CrowDefaultInterval = 0.65;
 
 // Butterfly
-CGFloat const JumpImpulse = 5.5;
+CGFloat const JumpImpulse = 6.0;
 CGFloat const ButterflyPosition = 370.0;
 
 // Crow

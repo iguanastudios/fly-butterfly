@@ -70,10 +70,9 @@ typedef NS_ENUM(NSInteger, GameState) {
 - (void)spawnCrows {
     CGFloat x = self.size.width + CrowWidth / 2;
     self.crowTopPosition = [Utilities randomPositionAtTopWithScene:self numberOfCrows:self.crowCounter];
-    self.crowBottomPosition = self.crowTopPosition - MinSpaceBetweenBombs;
+    self.crowBottomPosition = self.crowTopPosition - MinSpaceBetweenCrows;
 
     Crow *crowTop = [[Crow alloc] initWithPosition:CGPointMake(x, self.crowTopPosition)];
-    [crowTop animate];
     [crowTop runAction:self.moveCrow completion:^{
         [crowTop removeFromParent];
     }];
@@ -81,7 +80,6 @@ typedef NS_ENUM(NSInteger, GameState) {
     [self addChild:crowTop];
 
     Crow *crowBottom = [[Crow alloc] initWithPosition:CGPointMake(x, self.crowBottomPosition)];
-    [crowBottom animate];
     [crowBottom runAction:self.moveCrow completion:^{
         [crowBottom removeFromParent];
     }];
