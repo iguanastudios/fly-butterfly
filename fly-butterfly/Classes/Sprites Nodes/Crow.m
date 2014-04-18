@@ -30,8 +30,11 @@
 #pragma mark - Public methods
 
 - (void)fly {
-    NSTimeInterval duration = self.position.x  * 0.005;
-    [self runAction:[SKAction moveToX:-CrowWidth duration:duration] withKey:@"fly"];
+
+    NSTimeInterval duration = (self.position.x + CrowWidth / 2) * 0.005;
+    NSLog(@"-%f", duration);
+    SKAction *crowFly = [SKAction moveToX:-CrowWidth / 2 duration:duration];
+    [self runAction:crowFly withKey:@"fly"];
 }
 
 #pragma mark - Override AnimatingSprite

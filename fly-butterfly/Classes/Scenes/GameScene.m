@@ -51,7 +51,7 @@ typedef NS_ENUM(NSInteger, GameState) {
     pointEdge.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:pointEdge.size];
     pointEdge.physicsBody.dynamic = NO;
     pointEdge.physicsBody.categoryBitMask = BPointCategory;
-    [pointEdge runAction:self.crowFly completion:^{
+    [pointEdge runAction:self.movePoint completion:^{
         [pointEdge removeFromParent];
     }];
 

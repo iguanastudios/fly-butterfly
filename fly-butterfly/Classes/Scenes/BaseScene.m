@@ -25,12 +25,12 @@
 
 #pragma mark - Getters and setters
 
-- (SKAction *)crowFly {
-    if (!_crowFly) {
-        NSTimeInterval duration = self.initialPoint  * 0.005;
-        _crowFly = [SKAction moveToX:-CrowWidth duration:duration];
+- (SKAction *)movePoint {
+    if (!_movePoint) {
+        NSTimeInterval duration = (self.initialPoint + 10 + CrowWidth / 2)  * 0.005;
+        _movePoint = [SKAction moveToX:-CrowWidth / 2 duration:duration];
     }
-    return _crowFly;
+    return _movePoint;
 }
 
 #pragma mark - Public methods
@@ -110,7 +110,7 @@
     self.initialPoint = self.size.width + CrowWidth / 2;
 
     for (int iterator = 0; iterator < 10; iterator++) {
-        Crow *crow = [[Crow alloc] initWithPosition:CGPointMake(-CrowWidth, 0)];
+        Crow *crow = [[Crow alloc] initWithPosition:CGPointMake(-CrowWidth / 2, 0)];
         [self addChild:crow];
     }
 }
@@ -158,7 +158,7 @@
                     crow.position = CGPointMake(self.initialPoint, y - MinSpaceBetweenCrows);
                 }
 
-                [crow runAction:self.crowFly withKey:@"fly"];
+                [crow fly];
                 crowCounter++;
             }
 

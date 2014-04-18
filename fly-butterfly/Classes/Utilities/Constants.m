@@ -23,7 +23,7 @@ CGFloat const ButterflyPosition = 370.0;
 
 // Crow
 CGFloat const CrowHeight = 65.0;
-CGFloat const CrowWidth = 37.0;
+CGFloat const CrowWidth = 38.0;
 
 // Google Ads
 CGFloat const GoogleBannerHeight = 35.0;

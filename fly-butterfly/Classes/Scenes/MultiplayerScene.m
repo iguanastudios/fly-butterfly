@@ -23,7 +23,6 @@ typedef NS_ENUM(NSInteger, GameState) {
 @property (strong, nonatomic) NSTimer *countdownTimer;
 @property (strong, nonatomic) SKLabelNode *statusLabel;
 @property (strong, nonatomic) SKLabelNode *timerLabel;
-@property (nonatomic) BOOL locked;
 @property (nonatomic) CFTimeInterval time;
 @property (nonatomic) GameState gameState;
 @property (nonatomic) NSInteger countdownTime;
@@ -56,7 +55,7 @@ typedef NS_ENUM(NSInteger, GameState) {
 #pragma mark - Public methods
 
 - (CGFloat)crowPositionY {
-    return [self.crowPositions[self.crowCounter % 100] floatValue];
+    return [self.crowPositions[self.crowCounter++ % 100] floatValue];
 }
 
 #pragma mark - Setup methods
@@ -64,7 +63,6 @@ typedef NS_ENUM(NSInteger, GameState) {
 -(void)setup {
     [super setup];
     self.gameState = GameStateReady;
-    self.locked = YES;
     self.time = 0.0;
 
     if (self.hoster) {
@@ -128,7 +126,6 @@ typedef NS_ENUM(NSInteger, GameState) {
                                             repeats:NO];
             [self setupCrows];
             self.gameState = GameStateRunning;
-            self.locked = NO;
         } else {
             [self gameOver];
         }
@@ -170,16 +167,29 @@ typedef NS_ENUM(NSInteger, GameState) {
 - (void)update:(CFTimeInterval)currentTime {
     [super update:currentTime];
 
-    if (self.gameState != GameStateReady) {
-        if (!self.locked) {
-            self.time += self.deltaTime;
-        }
+    switch (self.gameState) {
+        case GameStateRunning:
+            [self updateGameStateRunning];
+        case GameStateButterflyHit:
+        case GameStateButterflyBlinking:
+            [self updateGameStateDefault:currentTime];
+            break;
+        default:
+            break;
+    }
+}
 
+- (void)updateGameStateRunning {
+    self.time += self.deltaTime;
+}
+
+- (void)updateGameStateDefault:(CFTimeInterval)currentTime {
+    if (self.gameState != GameStateReady) {
         if (currentTime - self.deltaTime >= 0.1) {
             [self.networkingEngine sendButterflyCoordinate:self.time - self.deltaTime
                                                          y:self.butterfly.position.y
                                                   rotation:self.butterfly.zRotation];
-            
+
         }
 
         [self updateCrows];
@@ -218,16 +228,21 @@ typedef NS_ENUM(NSInteger, GameState) {
 
 - (void)didBeginContact:(SKPhysicsContact *)contact {
     SKPhysicsBody *body = (contact.bodyA.categoryBitMask == BButterflyCategory ? contact.bodyB : contact.bodyA);
-    if (body.categoryBitMask == BCrowCategory) {
-        [self didBeginContactWithCrow];
-    } else if (body.categoryBitMask == BGroundCategory) {
-        [self didBeginContactWithGround];
+
+    switch (body.categoryBitMask) {
+        case BCrowCategory:
+            [self didBeginContactWithCrow];
+            break;
+        case BGroundCategory:
+            [self didBeginContactWithGround];
+            break;
+        default:
+            break;
     }
 }
 
 - (void)didBeginContactWithCrow {
     [self runAction:CrowSound];
-    self.gameState = GameStateButterflyHit;
     self.butterfly.physicsBody.collisionBitMask = BGroundCategory;
     self.butterfly.physicsBody.contactTestBitMask = BGroundCategory;
     [self butterflyHit];
@@ -271,10 +286,10 @@ typedef NS_ENUM(NSInteger, GameState) {
         return;
     }
 
+    self.gameState = GameStateButterflyHit;
     [Utilities flashScene:self];
-    self.locked = YES;
 
-    SKAction *scaleUp = [SKAction scaleBy:1.4 duration:0.25];
+    SKAction *scaleUp = [SKAction scaleBy:1.3 duration:0.25];
     SKAction *scaleDown = [scaleUp reversedAction];
     SKAction *fullScale = [SKAction sequence:@[scaleUp, scaleDown]];
 
@@ -284,8 +299,6 @@ typedef NS_ENUM(NSInteger, GameState) {
     SKAction *groupAction = [SKAction group:@[repeatScale, wait]];
 
     [self.butterfly runAction:groupAction completion:^{
-        self.locked = NO;
-
         self.gameState = GameStateButterflyBlinking;
         [self.networkingEngine sendButterflyBlink];
 
@@ -301,6 +314,7 @@ typedef NS_ENUM(NSInteger, GameState) {
 
         [self.butterfly runAction:blink completion:^{
             self.gameState = GameStateRunning;
+            [self.butterfly removeActionForKey:@"MoveUp"];
             self.butterfly.physicsBody.affectedByGravity = YES;
             self.butterfly.physicsBody.collisionBitMask = BEdgeCategory | BGroundCategory;
             self.butterfly.physicsBody.contactTestBitMask = BCrowCategory | BEdgeCategory | BGroundCategory;

@@ -29,13 +29,13 @@ static SKAction *FlapSound;
 
 @interface BaseScene : SKScene <SKPhysicsContactDelegate>
 
+@property (nonatomic) CGFloat initialPoint;
 @property (nonatomic) CFTimeInterval deltaTime;
 @property (nonatomic) NSInteger crowCounter;
-@property (nonatomic) NSInteger initialPoint;
 @property (strong, nonatomic) Butterfly *butterfly;
 @property (strong, nonatomic) id<SceneDelegate> delegate;
 @property (strong, nonatomic) NSTimer *timer;
-@property (strong, nonatomic) SKAction *crowFly;
+@property (strong, nonatomic) SKAction *movePoint;
 
 + (SKAction *)crowSound;
 + (SKAction *)flapSound;

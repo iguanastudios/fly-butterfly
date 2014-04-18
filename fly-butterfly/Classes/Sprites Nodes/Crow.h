@@ -10,4 +10,6 @@
 
 @interface Crow : AnimatingSprite
 
+- (void)fly;
+
 @end
