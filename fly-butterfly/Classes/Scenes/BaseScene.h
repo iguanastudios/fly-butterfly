@@ -24,23 +24,29 @@
 
 @end
 
+static SKAction *CrowSound;
+static SKAction *FlapSound;
+
 @interface BaseScene : SKScene <SKPhysicsContactDelegate>
 
-@property (strong, nonatomic) id<SceneDelegate> delegate;
-@property (strong, nonatomic) SKAction *crowSound;
-@property (strong, nonatomic) SKAction *flapSound;
-@property (strong, nonatomic) SKAction *moveCrow;
+@property (nonatomic) CFTimeInterval deltaTime;
+@property (nonatomic) NSInteger crowCounter;
+@property (nonatomic) NSInteger initialPoint;
 @property (strong, nonatomic) Butterfly *butterfly;
-@property (assign, nonatomic) CGFloat crowTopPosition;
-@property (assign, nonatomic) CGFloat crowBottomPosition;
-@property (assign, nonatomic) NSInteger crowCounter;
+@property (strong, nonatomic) id<SceneDelegate> delegate;
 @property (strong, nonatomic) NSTimer *timer;
+@property (strong, nonatomic) SKAction *crowFly;
 
++ (SKAction *)crowSound;
++ (SKAction *)flapSound;
+- (CGFloat)crowPositionY;
+- (void)enableInteraction;
+- (void)gameOver;
 - (void)setup;
 - (void)setupButterfly;
-- (void)touchesBeganGameStateRunning;
+- (void)setupCrows;
 - (void)touchesBeganGameStateOver;
-- (void)gameOver;
-- (void)enableInteraction;
+- (void)touchesBeganGameStateRunning;
+- (void)updateCrows;
 
 @end

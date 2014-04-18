@@ -20,10 +20,10 @@ typedef NS_ENUM(NSInteger, GameState) {
 };
 
 @interface GameScene()
-@property (assign, nonatomic) GameState gameState;
-@property (strong, nonatomic) SKSpriteNode *handNode;
+@property (nonatomic) GameState gameState;
+@property (nonatomic) NSUInteger currentScore;
 @property (strong, nonatomic) SKLabelNode *scoreLabel;
-@property (assign, nonatomic) NSUInteger currentScore;
+@property (strong, nonatomic) SKSpriteNode *handNode;
 @end
 
 @implementation GameScene
@@ -41,7 +41,33 @@ typedef NS_ENUM(NSInteger, GameState) {
     return _scoreLabel;
 }
 
-#pragma mark - Initialization
+#pragma mark - Public methods
+
+- (CGFloat)crowPositionY {
+    SKSpriteNode *pointEdge = [SKSpriteNode node];
+    pointEdge.name = @"point";
+    pointEdge.size = CGSizeMake(1, self.size.height);
+    pointEdge.position = CGPointMake(self.initialPoint + 10, self.size.height / 2);
+    pointEdge.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:pointEdge.size];
+    pointEdge.physicsBody.dynamic = NO;
+    pointEdge.physicsBody.categoryBitMask = BPointCategory;
+    [pointEdge runAction:self.crowFly completion:^{
+        [pointEdge removeFromParent];
+    }];
+
+    [self addChild:pointEdge];
+
+    return [Utilities randomPositionAtTopWithScene:self numberOfCrows:self.crowCounter++];
+}
+
+- (void)gameOver {
+    [super gameOver];
+    [self enumerateChildNodesWithName:@"point" usingBlock:^(SKNode *node, BOOL *stop){
+        [node removeAllActions];
+    }];
+}
+
+#pragma mark - Setup methods
 
 -(void)setup {
     [super setup];
@@ -59,44 +85,13 @@ typedef NS_ENUM(NSInteger, GameState) {
     [self addChild:_scoreLabel];
 }
 
-- (void)setupCrows {
-    SKAction *wait = [SKAction waitForDuration:CrowDefaultInterval];
-    SKAction *spawnCrowActions = [SKAction performSelector:@selector(spawnCrows)
-                                                  onTarget:self];
-    SKAction *sequenceCrows = [SKAction sequence: @[spawnCrowActions, wait]];
-    [self runAction: [SKAction repeatActionForever: sequenceCrows]];
-}
+#pragma mark - Update
 
-- (void)spawnCrows {
-    CGFloat x = self.size.width + CrowWidth / 2;
-    self.crowTopPosition = [Utilities randomPositionAtTopWithScene:self numberOfCrows:self.crowCounter];
-    self.crowBottomPosition = self.crowTopPosition - MinSpaceBetweenCrows;
-
-    Crow *crowTop = [[Crow alloc] initWithPosition:CGPointMake(x, self.crowTopPosition)];
-    [crowTop runAction:self.moveCrow completion:^{
-        [crowTop removeFromParent];
-    }];
-
-    [self addChild:crowTop];
-
-    Crow *crowBottom = [[Crow alloc] initWithPosition:CGPointMake(x, self.crowBottomPosition)];
-    [crowBottom runAction:self.moveCrow completion:^{
-        [crowBottom removeFromParent];
-    }];
-
-    [self addChild:crowBottom];
-
-    self.crowCounter++;
-    SKSpriteNode *pointEdge = [SKSpriteNode node];
-    pointEdge.size = CGSizeMake(1, self.size.height);
-    pointEdge.position = CGPointMake(x + 10, self.size.height / 2);
-    pointEdge.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:pointEdge.size];
-    pointEdge.physicsBody.dynamic = NO;
-    pointEdge.physicsBody.categoryBitMask = BPointCategory;
-    [pointEdge runAction:self.moveCrow completion:^{
-        [pointEdge removeFromParent];
-    }];
-    [self addChild:pointEdge];
+- (void)update:(NSTimeInterval)currentTime {
+    [super update:currentTime];
+    if (self.gameState != GameStateReady) {
+        [self updateCrows];
+    }
 }
 
 #pragma mark - TouchesBegan
@@ -104,20 +99,18 @@ typedef NS_ENUM(NSInteger, GameState) {
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     switch (self.gameState) {
         case GameStateReady:
-        [self touchesBeganGameStateReady];
+            [self touchesBeganGameStateReady];
         case GameStateRunning:
-        [self touchesBeganGameStateRunning];
-        break;
+            [self touchesBeganGameStateRunning];
+            break;
         case GameStateOver:
         default:
-        [self touchesBeganGameStateOver];
+            [self touchesBeganGameStateOver];
         break;
     }
 }
 
 - (void)touchesBeganGameStateReady {
-    [self setupCrows];
-
     if ([self.delegate respondsToSelector:@selector(gameStart)]) {
         [self.delegate gameStart];
     }
@@ -158,7 +151,8 @@ typedef NS_ENUM(NSInteger, GameState) {
     [self gameOver];
     self.gameState = GameStateOver;
 
-    [self runAction:self.crowSound];
+    [self runAction:[BaseScene crowSound]];
+
     SKEmitterNode *emitter = [SKEmitterNode emitterNamed:@"CrowSmash"];
     emitter.targetNode = self.parent;
     [emitter runAction:[SKAction removeFromParentAfterDelay:1.0]];
