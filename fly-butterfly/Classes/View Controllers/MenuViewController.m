@@ -21,6 +21,7 @@
 @property (strong, nonatomic) MultiplayerGameViewController *multiplayerGameViewController;
 @property (strong, nonatomic) ButterflyMultiplayerNetworking *networkEngine;
 @property (strong, nonatomic) GADInterstitial *interstitial;
+@property (nonatomic) BOOL interstitialReady;
 @end
 
 @implementation MenuViewController
@@ -63,6 +64,15 @@
     [[ISGameCenter sharedISGameCenter] authenticateLocalPlayer];
     [ISGameCenter sharedISGameCenter].delegate = self;
     [[SKTextureAtlas atlasNamed:@"sprites"] preloadWithCompletionHandler:^{}];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+
+    if (self.interstitialReady) {
+        [self.interstitial presentFromRootViewController:self];
+        self.interstitialReady = NO;
+    }
 }
 
 #pragma mark - IBAction
@@ -116,14 +126,22 @@
     [self.navigationController pushViewController:self.multiplayerGameViewController animated:YES];
 }
 
-- (void)multiplayerMatchEnded {
-    NSLog(@"multiplayerMatchEnded ERROR");
+- (void)multiplayerMatchEnded:(NSError *)error {
+    if (error) {
+        [self.navigationController popToRootViewControllerAnimated:YES];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                        message:@"Connection lost, try again!"
+                                                       delegate:self
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
 }
 
 #pragma mark - GADInterstitialDelegate
 
 - (void)interstitialDidReceiveAd:(GADInterstitial *)interstitial {
-    [self.interstitial presentFromRootViewController:self];
+    self.interstitialReady = NO;
 }
 
 - (void)interstitial:(GADInterstitial *)ad didFailToReceiveAdWithError:(GADRequestError *)error {

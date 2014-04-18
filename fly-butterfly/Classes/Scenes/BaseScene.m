@@ -115,7 +115,6 @@
 
 - (void)update:(CFTimeInterval)currentTime {
     [self.parallaxNode update:currentTime];
-    [self.butterfly rotate];
 
     if (self.previousTimeInterval) {
         self.deltaTime = currentTime - self.previousTimeInterval;
@@ -170,12 +169,6 @@
 - (void)touchesBeganGameStateRunning {
     [self runAction:[BaseScene flapSound]];
     [self.butterfly fly];
-}
-
-- (void)touchesBeganGameStateOver {
-    if ([self.delegate respondsToSelector:@selector(gamePrepare)]) {
-        [self.delegate gamePrepare];
-    }
 }
 
 @end

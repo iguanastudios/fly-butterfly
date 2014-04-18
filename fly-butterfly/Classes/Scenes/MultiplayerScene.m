@@ -29,6 +29,7 @@ typedef NS_ENUM(NSInteger, GameState) {
 @property (nonatomic) CFTimeInterval time;
 @property (nonatomic) GameState gameState;
 @property (nonatomic) NSInteger countdownTime;
+@property (nonatomic) BOOL isLabelTimer;
 @end
 
 @implementation MultiplayerScene
@@ -139,22 +140,27 @@ typedef NS_ENUM(NSInteger, GameState) {
         [self.countdownTimer invalidate];
         self.countdownTimer = nil;
 
-        if (self.gameState == GameStateReady) {
+        if (!self.isLabelTimer) {
+            self.isLabelTimer = YES;
             self.timerLabel.text = @"Fly!";
+
             [NSTimer scheduledTimerWithTimeInterval:0.3
                                              target:self
-                                           selector:@selector(removeLabel)
+                                           selector:@selector(initialCounter)
                                            userInfo:nil
                                             repeats:NO];
+
             [self setupCrows];
             self.gameState = GameStateRunning;
+            [self runAction:[BaseScene flapSound]];
+            [self.butterfly fly];
         } else {
             [self gameOver];
         }
     }
 }
 
-- (void)removeLabel {
+- (void)initialCounter {
     self.timerLabel.text = @"60";
     self.timerLabel.position = CGPointMake(20, self.scene.frame.size.height - 50);
     self.countdownTime = 60;
@@ -170,12 +176,18 @@ typedef NS_ENUM(NSInteger, GameState) {
     [super gameOver];
     self.gameState = GameStateOver;
     [self.timerLabel removeFromParent];
+
     if (self.butterfly.position.x > self.butterflyMultiplayer.position.x) {
         self.statusLabel.text = @"YOU WON!";
     } else {
         self.statusLabel.text = @"YOU LOST!";
     }
     [self addChild:self.statusLabel];
+
+    [self.butterflyMultiplayer removeFromParent];
+    [self.butterfly removeFromParent];
+
+    [self.networkingEngine sendGameOverMessage];
 }
 
 #pragma mark - Update
@@ -185,6 +197,7 @@ typedef NS_ENUM(NSInteger, GameState) {
 
     switch (self.gameState) {
         case GameStateRunning:
+            [self.butterfly rotate];
         case GameStateButterflyBlinking:
             [self updateGameStateRunning];
         case GameStateButterflyHit:
@@ -296,8 +309,7 @@ typedef NS_ENUM(NSInteger, GameState) {
 
 - (void)butterflyBlink {
     CGFloat x = self.butterflyMultiplayer.position.x;
-
-    if (x < -self.butterflyMultiplayer.size.width) {
+    if (x < -self.butterflyMultiplayer.size.width / 2) {
         [self.leftArrow runAction:[ISActions blinkWithDuration:2.0 blinkTimes:8] completion:^{
             self.butterflyMultiplayer.hidden = NO;
         }];
@@ -354,6 +366,7 @@ typedef NS_ENUM(NSInteger, GameState) {
         SKAction *moveUp = [SKAction moveToY:(self.size.height + GoogleBannerHeight) / 2
                                     duration:2];
         [self.butterfly runAction:moveUp withKey:@"MoveUp"];
+        self.butterfly.zRotation =  M_1_PI;
 
         SKAction *blink = [ISActions blinkWithDuration:2.0 blinkTimes:8];
 

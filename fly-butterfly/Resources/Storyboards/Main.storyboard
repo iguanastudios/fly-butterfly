@@ -81,13 +81,16 @@
                                 <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap To Restart" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Te1-ni-0jD">
-                                        <rect key="frame" x="131" y="189" width="306" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="hqd-Gb-LmC">
+                                        <rect key="frame" x="261" y="145" width="46" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                        <state key="normal" title="Home">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="backButtonPressed" destination="Ov9-wP-I1L" eventType="touchUpInside" id="bP8-G2-dL9"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
@@ -99,7 +102,6 @@
                     <connections>
                         <outlet property="gameOverView" destination="ABH-bl-p2I" id="Hp6-aO-8Gl"/>
                         <outlet property="gameView" destination="9Ad-RR-MKy" id="cbX-5Y-Jxk"/>
-                        <outlet property="tapLabel" destination="Te1-ni-0jD" id="1iU-7v-jWa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Omu-U1-aQp" userLabel="First Responder" sceneMemberID="firstResponder"/>

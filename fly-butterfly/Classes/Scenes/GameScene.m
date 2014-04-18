@@ -64,9 +64,24 @@ typedef NS_ENUM(NSInteger, GameState) {
 
 - (void)gameOver {
     [super gameOver];
+    self.gameState = GameStateOver;
+
+    UserDefaults.highscore = MAX(UserDefaults.highscore, self.currentScore);
     [self enumerateChildNodesWithName:@"point" usingBlock:^(SKNode *node, BOOL *stop){
         [node removeAllActions];
     }];
+
+    // Hack to solve the overlap bug
+    self.userInteractionEnabled = NO;
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0
+                                                  target:self
+                                                selector:@selector(enableInteraction)
+                                                userInfo:nil
+                                                 repeats:NO];
+
+    [self.butterfly dead];
+    [self reportAchievements];
+    [self reportHighscore];
 }
 
 - (void)enableInteraction {
@@ -95,6 +110,8 @@ typedef NS_ENUM(NSInteger, GameState) {
 
 - (void)update:(NSTimeInterval)currentTime {
     [super update:currentTime];
+    [self.butterfly rotate];
+
     if (self.gameState != GameStateReady) {
         [self updateCrows];
     }
@@ -125,6 +142,12 @@ typedef NS_ENUM(NSInteger, GameState) {
     self.gameState = GameStateRunning;
 }
 
+- (void)touchesBeganGameStateOver {
+    if ([self.delegate respondsToSelector:@selector(gamePrepare)]) {
+        [self.delegate gamePrepare];
+    }
+}
+
 #pragma mark - SKPhysicsContactDelegate
 
 - (void)didBeginContact:(SKPhysicsContact *)contact {
@@ -153,28 +176,13 @@ typedef NS_ENUM(NSInteger, GameState) {
 }
 
 - (void)didBeginContactWithCrow:(SKPhysicsBody *)body {
-    UserDefaults.highscore = MAX(UserDefaults.highscore, self.currentScore);
     [self gameOver];
-    self.gameState = GameStateOver;
 
     [self runAction:[BaseScene crowSound]];
-
     SKEmitterNode *emitter = [SKEmitterNode emitterNamed:@"CrowSmash"];
     emitter.targetNode = self.parent;
     [emitter runAction:[SKAction removeFromParentAfterDelay:1.0]];
     [body.node addChild:emitter];
-
-    // Hack to solve the overlap bug
-    self.userInteractionEnabled = NO;
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0
-                                                  target:self
-                                                selector:@selector(enableInteraction)
-                                                userInfo:nil
-                                                 repeats:NO];
-
-    [self.butterfly dead];
-    [self reportAchievements];
-    [self reportHighscore];
 }
 
 #pragma mark - Private methods

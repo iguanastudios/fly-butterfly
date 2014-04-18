@@ -69,6 +69,7 @@
 - (void)dead {
     [self removeAllActions];
     self.physicsBody.collisionBitMask = 0;
+    self.physicsBody.contactTestBitMask = 0;
 }
 
 - (void)fly {
@@ -84,7 +85,7 @@
 - (void)rotate {
     // Rotate butterfly on fly / fall down
     CGFloat rotation = ((self.physicsBody.velocity.dy + 400) / (2 * 400)) * M_2_PI;
-    [self setZRotation:rotation - M_1_PI / 2];
+    self.zRotation =  rotation - M_1_PI / 2;
 }
 
 #pragma mark - Private methods

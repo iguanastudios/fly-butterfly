@@ -45,7 +45,6 @@ static SKAction *FlapSound;
 - (void)setup;
 - (void)setupButterfly;
 - (void)setupCrows;
-- (void)touchesBeganGameStateOver;
 - (void)touchesBeganGameStateRunning;
 - (void)updateCrows;
 

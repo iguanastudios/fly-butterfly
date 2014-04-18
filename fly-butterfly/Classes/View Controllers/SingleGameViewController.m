@@ -20,6 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.highscoreLabel.font = [UIFont fontWithName:LabelFont size:18];
+    self.tapLabel.font = [UIFont fontWithName:LabelFont size:24];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -27,6 +28,8 @@
     self.scene = [[GameScene alloc] init];
     [self presentScene];
 }
+
+#pragma mark - SceneDelegate
 
 - (void)gamePrepare {
     self.gameOverView.hidden = YES;
@@ -39,6 +42,19 @@
     [super gameOver];
     NSString *highscore = [NSString stringWithFormat:@"TOP: %ld", (long)UserDefaults.highscore];
     self.highscoreLabel.text = highscore;
+
+    [self.timer invalidate];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.5
+                                                  target:self
+                                                selector:@selector(toggleLabelAlpha)
+                                                userInfo:nil
+                                                 repeats:YES];
+}
+
+#pragma mark - Private methods
+
+- (void)toggleLabelAlpha {
+    [self.tapLabel setHidden:(!self.tapLabel.hidden)];
 }
 
 #pragma mark - GVGoogleBannerViewDelegate

@@ -10,36 +10,15 @@
 
 @implementation GameViewController
 
-#pragma mark - View lifecycle
+#pragma mark - IBActions
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    self.tapLabel.font = [UIFont fontWithName:LabelFont size:24];
-}
-
-#pragma mark - SceneDelegate
-
-- (void)gameStart {
-    self.gameOverView.hidden = YES;
-}
-
-- (void)gameOver {
-    [self shakeFrame];
-    self.gameOverView.hidden = NO;
-
-    [self.timer invalidate];
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.5
-                                                  target:self
-                                                selector:@selector(toggleLabelAlpha)
-                                                userInfo:nil
-                                                 repeats:YES];
+- (IBAction)backButtonPressed {
+    [self.gameView presentScene:nil];
+    [[ISAudio sharedInstance] playSoundEffect:@"button_press.wav"];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 #pragma mark - Private Methods
-
-- (void)toggleLabelAlpha {
-    [self.tapLabel setHidden:(!self.tapLabel.hidden)];
-}
 
 - (void)presentScene {
     [self track:@"Single Game"];
@@ -51,8 +30,8 @@
     [self.scene setup];
 
 #ifdef DEBUG
-//    self.gameView.showsFPS = YES;
-//    self.gameView.showsNodeCount = YES;
+    self.gameView.showsFPS = YES;
+    self.gameView.showsNodeCount = YES;
 //    self.gameView.showsPhysics = YES;
 #endif
     
@@ -71,12 +50,15 @@
     [[self.view layer] addAnimation:animation forKey:@"position"];
 }
 
-#pragma mark - IBActions
+#pragma mark - SceneDelegate
 
-- (IBAction)backButtonPressed {
-    [self.gameView presentScene:nil];
-    [[ISAudio sharedInstance] playSoundEffect:@"button_press.wav"];
-    [self.navigationController popToRootViewControllerAnimated:YES];
+- (void)gameStart {
+    self.gameOverView.hidden = YES;
+}
+
+- (void)gameOver {
+    [self shakeFrame];
+    self.gameOverView.hidden = NO;
 }
 
 @end
