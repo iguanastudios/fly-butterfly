@@ -24,6 +24,8 @@ typedef NS_ENUM(NSInteger, GameState) {
 @property (nonatomic) NSUInteger currentScore;
 @property (strong, nonatomic) SKLabelNode *scoreLabel;
 @property (strong, nonatomic) SKSpriteNode *handNode;
+@property (strong, nonatomic) SKSpriteNode *rightArrow;
+@property (strong, nonatomic) SKSpriteNode *leftArrow;
 @end
 
 @implementation GameScene
@@ -65,6 +67,10 @@ typedef NS_ENUM(NSInteger, GameState) {
     [self enumerateChildNodesWithName:@"point" usingBlock:^(SKNode *node, BOOL *stop){
         [node removeAllActions];
     }];
+}
+
+- (void)enableInteraction {
+    self.userInteractionEnabled = YES;
 }
 
 #pragma mark - Setup methods

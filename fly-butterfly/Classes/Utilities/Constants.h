@@ -22,7 +22,8 @@ extern CGFloat const BackgroundPointsPerSec;
 extern NSInteger const MinSpaceBetweenCrows;
 extern NSString *const LabelFont;
 extern CGFloat const Speed;
-extern CGFloat const CrowDefaultInterval;
+extern CGFloat const HitDelay;
+extern CGFloat const FlySecondsPerPoint;
 
 // Butterfly
 extern CGFloat const JumpImpulse;

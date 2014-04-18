@@ -23,6 +23,9 @@ typedef NS_ENUM(NSInteger, GameState) {
 @property (strong, nonatomic) NSTimer *countdownTimer;
 @property (strong, nonatomic) SKLabelNode *statusLabel;
 @property (strong, nonatomic) SKLabelNode *timerLabel;
+@property (strong, nonatomic) SKSpriteNode *rightArrow;
+@property (strong, nonatomic) SKSpriteNode *leftArrow;
+@property (strong, nonatomic) SKAction *scale;
 @property (nonatomic) CFTimeInterval time;
 @property (nonatomic) GameState gameState;
 @property (nonatomic) NSInteger countdownTime;
@@ -52,10 +55,21 @@ typedef NS_ENUM(NSInteger, GameState) {
     return _statusLabel;
 }
 
+- (SKAction *)scale {
+    if (!_scale) {
+        SKAction *scaleUp = [SKAction scaleBy:1.3 duration:0.25];
+        SKAction *scaleDown = [scaleUp reversedAction];
+        SKAction *fullScale = [SKAction sequence:@[scaleUp, scaleDown]];
+        _scale = [SKAction repeatAction:fullScale count:2];
+    }
+
+    return _scale;
+}
+
 #pragma mark - Public methods
 
 - (CGFloat)crowPositionY {
-    return [self.crowPositions[self.crowCounter++ % 100] floatValue];
+    return [self.crowPositions[self.crowCounter++ % [self.crowPositions count]] floatValue];
 }
 
 #pragma mark - Setup methods
@@ -69,9 +83,17 @@ typedef NS_ENUM(NSInteger, GameState) {
         [self setupCrowPositions];
     }
 
-//    [self setupCrowPositions];
-//    [self setupCrows];
-//    self.gameState = GameStateRunning;
+    self.leftArrow = [SKSpriteNode spriteNodeWithImageNamed:@"left-arrow"];
+    self.leftArrow.anchorPoint = CGPointMake(0.0, 0.5);
+
+    self.rightArrow = [SKSpriteNode spriteNodeWithImageNamed:@"right-arrow"];
+    self.rightArrow.anchorPoint = CGPointMake(1.0, 0.5);
+
+    self.leftArrow.position = CGPointMake(-self.leftArrow.size.width, 0);
+    self.rightArrow.position = CGPointMake(-self.rightArrow.size.width, 0);
+
+    [self addChild:self.leftArrow];
+    [self addChild:self.rightArrow];
 }
 
 - (void)setupButterfly {
@@ -154,12 +176,6 @@ typedef NS_ENUM(NSInteger, GameState) {
         self.statusLabel.text = @"YOU LOST!";
     }
     [self addChild:self.statusLabel];
-
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:3.0
-                                                  target:self
-                                                selector:@selector(enableInteraction)
-                                                userInfo:nil
-                                                 repeats:NO];
 }
 
 #pragma mark - Update
@@ -169,9 +185,9 @@ typedef NS_ENUM(NSInteger, GameState) {
 
     switch (self.gameState) {
         case GameStateRunning:
+        case GameStateButterflyBlinking:
             [self updateGameStateRunning];
         case GameStateButterflyHit:
-        case GameStateButterflyBlinking:
             [self updateGameStateDefault:currentTime];
             break;
         default:
@@ -184,16 +200,14 @@ typedef NS_ENUM(NSInteger, GameState) {
 }
 
 - (void)updateGameStateDefault:(CFTimeInterval)currentTime {
-    if (self.gameState != GameStateReady) {
-        if (currentTime - self.deltaTime >= 0.1) {
-            [self.networkingEngine sendButterflyCoordinate:self.time - self.deltaTime
-                                                         y:self.butterfly.position.y
-                                                  rotation:self.butterfly.zRotation];
+//    if (currentTime - self.deltaTime >= 0.1) {
+        [self.networkingEngine sendButterflyCoordinate:self.time - self.deltaTime
+                                                     y:self.butterfly.position.y
+                                              rotation:self.butterfly.zRotation];
 
-        }
+//    }
 
-        [self updateCrows];
-    }
+    [self updateCrows];
 }
 
 #pragma mark - TouchesBegan
@@ -203,13 +217,12 @@ typedef NS_ENUM(NSInteger, GameState) {
         case GameStateRunning:
             [self touchesBeganGameStateRunning];
             break;
-        case GameStateOver:
-            [self touchesBeganGameStateOver];
-            break;
 
         case GameStateButterflyBlinking:
             [self touchesBeganGameStateBlinking];
             break;
+
+        case GameStateOver:
         case GameStateReady:
         case GameStateButterflyHit:
         default:
@@ -252,6 +265,11 @@ typedef NS_ENUM(NSInteger, GameState) {
     // Butterfly hits directly with the ground
     if (self.gameState == GameStateRunning) {
         [self butterflyHit];
+    } else {
+        [self.butterfly removeActionForKey:@"MoveUp"];
+        SKAction *moveUp = [SKAction moveToY:(self.size.height + GoogleBannerHeight) / 2
+                                    duration:2];
+        [self.butterfly runAction:moveUp withKey:@"MoveUp"];
     }
 }
 
@@ -259,15 +277,39 @@ typedef NS_ENUM(NSInteger, GameState) {
 
 - (void)butterflyCoordinate:(CGFloat)x y:(CGFloat)y rotation:(CGFloat)rotation {
     CGFloat difference = (self.time - x);
-    CGPoint multiplayerPosition = CGPointMake(self.butterfly.position.x - (difference * 40), y);
-    self.butterflyMultiplayer.position = multiplayerPosition;
-    self.butterflyMultiplayer.zRotation = rotation;
+    CGFloat pointsPerSecond = HitDelay / FlySecondsPerPoint;
+    CGFloat newX = self.butterfly.position.x - (difference * pointsPerSecond);
+
+    if (newX < -self.butterflyMultiplayer.size.width) {
+        self.leftArrow.position = CGPointMake(5, y);
+    } else if (newX > self.size.width + self.butterflyMultiplayer.size.width) {
+        self.rightArrow.position = CGPointMake(self.size.width - 5.0, y);
+    } else {
+        self.leftArrow.position = CGPointMake(-self.leftArrow.size.width, 0);
+        self.rightArrow.position = CGPointMake(-self.rightArrow.size.width, 0);
+
+        CGPoint multiplayerPosition = CGPointMake(newX, y);
+        self.butterflyMultiplayer.position = multiplayerPosition;
+        self.butterflyMultiplayer.zRotation = rotation;
+    }
 }
 
 - (void)butterflyBlink {
-    [self.butterflyMultiplayer runAction:[ISActions blinkWithDuration:2.0 blinkTimes:8] completion:^{
-        self.butterflyMultiplayer.hidden = NO;
-    }];
+    CGFloat x = self.butterflyMultiplayer.position.x;
+
+    if (x < -self.butterflyMultiplayer.size.width) {
+        [self.leftArrow runAction:[ISActions blinkWithDuration:2.0 blinkTimes:8] completion:^{
+            self.butterflyMultiplayer.hidden = NO;
+        }];
+    } else if (x > self.size.width + self.butterflyMultiplayer.size.width) {
+        [self.rightArrow runAction:[ISActions blinkWithDuration:2.0 blinkTimes:8] completion:^{
+            self.butterflyMultiplayer.hidden = NO;
+        }];
+    } else {
+        [self.butterflyMultiplayer runAction:[ISActions blinkWithDuration:2.0 blinkTimes:8] completion:^{
+            self.butterflyMultiplayer.hidden = NO;
+        }];
+    }
 }
 
 - (void)crowPositions:(NSArray *)positions {
@@ -289,18 +331,21 @@ typedef NS_ENUM(NSInteger, GameState) {
     self.gameState = GameStateButterflyHit;
     [Utilities flashScene:self];
 
-    SKAction *scaleUp = [SKAction scaleBy:1.3 duration:0.25];
-    SKAction *scaleDown = [scaleUp reversedAction];
-    SKAction *fullScale = [SKAction sequence:@[scaleUp, scaleDown]];
+    SKAction *wait = [SKAction waitForDuration:HitDelay];
+    SKAction *groupAction = [SKAction group:@[self.scale, wait]];
 
-    SKAction *repeatScale = [SKAction repeatAction:fullScale count:3];
-    SKAction *wait = [SKAction waitForDuration:1.5];
-
-    SKAction *groupAction = [SKAction group:@[repeatScale, wait]];
+    [self enumerateChildNodesWithName:@"crow" usingBlock:^(SKNode *node, BOOL *stop){
+        [node removeActionForKey:@"fly"];
+    }];
 
     [self.butterfly runAction:groupAction completion:^{
         self.gameState = GameStateButterflyBlinking;
         [self.networkingEngine sendButterflyBlink];
+
+        [self enumerateChildNodesWithName:@"crow" usingBlock:^(SKNode *node, BOOL *stop){
+            Crow *crow = (Crow *)node;
+            [crow fly];
+        }];
 
         self.butterfly.physicsBody.collisionBitMask = BEdgeCategory | BGroundCategory;
         self.butterfly.physicsBody.contactTestBitMask = BEdgeCategory | BGroundCategory;
@@ -321,6 +366,10 @@ typedef NS_ENUM(NSInteger, GameState) {
             self.butterfly.hidden = NO;
         }];
     }];
+}
+
+- (void)test {
+    [self butterflyHit];
 }
 
 @end

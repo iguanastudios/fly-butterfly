@@ -27,7 +27,7 @@
 
 - (SKAction *)movePoint {
     if (!_movePoint) {
-        NSTimeInterval duration = (self.initialPoint + 10 + CrowWidth / 2)  * 0.005;
+        NSTimeInterval duration = (self.initialPoint + 10 + CrowWidth / 2)  * FlySecondsPerPoint;
         _movePoint = [SKAction moveToX:-CrowWidth / 2 duration:duration];
     }
     return _movePoint;
@@ -59,10 +59,6 @@
     if ([self.delegate respondsToSelector:@selector(gameOver)]) {
         [self.delegate gameOver];
     }
-}
-
-- (void)enableInteraction {
-    self.userInteractionEnabled = YES;
 }
 
 #pragma mark - Setup methods

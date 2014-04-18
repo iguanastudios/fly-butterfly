@@ -11,6 +11,7 @@
 #import <ISGameCenter/ISGameCenter.h>
 #import "Butterfly.h"
 #import "Crow.h"
+#import "Constants.h"
 #import "Utilities.h"
 
 @protocol SceneDelegate <NSObject>
@@ -40,7 +41,6 @@ static SKAction *FlapSound;
 + (SKAction *)crowSound;
 + (SKAction *)flapSound;
 - (CGFloat)crowPositionY;
-- (void)enableInteraction;
 - (void)gameOver;
 - (void)setup;
 - (void)setupButterfly;
