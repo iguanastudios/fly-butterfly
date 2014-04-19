@@ -27,13 +27,6 @@
     self.scene.scaleMode = SKSceneScaleModeAspectFill;
     self.scene.delegate = self;
     [self.scene setup];
-
-#ifdef DEBUG
-    self.gameView.showsFPS = YES;
-    self.gameView.showsNodeCount = YES;
-//    self.gameView.showsPhysics = YES;
-#endif
-    
     [self.gameView presentScene:self.scene];
 }
 
