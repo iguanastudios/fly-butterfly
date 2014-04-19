@@ -11,6 +11,7 @@
 
 @interface SingleGameViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *highscoreLabel;
+@property (nonatomic) NSInteger gameCounter;
 @end
 
 @implementation SingleGameViewController
@@ -21,12 +22,29 @@
     [super viewDidLoad];
     self.highscoreLabel.font = [UIFont fontWithName:LabelFont size:18];
     self.tapLabel.font = [UIFont fontWithName:LabelFont size:24];
+    self.gameCounter = 0;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.scene = [[GameScene alloc] init];
     [self presentScene];
+}
+
+#pragma mark - Public methods
+
+- (void)presentScene {
+    [super presentScene];
+    [self track:@"Single Game"];
+
+    [[AdManager sharedInstance] presentInterstitial:self];
+
+    if (self.gameCounter >= 4) {
+        [[AdManager sharedInstance] prepareInterstitial];
+        self.gameCounter = 0;
+    } else {
+        self.gameCounter++;
+    }
 }
 
 #pragma mark - SceneDelegate
@@ -60,7 +78,7 @@
 #pragma mark - GVGoogleBannerViewDelegate
 
 - (NSString *)googleBannerViewAdUnitID {
-    return @"";
+    return @"ca-app-pub-3392553844996186/8351640152";
 }
 
 @end

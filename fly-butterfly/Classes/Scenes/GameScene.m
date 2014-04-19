@@ -163,21 +163,26 @@ typedef NS_ENUM(NSInteger, GameState) {
             [self didBeginContactWithPoint];
             break;
 
+        case BGroundCategory:
+            [self didBeginContactWithGround];
+        break;
+
         case BCrowCategory:
-        default:
             [self didBeginContactWithCrow:body];
+            break;
+
+        default:
             break;
     }
 }
 
-- (void)didBeginContactWithPoint{
+- (void)didBeginContactWithPoint {
     self.currentScore += 1;
     self.scoreLabel.text = [NSString stringWithFormat:@"%ld", (long)_currentScore];
 }
 
 - (void)didBeginContactWithCrow:(SKPhysicsBody *)body {
     [self gameOver];
-
     [self runAction:[BaseScene crowSound]];
     SKEmitterNode *emitter = [SKEmitterNode emitterNamed:@"CrowSmash"];
     emitter.targetNode = self.parent;
@@ -185,10 +190,14 @@ typedef NS_ENUM(NSInteger, GameState) {
     [body.node addChild:emitter];
 }
 
+- (void)didBeginContactWithGround {
+    [self gameOver];
+}
+
 #pragma mark - Private methods
 
 -(void)reportAchievements {
-    NSArray *achievements = [AchievementsHelper achievementsForCrows:_currentScore];
+    NSArray *achievements = [AchievementsHelper achievementsForCrows:self.currentScore];
     [[ISGameCenter sharedISGameCenter] reportAchievements:achievements];
 }
 

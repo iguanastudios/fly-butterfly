@@ -122,17 +122,22 @@ typedef NS_ENUM(NSInteger, GameState) {
 }
 
 - (void)setupTimer {
+    self.timerLabel.position = CGPointMake(self.size.width / 2, self.size.height / 2 + 50);
+    [self addChild:self.timerLabel];
     self.countdownTime = 3;
     self.countdownTimer = [NSTimer scheduledTimerWithTimeInterval:1.0
                                                            target:self
                                                          selector:@selector(updateLabel)
                                                          userInfo:nil
                                                           repeats:YES];
-    self.timerLabel.position = CGPointMake(self.size.width / 2, self.size.height / 2 + 50);
-    [self addChild:self.timerLabel];
 }
 
 - (void)updateLabel {
+    if (!self.timerLabel.parent) {
+        self.timerLabel = nil;
+        [self addChild:self.timerLabel];
+    }
+
     self.countdownTime -= 1;
     self.timerLabel.text = [NSString stringWithFormat:@"%ld", (long)self.countdownTime];
 
@@ -163,7 +168,7 @@ typedef NS_ENUM(NSInteger, GameState) {
 - (void)initialCounter {
     self.timerLabel.text = @"60";
     self.timerLabel.position = CGPointMake(20, self.scene.frame.size.height - 50);
-    self.countdownTime = 60;
+    self.countdownTime = 5;
     self.timerLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeLeft;
     self.countdownTimer = [NSTimer scheduledTimerWithTimeInterval:1.0
                                                            target:self
@@ -187,7 +192,9 @@ typedef NS_ENUM(NSInteger, GameState) {
     [self.butterflyMultiplayer removeFromParent];
     [self.butterfly removeFromParent];
 
-    [self.networkingEngine sendGameOverMessage];
+    if (self.hoster) {
+        [self.networkingEngine sendGameOverMessage];
+    }
 }
 
 #pragma mark - Update

@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Iguana Studios. All rights reserved.
 //
 
-#import "GameViewController.h"
+#import "BaseGameViewController.h"
 
-@implementation GameViewController
+@implementation BaseGameViewController
 
 #pragma mark - IBActions
 
@@ -21,8 +21,6 @@
 #pragma mark - Private Methods
 
 - (void)presentScene {
-    [self track:@"Single Game"];
-
     self.gameOverView.hidden = YES;
     self.scene.size = self.gameView.bounds.size;
     self.scene.scaleMode = SKSceneScaleModeAspectFill;

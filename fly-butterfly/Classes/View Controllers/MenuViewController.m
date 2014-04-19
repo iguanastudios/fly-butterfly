@@ -7,21 +7,17 @@
 //
 
 #import <ISGameCenter/ISGameCenter.h>
-#import <Google-Mobile-Ads-SDK/GADInterstitial.h>
-#import <GVGoogleBannerView/GVGoogleBannerView.h>
 #import "MenuViewController.h"
-#import "GameViewController.h"
+#import "BaseGameViewController.h"
 #import "SingleGameViewController.h"
 #import "MultiplayerGameViewController.h"
 #import "GameScene.h"
 #import "MultiplayerScene.h"
 
-@interface MenuViewController () <ISGameCenterDelegate, ISMultiplayerDelegate, GADInterstitialDelegate>
+@interface MenuViewController () <ISGameCenterDelegate, ISMultiplayerDelegate>
 @property (strong, nonatomic) SingleGameViewController *singleGameViewController;
 @property (strong, nonatomic) MultiplayerGameViewController *multiplayerGameViewController;
 @property (strong, nonatomic) ButterflyMultiplayerNetworking *networkEngine;
-@property (strong, nonatomic) GADInterstitial *interstitial;
-@property (nonatomic) BOOL interstitialReady;
 @end
 
 @implementation MenuViewController
@@ -50,17 +46,7 @@
     [super viewDidLoad];
     [self track:@"Game Launched"];
 
-    self.interstitial = [[GADInterstitial alloc] init];
-    self.interstitial.delegate = self;
-    self.interstitial.adUnitID = @"ca-app-pub-3392553844996186/2623164155";
-
-    GADRequest *request = [GADRequest request];
-    request.testDevices = @[GAD_SIMULATOR_ID,
-                            @"9d7eada80bc22149b0c33df66f0957d0",
-                            @"4f671bf723d90741f66b2fa9a13a497c"];
-
-    [self.interstitial loadRequest:request];
-
+    [[AdManager sharedInstance] prepareInterstitial];
     [[ISGameCenter sharedISGameCenter] authenticateLocalPlayer];
     [ISGameCenter sharedISGameCenter].delegate = self;
     [[SKTextureAtlas atlasNamed:@"sprites"] preloadWithCompletionHandler:^{}];
@@ -68,14 +54,16 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-
-    if (self.interstitialReady) {
-        [self.interstitial presentFromRootViewController:self];
-        self.interstitialReady = NO;
-    }
+    [[AdManager sharedInstance] presentInterstitial:self];
 }
 
 #pragma mark - IBAction
+
+- (IBAction)ratePressed {
+    [[ISAudio sharedInstance] playSoundEffect:@"button_press.wav"];
+    NSURL *rateURL = [NSURL URLWithString:@"itms-apps://itunes.apple.com/app/857838948"];
+    [[UIApplication sharedApplication] openURL:rateURL];
+}
 
 - (IBAction)playPressed {
     [[ISAudio sharedInstance] playSoundEffect:@"button_press.wav"];
@@ -84,14 +72,6 @@
 }
 
 - (IBAction)highscorePressed {
-    MultiplayerScene *multiplayerScene = [[MultiplayerScene alloc] init];
-    multiplayerScene.hoster = YES;
-    multiplayerScene.networkingEngine = self.networkEngine;
-    self.networkEngine.butterflyDelegate = multiplayerScene;
-    self.multiplayerGameViewController.scene = multiplayerScene;
-    [self.navigationController pushViewController:self.multiplayerGameViewController animated:YES];
-    return;
-
     [[ISAudio sharedInstance] playSoundEffect:@"button_press.wav"];
     [[ISGameCenter sharedISGameCenter] showGameCenterViewController:self];
 }
@@ -136,16 +116,6 @@
                                               otherButtonTitles:nil];
         [alert show];
     }
-}
-
-#pragma mark - GADInterstitialDelegate
-
-- (void)interstitialDidReceiveAd:(GADInterstitial *)interstitial {
-    self.interstitialReady = NO;
-}
-
-- (void)interstitial:(GADInterstitial *)ad didFailToReceiveAdWithError:(GADRequestError *)error {
-    NSLog(@"%@", error);
 }
 
 #pragma mark - GVGoogleBannerViewDelegate

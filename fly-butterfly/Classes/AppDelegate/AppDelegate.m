@@ -22,7 +22,7 @@
     [GAI sharedInstance].trackUncaughtExceptions = YES;
     [[GAI sharedInstance] trackerWithTrackingId:[Config sharedInstance].googleAnalyticsId];
 
-    [Appirater setAppId:@"834334049"];
+    [Appirater setAppId:@"857838948"];
     [Appirater setDaysUntilPrompt:5];
     [Appirater setUsesUntilPrompt:5];
     [Appirater setSignificantEventsUntilPrompt:-1];

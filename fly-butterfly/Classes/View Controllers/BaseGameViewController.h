@@ -1,5 +1,5 @@
 //
-//  GameViewController.h
+//  BaseGameViewController.h
 //  butterfly
 //
 
@@ -9,7 +9,7 @@
 #import "BaseViewController.h"
 #import "BaseScene.h"
 
-@interface GameViewController : BaseViewController <SceneDelegate>
+@interface BaseGameViewController : BaseViewController <SceneDelegate>
 
 @property (weak, nonatomic) IBOutlet SKView *gameView;
 @property (weak, nonatomic) IBOutlet UIView *gameOverView;

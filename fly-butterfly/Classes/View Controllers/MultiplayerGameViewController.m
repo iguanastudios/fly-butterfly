@@ -10,20 +10,28 @@
 #import "MultiplayerScene.h"
 
 @interface MultiplayerGameViewController ()
-
+@property (nonatomic) NSInteger gameCounter;
 @end
 
 @implementation MultiplayerGameViewController
 
 #pragma mark - View lifecycle
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.gameCounter = 0;
+}
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self presentScene];
-}
+    [self track:@"Multiplayer Game"];
 
-- (void)gamePrepare {
-    [self.navigationController popViewControllerAnimated:YES];
+    if (self.gameCounter % 3 == 0) {
+        [[AdManager sharedInstance] prepareInterstitial];
+    }
+
+    self.gameCounter++;
 }
 
 @end

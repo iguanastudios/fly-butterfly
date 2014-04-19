@@ -11,6 +11,7 @@
 #import <GoogleAnalytics-iOS-SDK/GAITrackedViewController.h>
 #import <GVGoogleBannerView/GVGoogleBannerView.h>
 #import <ISSpriteKit/ISAudio.h>
+#import "AdManager.h"
 #import "ButterflyMultiplayerNetworking.h"
 
 @interface BaseViewController : GAITrackedViewController <GVGoogleBannerViewDelegate>

@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Iguana Studios. All rights reserved.
 //
 
-#import "GameViewController.h"
+#import "BaseGameViewController.h"
 
-@interface MultiplayerGameViewController : GameViewController
+@interface MultiplayerGameViewController : BaseGameViewController
 
 @end

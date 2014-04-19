@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2D524A2A0D7F446F915CAEAB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A12870ECECE749159D501107 /* libPods.a */; };
+		A0A4C9731902E2C200D0113A /* AdManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A4C9721902E2C200D0113A /* AdManager.m */; };
 		A0A87FD918F334BC00B01143 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0A87FD818F334BC00B01143 /* Foundation.framework */; };
 		A0A87FDB18F334BC00B01143 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0A87FDA18F334BC00B01143 /* CoreGraphics.framework */; };
 		A0A87FDD18F334BC00B01143 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0A87FDC18F334BC00B01143 /* UIKit.framework */; };
@@ -28,7 +29,7 @@
 		A0A8807918F3376E00B01143 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A8804818F3376E00B01143 /* Constants.m */; };
 		A0A8807B18F3376E00B01143 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A8804C18F3376E00B01143 /* Utilities.m */; };
 		A0A8807C18F3376E00B01143 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A8804F18F3376E00B01143 /* BaseViewController.m */; };
-		A0A8807D18F3376E00B01143 /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A8805118F3376E00B01143 /* GameViewController.m */; };
+		A0A8807D18F3376E00B01143 /* BaseGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A8805118F3376E00B01143 /* BaseGameViewController.m */; };
 		A0A8807E18F3376E00B01143 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A8805318F3376E00B01143 /* MenuViewController.m */; };
 		A0A8808218F3376E00B01143 /* CrowSmash.sks in Resources */ = {isa = PBXBuildFile; fileRef = A0A8805A18F3376E00B01143 /* CrowSmash.sks */; };
 		A0A8808318F3376E00B01143 /* Feather.png in Resources */ = {isa = PBXBuildFile; fileRef = A0A8805B18F3376E00B01143 /* Feather.png */; };
@@ -49,6 +50,8 @@
 
 /* Begin PBXFileReference section */
 		81848A9899E843F29916FF4A /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		A0A4C9711902E2C200D0113A /* AdManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdManager.h; sourceTree = "<group>"; };
+		A0A4C9721902E2C200D0113A /* AdManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdManager.m; sourceTree = "<group>"; };
 		A0A87FD518F334BC00B01143 /* fly-butterfly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "fly-butterfly.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0A87FD818F334BC00B01143 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A0A87FDA18F334BC00B01143 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -87,8 +90,8 @@
 		A0A8804C18F3376E00B01143 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
 		A0A8804E18F3376E00B01143 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		A0A8804F18F3376E00B01143 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
-		A0A8805018F3376E00B01143 /* GameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
-		A0A8805118F3376E00B01143 /* GameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
+		A0A8805018F3376E00B01143 /* BaseGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseGameViewController.h; sourceTree = "<group>"; };
+		A0A8805118F3376E00B01143 /* BaseGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseGameViewController.m; sourceTree = "<group>"; };
 		A0A8805218F3376E00B01143 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
 		A0A8805318F3376E00B01143 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		A0A8805A18F3376E00B01143 /* CrowSmash.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = CrowSmash.sks; sourceTree = "<group>"; };
@@ -259,6 +262,8 @@
 				A0A8804818F3376E00B01143 /* Constants.m */,
 				A0A8804B18F3376E00B01143 /* Utilities.h */,
 				A0A8804C18F3376E00B01143 /* Utilities.m */,
+				A0A4C9711902E2C200D0113A /* AdManager.h */,
+				A0A4C9721902E2C200D0113A /* AdManager.m */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -270,8 +275,8 @@
 				A0A8804F18F3376E00B01143 /* BaseViewController.m */,
 				A0A8805218F3376E00B01143 /* MenuViewController.h */,
 				A0A8805318F3376E00B01143 /* MenuViewController.m */,
-				A0A8805018F3376E00B01143 /* GameViewController.h */,
-				A0A8805118F3376E00B01143 /* GameViewController.m */,
+				A0A8805018F3376E00B01143 /* BaseGameViewController.h */,
+				A0A8805118F3376E00B01143 /* BaseGameViewController.m */,
 				A0FC232118FACC1C0035A999 /* SingleGameViewController.h */,
 				A0FC232218FACC1C0035A999 /* SingleGameViewController.m */,
 				A0FC232418FACC360035A999 /* MultiplayerGameViewController.h */,
@@ -479,8 +484,9 @@
 				A0A8806E18F3376E00B01143 /* GameScene.m in Sources */,
 				A0A8807E18F3376E00B01143 /* MenuViewController.m in Sources */,
 				A0A8806918F3376E00B01143 /* GVUserDefaults+Properties.m in Sources */,
-				A0A8807D18F3376E00B01143 /* GameViewController.m in Sources */,
+				A0A8807D18F3376E00B01143 /* BaseGameViewController.m in Sources */,
 				A0A8807018F3376E00B01143 /* AnimatingSprite.m in Sources */,
+				A0A4C9731902E2C200D0113A /* AdManager.m in Sources */,
 				A0A8807918F3376E00B01143 /* Constants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
