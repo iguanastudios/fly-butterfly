@@ -14,6 +14,7 @@
 
 - (IBAction)backButtonPressed {
     [self.gameView presentScene:nil];
+    [[ISAudio sharedInstance] pauseBackgroundMusic];
     [[ISAudio sharedInstance] playSoundEffect:@"button_press.wav"];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }

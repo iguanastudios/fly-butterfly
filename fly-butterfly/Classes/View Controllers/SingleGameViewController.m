@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Iguana Studios. All rights reserved.
 //
 
+#import <ISSpriteKit/ISAudio.h>
 #import "SingleGameViewController.h"
 #import "GameScene.h"
 
@@ -25,6 +26,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [[ISAudio sharedInstance] playBackgroundMusic:@"background_music.mp3"];
     self.scene = [[GameScene alloc] init];
     [self presentScene];
 }

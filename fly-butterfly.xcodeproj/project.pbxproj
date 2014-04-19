@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		2D524A2A0D7F446F915CAEAB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A12870ECECE749159D501107 /* libPods.a */; };
 		A0A4C9731902E2C200D0113A /* AdManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A4C9721902E2C200D0113A /* AdManager.m */; };
+		A0A4C9751903282400D0113A /* background_music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A0A4C9741903282400D0113A /* background_music.mp3 */; };
+		A0A4C97719032A6F00D0113A /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0A4C97619032A6F00D0113A /* GameKit.framework */; };
 		A0A87FD918F334BC00B01143 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0A87FD818F334BC00B01143 /* Foundation.framework */; };
 		A0A87FDB18F334BC00B01143 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0A87FDA18F334BC00B01143 /* CoreGraphics.framework */; };
 		A0A87FDD18F334BC00B01143 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0A87FDC18F334BC00B01143 /* UIKit.framework */; };
@@ -52,6 +54,8 @@
 		81848A9899E843F29916FF4A /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		A0A4C9711902E2C200D0113A /* AdManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdManager.h; sourceTree = "<group>"; };
 		A0A4C9721902E2C200D0113A /* AdManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdManager.m; sourceTree = "<group>"; };
+		A0A4C9741903282400D0113A /* background_music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = background_music.mp3; sourceTree = "<group>"; };
+		A0A4C97619032A6F00D0113A /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		A0A87FD518F334BC00B01143 /* fly-butterfly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "fly-butterfly.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0A87FD818F334BC00B01143 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A0A87FDA18F334BC00B01143 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -121,6 +125,7 @@
 			files = (
 				A0A87FDB18F334BC00B01143 /* CoreGraphics.framework in Frameworks */,
 				A0A87FDD18F334BC00B01143 /* UIKit.framework in Frameworks */,
+				A0A4C97719032A6F00D0113A /* GameKit.framework in Frameworks */,
 				A0A87FDF18F334BC00B01143 /* SpriteKit.framework in Frameworks */,
 				A0A87FD918F334BC00B01143 /* Foundation.framework in Frameworks */,
 				A0A8808F18F33A3300B01143 /* Crashlytics.framework in Frameworks */,
@@ -152,6 +157,7 @@
 		A0A87FD718F334BC00B01143 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A0A4C97619032A6F00D0113A /* GameKit.framework */,
 				A0A8808E18F33A3300B01143 /* Crashlytics.framework */,
 				A0A87FD818F334BC00B01143 /* Foundation.framework */,
 				A0A87FDA18F334BC00B01143 /* CoreGraphics.framework */,
@@ -321,6 +327,7 @@
 		A0A8805E18F3376E00B01143 /* sounds */ = {
 			isa = PBXGroup;
 			children = (
+				A0A4C9741903282400D0113A /* background_music.mp3 */,
 				A0A8805F18F3376E00B01143 /* button_press.wav */,
 				A0A8806018F3376E00B01143 /* crow.m4a */,
 				A0A8806118F3376E00B01143 /* flap.aif */,
@@ -375,6 +382,16 @@
 			attributes = {
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Iguana Studios";
+				TargetAttributes = {
+					A0A87FD418F334BC00B01143 = {
+						DevelopmentTeam = 79FQ5NVLFF;
+						SystemCapabilities = {
+							com.apple.GameCenter = {
+								enabled = 1;
+							};
+						};
+					};
+				};
 			};
 			buildConfigurationList = A0A87FD018F334BC00B01143 /* Build configuration list for PBXProject "fly-butterfly" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -409,6 +426,7 @@
 				A0A8808B18F3376E00B01143 /* Images.xcassets in Resources */,
 				A0A8808818F3376E00B01143 /* flap.aif in Resources */,
 				A0E72AE718FB0FC90055A21B /* MultiplayerButterflyTrail.sks in Resources */,
+				A0A4C9751903282400D0113A /* background_music.mp3 in Resources */,
 				A0A8808418F3376E00B01143 /* ButterflyTrail.sks in Resources */,
 				A0A8808918F3376E00B01143 /* sprites.atlas in Resources */,
 				A0A8808318F3376E00B01143 /* Feather.png in Resources */,
@@ -570,7 +588,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Luis Flores (A2J2VQW7M6)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -579,6 +598,7 @@
 				GCC_PREFIX_HEADER = "fly-butterfly/Supporting Files/fly-butterfly-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/fly-butterfly/Supporting Files/fly-butterfly-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				WRAPPER_EXTENSION = app;
 			};
@@ -590,7 +610,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Luis Flores (A2J2VQW7M6)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -599,6 +620,7 @@
 				GCC_PREFIX_HEADER = "fly-butterfly/Supporting Files/fly-butterfly-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/fly-butterfly/Supporting Files/fly-butterfly-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				WRAPPER_EXTENSION = app;
 			};
