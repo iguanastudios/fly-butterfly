@@ -101,6 +101,7 @@
     MultiplayerScene *multiplayerScene = [[MultiplayerScene alloc] init];
     multiplayerScene.hoster = hoster;
     multiplayerScene.networkingEngine = self.networkEngine;
+    multiplayerScene.multiplayerSceneDelegate = self.multiplayerGameViewController;
     self.networkEngine.butterflyDelegate = multiplayerScene;
     self.multiplayerGameViewController.scene = multiplayerScene;
     [self.navigationController pushViewController:self.multiplayerGameViewController animated:YES];

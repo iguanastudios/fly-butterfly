@@ -124,6 +124,10 @@ typedef NS_ENUM(NSInteger, GameState) {
     self.countdownTime -= 1;
     self.timerLabel.text = [NSString stringWithFormat:@"%ld", (long)self.countdownTime];
 
+    if (self.countdownTime <= 3 && self.isLabelTimer) {
+        [self.multiplayerSceneDelegate gameAlmostOver];
+    }
+
     if (self.countdownTime <= 0) {
         [self.countdownTimer invalidate];
         self.countdownTimer = nil;
@@ -258,7 +262,7 @@ typedef NS_ENUM(NSInteger, GameState) {
 }
 
 - (void)didBeginContactWithCrow {
-    [self runAction:CrowSound];
+    [self runAction:[BaseScene crowSound]];
     self.butterfly.physicsBody.collisionBitMask = BGroundCategory;
     self.butterfly.physicsBody.contactTestBitMask = BGroundCategory;
     [self butterflyHit];

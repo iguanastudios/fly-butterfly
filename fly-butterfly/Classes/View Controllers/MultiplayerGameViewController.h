@@ -7,8 +7,9 @@
 //
 
 #import "BaseGameViewController.h"
+#import "MultiplayerScene.h"
 
-@interface MultiplayerGameViewController : BaseGameViewController
+@interface MultiplayerGameViewController : BaseGameViewController <MultiplayerSceneDelegate>
 
 @property (nonatomic) BOOL running;
 

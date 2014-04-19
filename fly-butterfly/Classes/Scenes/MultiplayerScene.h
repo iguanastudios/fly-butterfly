@@ -10,9 +10,17 @@
 #import "ButterflyMultiplayerNetworking.h"
 #import "BaseScene.h"
 
+@protocol MultiplayerSceneDelegate <NSObject>
+
+@required
+- (void)gameAlmostOver;
+
+@end
+
 @interface MultiplayerScene : BaseScene <ISButterflyMultiplayerDelegate>
 
 @property (strong, nonatomic) ButterflyMultiplayerNetworking *networkingEngine;
+@property (strong, nonatomic) id<MultiplayerSceneDelegate> multiplayerSceneDelegate;
 @property (assign, nonatomic) BOOL hoster;
 
 - (void)setup;
