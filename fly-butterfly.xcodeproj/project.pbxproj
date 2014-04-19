@@ -598,7 +598,7 @@
 				GCC_PREFIX_HEADER = "fly-butterfly/Supporting Files/fly-butterfly-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/fly-butterfly/Supporting Files/fly-butterfly-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "158051B0-9CEC-4A7B-A3AD-CB6B0D02C802";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				WRAPPER_EXTENSION = app;
 			};
@@ -620,7 +620,7 @@
 				GCC_PREFIX_HEADER = "fly-butterfly/Supporting Files/fly-butterfly-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/fly-butterfly/Supporting Files/fly-butterfly-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "158051B0-9CEC-4A7B-A3AD-CB6B0D02C802";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				WRAPPER_EXTENSION = app;
 			};
