@@ -10,4 +10,6 @@
 
 @interface MultiplayerGameViewController : BaseGameViewController
 
+@property (nonatomic) BOOL running;
+
 @end

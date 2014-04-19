@@ -107,8 +107,9 @@
 }
 
 - (void)multiplayerMatchEnded:(NSError *)error {
-    NSLog(@"Mmm? -> %@", error);
-    if (error) {
+    if (error || self.multiplayerGameViewController.running) {
+        [[ISGameCenter sharedISGameCenter].multiplayerMatch disconnect];
+        self.multiplayerGameViewController.running = NO;
         [self.navigationController popToRootViewControllerAnimated:YES];
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
                                                         message:@"Connection lost, try again!"

@@ -19,10 +19,15 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self presentScene];
     [self track:@"Multiplayer Game"];
-
+    [self presentScene];
+    self.running = YES;
     [[AdManager sharedInstance] countGame];
+}
+
+- (void)gameOver {
+    [super gameOver];
+    self.running = NO;
 }
 
 @end

@@ -151,7 +151,7 @@ typedef NS_ENUM(NSInteger, GameState) {
 - (void)initialCounter {
     self.timerLabel.text = @"60";
     self.timerLabel.position = CGPointMake(20, self.scene.frame.size.height - 50);
-    self.countdownTime = 5;
+    self.countdownTime = 60;
     self.timerLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeLeft;
     self.countdownTimer = [NSTimer scheduledTimerWithTimeInterval:1.0
                                                            target:self
