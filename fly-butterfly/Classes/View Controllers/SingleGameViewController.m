@@ -11,7 +11,6 @@
 
 @interface SingleGameViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *highscoreLabel;
-@property (nonatomic) NSInteger gameCounter;
 @end
 
 @implementation SingleGameViewController
@@ -22,7 +21,6 @@
     [super viewDidLoad];
     self.highscoreLabel.font = [UIFont fontWithName:LabelFont size:18];
     self.tapLabel.font = [UIFont fontWithName:LabelFont size:24];
-    self.gameCounter = 0;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -38,13 +36,7 @@
     [self track:@"Single Game"];
 
     [[AdManager sharedInstance] presentInterstitial:self];
-
-    if (self.gameCounter >= 4) {
-        [[AdManager sharedInstance] prepareInterstitial];
-        self.gameCounter = 0;
-    } else {
-        self.gameCounter++;
-    }
+    [[AdManager sharedInstance] countGame];
 }
 
 #pragma mark - SceneDelegate

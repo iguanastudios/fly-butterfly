@@ -11,7 +11,6 @@
 @implementation GVUserDefaults (Properties)
 
 // Game
-@dynamic numberOfAppStarts;
 @dynamic highscore;
 
 @end

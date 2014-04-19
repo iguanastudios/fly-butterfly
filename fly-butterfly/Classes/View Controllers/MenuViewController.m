@@ -107,6 +107,7 @@
 }
 
 - (void)multiplayerMatchEnded:(NSError *)error {
+    NSLog(@"Mmm? -> %@", error);
     if (error) {
         [self.navigationController popToRootViewControllerAnimated:YES];
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"

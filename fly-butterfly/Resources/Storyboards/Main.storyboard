@@ -10,7 +10,7 @@
                 <viewController storyboardIdentifier="SingleGameViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="LVB-YS-i5n" customClass="SingleGameViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bdc-N1-crn" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <view hidden="YES" contentMode="scaleToFill" id="30X-Ek-CHh" userLabel="Game Over View">
                                 <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
@@ -78,7 +78,7 @@
                 <viewController storyboardIdentifier="MultiplayerGameViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Ov9-wP-I1L" customClass="MultiplayerGameViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9Ad-RR-MKy" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <view hidden="YES" contentMode="scaleToFill" id="ABH-bl-p2I" userLabel="Game Over View">
                                 <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>

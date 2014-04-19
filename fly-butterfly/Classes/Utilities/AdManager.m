@@ -8,6 +8,10 @@
 
 #import "AdManager.h"
 
+@interface AdManager ()
+@property (nonatomic) NSUInteger counter;
+@end
+
 @implementation AdManager
 
 #pragma mark - Singleton
@@ -38,6 +42,15 @@
 - (void)presentInterstitial:(UIViewController *)controller {
     if (self.interstitial.isReady) {
         [self.interstitial presentFromRootViewController:controller];
+        self.counter = 0;
+    }
+}
+
+- (void)countGame {
+    self.counter++;
+
+    if (self.counter >= 3) {
+        [self prepareInterstitial];
     }
 }
 

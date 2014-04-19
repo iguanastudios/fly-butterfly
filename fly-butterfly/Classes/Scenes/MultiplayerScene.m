@@ -36,26 +36,6 @@ typedef NS_ENUM(NSInteger, GameState) {
 
 #pragma mark - Getters and setters
 
-- (SKLabelNode *)timerLabel {
-    if (!_timerLabel) {
-        _timerLabel = [SKLabelNode labelNodeWithFontNamed:LabelFont];
-        _timerLabel.fontSize = 48;
-        _timerLabel.text = [NSString stringWithFormat:@"%ld", (long)self.countdownTime];
-    }
-
-    return _timerLabel;
-}
-
-- (SKLabelNode *)statusLabel {
-    if (!_statusLabel) {
-        _statusLabel = [SKLabelNode labelNodeWithFontNamed:LabelFont];
-        _statusLabel.fontSize = 48;
-        _statusLabel.position = CGPointMake(self.size.width / 2, self.size.height / 2 + 50);
-    }
-
-    return _statusLabel;
-}
-
 - (SKAction *)scale {
     if (!_scale) {
         SKAction *scaleUp = [SKAction scaleBy:1.3 duration:0.25];
@@ -77,12 +57,10 @@ typedef NS_ENUM(NSInteger, GameState) {
 
 -(void)setup {
     [super setup];
+    [self setupTimerLabel];
+
     self.gameState = GameStateReady;
     self.time = 0.0;
-
-    if (self.hoster) {
-        [self setupCrowPositions];
-    }
 
     self.leftArrow = [SKSpriteNode spriteNodeWithImageNamed:@"left-arrow"];
     self.leftArrow.anchorPoint = CGPointMake(0.0, 0.5);
@@ -95,6 +73,10 @@ typedef NS_ENUM(NSInteger, GameState) {
 
     [self addChild:self.leftArrow];
     [self addChild:self.rightArrow];
+
+    if (self.hoster) {
+        [self setupCrowPositions];
+    }
 }
 
 - (void)setupButterfly {
@@ -121,9 +103,15 @@ typedef NS_ENUM(NSInteger, GameState) {
     self.crowPositions = [[NSArray alloc] initWithArray:positions];
 }
 
-- (void)setupTimer {
+- (void)setupTimerLabel {
+    self.timerLabel = [SKLabelNode labelNodeWithFontNamed:LabelFont];
+    self.timerLabel.fontSize = 48;
+    self.timerLabel.text = @"3";
     self.timerLabel.position = CGPointMake(self.size.width / 2, self.size.height / 2 + 50);
     [self addChild:self.timerLabel];
+}
+
+- (void)setupTimer {
     self.countdownTime = 3;
     self.countdownTimer = [NSTimer scheduledTimerWithTimeInterval:1.0
                                                            target:self
@@ -133,11 +121,6 @@ typedef NS_ENUM(NSInteger, GameState) {
 }
 
 - (void)updateLabel {
-    if (!self.timerLabel.parent) {
-        self.timerLabel = nil;
-        [self addChild:self.timerLabel];
-    }
-
     self.countdownTime -= 1;
     self.timerLabel.text = [NSString stringWithFormat:@"%ld", (long)self.countdownTime];
 
@@ -182,10 +165,14 @@ typedef NS_ENUM(NSInteger, GameState) {
     self.gameState = GameStateOver;
     [self.timerLabel removeFromParent];
 
+    self.statusLabel = [SKLabelNode labelNodeWithFontNamed:LabelFont];
+    self.statusLabel.fontSize = 48;
+    self.statusLabel.position = CGPointMake(self.size.width / 2, self.size.height / 2 + 50);
+
     if (self.butterfly.position.x > self.butterflyMultiplayer.position.x) {
-        self.statusLabel.text = @"YOU WON!";
+        self.statusLabel.text = @"YOU WON";
     } else {
-        self.statusLabel.text = @"YOU LOST!";
+        self.statusLabel.text = @"YOU LOST";
     }
     [self addChild:self.statusLabel];
 
@@ -220,13 +207,9 @@ typedef NS_ENUM(NSInteger, GameState) {
 }
 
 - (void)updateGameStateDefault:(CFTimeInterval)currentTime {
-//    if (currentTime - self.deltaTime >= 0.1) {
-        [self.networkingEngine sendButterflyCoordinate:self.time - self.deltaTime
-                                                     y:self.butterfly.position.y
-                                              rotation:self.butterfly.zRotation];
-
-//    }
-
+    [self.networkingEngine sendButterflyCoordinate:self.time - self.deltaTime
+                                                 y:self.butterfly.position.y
+                                          rotation:self.butterfly.zRotation];
     [self updateCrows];
 }
 
@@ -386,10 +369,6 @@ typedef NS_ENUM(NSInteger, GameState) {
             self.butterfly.hidden = NO;
         }];
     }];
-}
-
-- (void)test {
-    [self butterflyHit];
 }
 
 @end

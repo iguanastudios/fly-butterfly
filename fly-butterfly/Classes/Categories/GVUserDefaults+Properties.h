@@ -11,7 +11,6 @@
 @interface GVUserDefaults (Properties)
 
 // Game
-@property (nonatomic) NSInteger numberOfAppStarts;
 @property (nonatomic) NSInteger highscore;
 
 @end

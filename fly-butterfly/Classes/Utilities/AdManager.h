@@ -16,5 +16,6 @@
 + (AdManager *)sharedInstance;
 - (void)prepareInterstitial;
 - (void)presentInterstitial:(UIViewController *)controller;
+- (void)countGame;
 
 @end
