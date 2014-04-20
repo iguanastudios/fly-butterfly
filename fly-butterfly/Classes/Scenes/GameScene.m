@@ -63,10 +63,10 @@ typedef NS_ENUM(NSInteger, GameState) {
 }
 
 - (void)gameOver {
-    [super gameOver];
+    UserDefaults.highscore = MAX(UserDefaults.highscore, self.currentScore);
     self.gameState = GameStateOver;
 
-    UserDefaults.highscore = MAX(UserDefaults.highscore, self.currentScore);
+    [super gameOver];
     [self enumerateChildNodesWithName:@"point" usingBlock:^(SKNode *node, BOOL *stop){
         [node removeAllActions];
     }];
