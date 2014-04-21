@@ -34,9 +34,9 @@ static SKAction *FlapSound;
 @property (nonatomic) CFTimeInterval deltaTime;
 @property (nonatomic) NSInteger crowCounter;
 @property (strong, nonatomic) Butterfly *butterfly;
-@property (strong, nonatomic) id<SceneDelegate> delegate;
 @property (strong, nonatomic) NSTimer *timer;
 @property (strong, nonatomic) SKAction *movePoint;
+@property (weak, nonatomic) id<SceneDelegate> delegate;
 
 + (SKAction *)crowSound;
 + (SKAction *)flapSound;

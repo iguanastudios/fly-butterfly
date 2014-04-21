@@ -18,7 +18,7 @@
 
 @interface ButterflyMultiplayerNetworking : ISMultiplayerNetworking
 
-@property (nonatomic, assign) id<ISButterflyMultiplayerDelegate> butterflyDelegate;
+@property (weak, nonatomic) id<ISButterflyMultiplayerDelegate> butterflyDelegate;
 
 - (void)sendButterflyCoordinate:(CGFloat)x y:(CGFloat)y rotation:(CGFloat)rotation;
 - (void)sendButterflyBlink;

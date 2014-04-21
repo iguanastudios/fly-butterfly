@@ -20,8 +20,8 @@
 @interface MultiplayerScene : BaseScene <ISButterflyMultiplayerDelegate>
 
 @property (strong, nonatomic) ButterflyMultiplayerNetworking *networkingEngine;
-@property (strong, nonatomic) id<MultiplayerSceneDelegate> multiplayerSceneDelegate;
-@property (assign, nonatomic) BOOL hoster;
+@property (weak, nonatomic) id<MultiplayerSceneDelegate> multiplayerSceneDelegate;
+@property (nonatomic) BOOL hoster;
 
 - (void)setup;
 
