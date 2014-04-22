@@ -5,7 +5,7 @@ PODS:
   - GVGoogleBannerView (1.3.0):
     - Google-Mobile-Ads-SDK
   - GVUserDefaults (0.9.4)
-  - ISGameCenter (0.5.0)
+  - ISGameCenter (0.5.1)
   - ISSpriteKit (0.3.0)
   - RemoteConfig (1.5.0):
     - XMLReader
@@ -26,7 +26,7 @@ SPEC CHECKSUMS:
   GoogleAnalytics-iOS-SDK: 16dfcc0c4491148bf372edc85a8470cc405ffb72
   GVGoogleBannerView: 6b2ea604ff67887025cf607ed36463ee6ca3e803
   GVUserDefaults: 50dbc9e24ab41b0c24bda7af8b5944ad0413dd2a
-  ISGameCenter: 544f4e4c3a19fd87d19a3cc6e12e124b296395af
+  ISGameCenter: 7cd9371dc44face452988b83ff7a875ab2f187ea
   ISSpriteKit: 46b4df99ed97d10875b142a592d48b2b927077be
   RemoteConfig: 41692948095483e95213b49d7e53f5d927158793
   XMLReader: 8ad7c573001e3d826d26a8c01144d37c707d20fa
