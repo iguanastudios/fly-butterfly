@@ -61,7 +61,7 @@
 
 - (IBAction)ratePressed {
     [[ISAudio sharedInstance] playSoundEffect:@"button_press.wav"];
-    NSURL *rateURL = [NSURL URLWithString:@"itms-apps://itunes.apple.com/app/857838948"];
+    NSURL *rateURL = [NSURL URLWithString:@"itms-apps://itunes.apple.com/app/id857838948"];
     [[UIApplication sharedApplication] openURL:rateURL];
 }
 
