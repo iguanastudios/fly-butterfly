@@ -1,7 +1,9 @@
-Fly Butterfly
+Fly Butterfly iOS Game
 =============
 
-# Fly Butterfly iOS Game
+https://itunes.apple.com/us/app/fly-butterfly/id857838948
+
+### How to install
 
 1. Install [CocoaPods](http://cocoapods.org)  
 `gem install cocoapods`
