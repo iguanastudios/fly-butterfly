@@ -29,9 +29,7 @@
 }
 
 - (void)setupMapping {
-    // Analytics
-    [self mapRemoteKeyPath:@"googleAnalyticsId" toLocalAttribute:@"googleAnalyticsId" defaultValue:@"UA-48137181-3"];
-    [self mapRemoteKeyPath:@"crashlyticsId" toLocalAttribute:@"crashlyticsId" defaultValue:@"db7f2b5ac560a858c853e4eb1c203a987c06fd64"];
+    [self mapRemoteKeyPath:@"googleAnalyticsId" toLocalAttribute:@"googleAnalyticsId" defaultValue:@""];
 }
 
 @end

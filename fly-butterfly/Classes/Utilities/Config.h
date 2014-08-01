@@ -10,9 +10,7 @@
 
 @interface Config : GVJSONRemoteConfig
 
-// Analytics
 @property (strong, nonatomic) NSString *googleAnalyticsId;
-@property (strong, nonatomic) NSString *crashlyticsId;
 
 + (Config *)sharedInstance;
 

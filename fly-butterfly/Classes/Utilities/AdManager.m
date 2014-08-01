@@ -29,7 +29,7 @@
 
 - (void)prepareInterstitial {
     self.interstitial = [[GADInterstitial alloc] init];
-    self.interstitial.adUnitID = @"ca-app-pub-3392553844996186/2623164155";
+    self.interstitial.adUnitID = @"";
 
     GADRequest *request = [GADRequest request];
     request.testDevices = @[GAD_SIMULATOR_ID];

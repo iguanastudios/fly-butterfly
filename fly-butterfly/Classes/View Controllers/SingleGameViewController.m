@@ -72,7 +72,7 @@
 #pragma mark - GVGoogleBannerViewDelegate
 
 - (NSString *)googleBannerViewAdUnitID {
-    return @"ca-app-pub-3392553844996186/8351640152";
+    return @"";
 }
 
 @end
