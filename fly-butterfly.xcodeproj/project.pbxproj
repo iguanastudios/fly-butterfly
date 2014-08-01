@@ -43,7 +43,6 @@
 		A0A8808918F3376E00B01143 /* sprites.atlas in Resources */ = {isa = PBXBuildFile; fileRef = A0A8806218F3376E00B01143 /* sprites.atlas */; };
 		A0A8808B18F3376E00B01143 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A0A8806518F3376E00B01143 /* Images.xcassets */; };
 		A0A8808C18F3376E00B01143 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A0A8806718F3376E00B01143 /* Main.storyboard */; };
-		A0A8808F18F33A3300B01143 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0A8808E18F33A3300B01143 /* Crashlytics.framework */; };
 		A0BE8CC018F368B300E71E47 /* PWPerspective.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A0BE8CBF18F368B300E71E47 /* PWPerspective.ttf */; };
 		A0E72AE718FB0FC90055A21B /* MultiplayerButterflyTrail.sks in Resources */ = {isa = PBXBuildFile; fileRef = A0E72AE518FB0FC90055A21B /* MultiplayerButterflyTrail.sks */; };
 		A0FC232318FACC1C0035A999 /* SingleGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0FC232218FACC1C0035A999 /* SingleGameViewController.m */; };
@@ -108,7 +107,6 @@
 		A0A8806218F3376E00B01143 /* sprites.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = sprites.atlas; sourceTree = "<group>"; };
 		A0A8806518F3376E00B01143 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A0A8806718F3376E00B01143 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		A0A8808E18F33A3300B01143 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		A0BE8CBF18F368B300E71E47 /* PWPerspective.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = PWPerspective.ttf; sourceTree = "<group>"; };
 		A0E72AE518FB0FC90055A21B /* MultiplayerButterflyTrail.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MultiplayerButterflyTrail.sks; sourceTree = "<group>"; };
 		A0FC232118FACC1C0035A999 /* SingleGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleGameViewController.h; sourceTree = "<group>"; };
@@ -128,7 +126,6 @@
 				A0A4C97719032A6F00D0113A /* GameKit.framework in Frameworks */,
 				A0A87FDF18F334BC00B01143 /* SpriteKit.framework in Frameworks */,
 				A0A87FD918F334BC00B01143 /* Foundation.framework in Frameworks */,
-				A0A8808F18F33A3300B01143 /* Crashlytics.framework in Frameworks */,
 				2D524A2A0D7F446F915CAEAB /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -158,7 +155,6 @@
 			isa = PBXGroup;
 			children = (
 				A0A4C97619032A6F00D0113A /* GameKit.framework */,
-				A0A8808E18F33A3300B01143 /* Crashlytics.framework */,
 				A0A87FD818F334BC00B01143 /* Foundation.framework */,
 				A0A87FDA18F334BC00B01143 /* CoreGraphics.framework */,
 				A0A87FDC18F334BC00B01143 /* UIKit.framework */,
@@ -363,7 +359,6 @@
 				A0A87FD218F334BC00B01143 /* Frameworks */,
 				A0A87FD318F334BC00B01143 /* Resources */,
 				2108599B84D348CD92FE36FC /* Copy Pods Resources */,
-				A0A8808D18F33A0B00B01143 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -465,19 +460,6 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
-		};
-		A0A8808D18F33A0B00B01143 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "./Crashlytics.framework/run db7f2b5ac560a858c853e4eb1c203a987c06fd64 3780bdc040c0133bfc89547b5daee2148bf4f4d24cc9fa488b2a9c89c9d42ca7";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -598,7 +580,7 @@
 				GCC_PREFIX_HEADER = "fly-butterfly/Supporting Files/fly-butterfly-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/fly-butterfly/Supporting Files/fly-butterfly-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "158051B0-9CEC-4A7B-A3AD-CB6B0D02C802";
+				PROVISIONING_PROFILE = "2892766F-4EF3-4293-AC4C-33AF96782DEB";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				WRAPPER_EXTENSION = app;
 			};
@@ -620,7 +602,7 @@
 				GCC_PREFIX_HEADER = "fly-butterfly/Supporting Files/fly-butterfly-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/fly-butterfly/Supporting Files/fly-butterfly-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "158051B0-9CEC-4A7B-A3AD-CB6B0D02C802";
+				PROVISIONING_PROFILE = "2892766F-4EF3-4293-AC4C-33AF96782DEB";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				WRAPPER_EXTENSION = app;
 			};

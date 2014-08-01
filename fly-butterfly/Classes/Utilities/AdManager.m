@@ -32,9 +32,7 @@
     self.interstitial.adUnitID = @"ca-app-pub-3392553844996186/2623164155";
 
     GADRequest *request = [GADRequest request];
-    request.testDevices = @[GAD_SIMULATOR_ID,
-                            @"9d7eada80bc22149b0c33df66f0957d0",
-                            @"4f671bf723d90741f66b2fa9a13a497c"];
+    request.testDevices = @[GAD_SIMULATOR_ID];
 
     [self.interstitial loadRequest:request];
 }

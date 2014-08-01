@@ -43,7 +43,6 @@ typedef NS_ENUM(NSInteger, GameState) {
         SKAction *fullScale = [SKAction sequence:@[scaleUp, scaleDown]];
         _scale = [SKAction repeatAction:fullScale count:2];
     }
-
     return _scale;
 }
 
@@ -84,8 +83,13 @@ typedef NS_ENUM(NSInteger, GameState) {
 
     // Setup multiplayer butterfly
     self.butterflyMultiplayer = [[Butterfly alloc] initWithPosition:self.butterfly.position];
-    [self.butterflyMultiplayer runAction:[SKAction colorizeWithColor:[SKColor blackColor] colorBlendFactor:1.0 duration:0.1]];
+
+    SKAction *colorizeAction = [SKAction colorizeWithColor:[SKColor blackColor]
+                                          colorBlendFactor:1.0
+                                                  duration:0.1];
+    [self.butterflyMultiplayer runAction:colorizeAction];
     [self addChild:self.butterflyMultiplayer];
+
     // Setup tray after being added to the scene
     [self.butterflyMultiplayer setupMultiplayerButterflyTray];
 }
@@ -174,10 +178,11 @@ typedef NS_ENUM(NSInteger, GameState) {
     self.statusLabel.position = CGPointMake(self.size.width / 2, self.size.height / 2 + 50);
 
     if (self.butterfly.position.x > self.butterflyMultiplayer.position.x) {
-        self.statusLabel.text = @"YOU WON";
+        self.statusLabel.text = @"YOU WIN";
     } else {
-        self.statusLabel.text = @"YOU LOST";
+        self.statusLabel.text = @"YOU LOSE";
     }
+
     [self addChild:self.statusLabel];
 
     [self.butterflyMultiplayer removeFromParent];
@@ -220,20 +225,10 @@ typedef NS_ENUM(NSInteger, GameState) {
 #pragma mark - TouchesBegan
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    switch (self.gameState) {
-        case GameStateRunning:
-            [self touchesBeganGameStateRunning];
-            break;
-
-        case GameStateButterflyBlinking:
-            [self touchesBeganGameStateBlinking];
-            break;
-
-        case GameStateOver:
-        case GameStateReady:
-        case GameStateButterflyHit:
-        default:
-            break;
+    if (self.gameState == GameStateRunning) {
+        [self touchesBeganGameStateRunning];
+    } else if (self.gameState == GameStateButterflyBlinking) {
+        [self touchesBeganGameStateBlinking];
     }
 }
 

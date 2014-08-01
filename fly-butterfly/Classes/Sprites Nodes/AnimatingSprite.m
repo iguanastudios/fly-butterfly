@@ -22,10 +22,10 @@
     return self;
 }
 
-#pragma mark - Public Method
+#pragma mark - Class methods
 
 + (SKTexture *)generateTexture {
-    // Overridden by subclasses
+    // Implemented in subclasses
     return nil;
 }
 

@@ -28,15 +28,7 @@
     return self;
 }
 
-#pragma mark - Public methods
-
-- (void)fly {
-    NSTimeInterval duration = (self.position.x + CrowWidth / 2) * FlySecondsPerPoint;
-    SKAction *crowFly = [SKAction moveToX:-CrowWidth / 2 duration:duration];
-    [self runAction:crowFly withKey:@"fly"];
-}
-
-#pragma mark - Override AnimatingSprite
+#pragma mark - AnimatingSprite
 
 + (SKTexture *)generateTexture {
     static SKTexture *texture = nil;
@@ -57,6 +49,14 @@
     });
 
     return animation;
+}
+
+#pragma mark - Public methods
+
+- (void)fly {
+    NSTimeInterval duration = (self.position.x + CrowWidth / 2) * FlySecondsPerPoint;
+    SKAction *crowFly = [SKAction moveToX:-CrowWidth / 2 duration:duration];
+    [self runAction:crowFly withKey:@"fly"];
 }
 
 @end

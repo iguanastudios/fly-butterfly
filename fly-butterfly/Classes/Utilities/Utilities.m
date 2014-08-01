@@ -10,6 +10,8 @@
 
 @implementation Utilities
 
+#pragma mark - Class methods
+
 + (void)flashScene:(SKScene *)scene {
     SKSpriteNode *flash = [SKSpriteNode node];
     flash.anchorPoint = CGPointZero;

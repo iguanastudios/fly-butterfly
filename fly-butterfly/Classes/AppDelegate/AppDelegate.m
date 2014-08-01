@@ -7,7 +7,6 @@
 //
 
 #import <Appirater/Appirater.h>
-#import <Crashlytics/Crashlytics.h>
 #import <GoogleAnalytics-iOS-SDK/GAI.h>
 #import "AppDelegate.h"
 #import "Config.h"
@@ -17,8 +16,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
 #ifndef DEBUG
-    [Crashlytics startWithAPIKey:[Config sharedInstance].crashlyticsId];
-
     [GAI sharedInstance].trackUncaughtExceptions = YES;
     [[GAI sharedInstance] trackerWithTrackingId:[Config sharedInstance].googleAnalyticsId];
 

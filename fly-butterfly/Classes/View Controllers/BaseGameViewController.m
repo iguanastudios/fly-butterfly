@@ -10,15 +10,6 @@
 
 @implementation BaseGameViewController
 
-#pragma mark - IBActions
-
-- (IBAction)backButtonPressed {
-    [self.gameView presentScene:nil];
-    [[ISAudio sharedInstance] pauseBackgroundMusic];
-    [[ISAudio sharedInstance] playSoundEffect:@"button_press.wav"];
-    [self.navigationController popToRootViewControllerAnimated:YES];
-}
-
 #pragma mark - Private Methods
 
 - (void)presentScene {
@@ -51,6 +42,15 @@
 - (void)gameOver {
     [self shakeFrame];
     self.gameOverView.hidden = NO;
+}
+
+#pragma mark - IBActions
+
+- (IBAction)backButtonPressed {
+    [self.gameView presentScene:nil];
+    [[ISAudio sharedInstance] pauseBackgroundMusic];
+    [[ISAudio sharedInstance] playSoundEffect:@"button_press.wav"];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 @end

@@ -10,7 +10,6 @@
 
 @interface GVUserDefaults (Properties)
 
-// Game
 @property (nonatomic) NSInteger highscore;
 
 @end

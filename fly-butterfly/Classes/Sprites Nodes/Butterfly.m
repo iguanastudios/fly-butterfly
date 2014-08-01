@@ -31,7 +31,7 @@
     return self;
 }
 
-#pragma mark - Override AnimatingSprite
+#pragma mark - AnimatingSprite
 
 + (SKTexture *)generateTexture {
     static SKTexture *texture = nil;

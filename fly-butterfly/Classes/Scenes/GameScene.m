@@ -20,12 +20,12 @@ typedef NS_ENUM(NSInteger, GameState) {
 };
 
 @interface GameScene()
-@property (nonatomic) GameState gameState;
-@property (nonatomic) NSUInteger currentScore;
 @property (strong, nonatomic) SKLabelNode *scoreLabel;
 @property (strong, nonatomic) SKSpriteNode *handNode;
 @property (strong, nonatomic) SKSpriteNode *rightArrow;
 @property (strong, nonatomic) SKSpriteNode *leftArrow;
+@property (nonatomic) GameState gameState;
+@property (nonatomic) NSUInteger currentScore;
 @end
 
 @implementation GameScene
@@ -58,7 +58,6 @@ typedef NS_ENUM(NSInteger, GameState) {
     }];
 
     [self addChild:pointEdge];
-
     return [Utilities randomPositionAtTopWithScene:self numberOfCrows:self.crowCounter++];
 }
 
@@ -129,7 +128,7 @@ typedef NS_ENUM(NSInteger, GameState) {
         case GameStateOver:
         default:
             [self touchesBeganGameStateOver];
-        break;
+            break;
     }
 }
 
@@ -162,15 +161,12 @@ typedef NS_ENUM(NSInteger, GameState) {
         case BPointCategory:
             [self didBeginContactWithPoint];
             break;
-
         case BGroundCategory:
             [self didBeginContactWithGround];
-        break;
-
+            break;
         case BCrowCategory:
             [self didBeginContactWithCrow:body];
             break;
-
         default:
             break;
     }

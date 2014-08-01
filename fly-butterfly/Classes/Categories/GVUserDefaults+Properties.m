@@ -10,7 +10,6 @@
 
 @implementation GVUserDefaults (Properties)
 
-// Game
 @dynamic highscore;
 
 @end

@@ -8,12 +8,14 @@
 
 #import "AchievementsHelper.h"
 
-static NSString* const kAchievementId50 = @"io.iguanastudios.flybutterfly.amateursurvival";
-static NSString* const kAchievementId100 = @"io.iguanastudios.flybutterfly.intermediatesurvival";
-static NSString* const kAchievementId150 = @"io.iguanastudios.flybutterfly.professionalsurvival";
-static NSString* const kAchievementId250 = @"io.iguanastudios.flybutterfly.grandmastersurvival";
+static NSString * const kAchievementId50 = @"io.iguanastudios.flybutterfly.amateursurvival";
+static NSString * const kAchievementId100 = @"io.iguanastudios.flybutterfly.intermediatesurvival";
+static NSString * const kAchievementId150 = @"io.iguanastudios.flybutterfly.professionalsurvival";
+static NSString * const kAchievementId250 = @"io.iguanastudios.flybutterfly.grandmastersurvival";
 
 @implementation AchievementsHelper
+
+#pragma mark - Class methods
 
 + (NSArray *)achievementsForCrows:(NSInteger)totalCrows {
     NSMutableArray *achievementsArray = [NSMutableArray array];
@@ -58,7 +60,7 @@ static NSString* const kAchievementId250 = @"io.iguanastudios.flybutterfly.grand
     }
 
     GKAchievement *achievement = [[GKAchievement alloc] initWithIdentifier:achievementIdentifier];
-    CGFloat percent = (crows/total) * 100;
+    CGFloat percent = (crows / total) * 100.0;
     achievement.percentComplete = percent;
     achievement.showsCompletionBanner = YES;
     return achievement;

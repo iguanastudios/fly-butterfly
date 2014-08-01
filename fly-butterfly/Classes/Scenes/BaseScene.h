@@ -15,14 +15,11 @@
 #import "Utilities.h"
 
 @protocol SceneDelegate <NSObject>
-
 @required
 - (void)gameStart;
 - (void)gameOver;
-
 @optional
 - (void)gamePrepare;
-
 @end
 
 static SKAction *CrowSound;
@@ -30,13 +27,13 @@ static SKAction *FlapSound;
 
 @interface BaseScene : SKScene <SKPhysicsContactDelegate>
 
-@property (nonatomic) CGFloat initialPoint;
-@property (nonatomic) CFTimeInterval deltaTime;
-@property (nonatomic) NSInteger crowCounter;
+@property (weak, nonatomic) id<SceneDelegate> delegate;
 @property (strong, nonatomic) Butterfly *butterfly;
 @property (strong, nonatomic) NSTimer *timer;
 @property (strong, nonatomic) SKAction *movePoint;
-@property (weak, nonatomic) id<SceneDelegate> delegate;
+@property (nonatomic) CGFloat initialPoint;
+@property (nonatomic) CFTimeInterval deltaTime;
+@property (nonatomic) NSInteger crowCounter;
 
 + (SKAction *)crowSound;
 + (SKAction *)flapSound;

@@ -16,6 +16,8 @@
 
 @implementation BaseScene
 
+#pragma mark - Initialization
+
 + (void)initialize {
     if ([self class] == [BaseScene class]) {
         CrowSound = [SKAction playSoundFileNamed:@"crow.m4a" waitForCompletion:NO];
@@ -44,7 +46,7 @@
 }
 
 - (CGFloat)crowPositionY {
-    // Implemented by subclasses
+    // Implemented in subclasses
     return 0.0;
 }
 
