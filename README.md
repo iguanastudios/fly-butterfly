@@ -17,3 +17,7 @@ https://itunes.apple.com/us/app/fly-butterfly/id857838948
 
 4. Open the project **workspace**  
 `open fly-butterfly.xcworkspace`
+
+## Licence
+
+Fly Butterfly is licensed under the [MIT Licence](LICENSE).
